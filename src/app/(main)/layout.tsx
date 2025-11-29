@@ -34,7 +34,7 @@ export default function MainLayout({
           <div className="min-h-screen"></div>
         </>
       ) : (
-        <main className="px-4 py-8">{children}</main>
+        <main className="pt-20">{children}</main>
       )}
       <Footer />
     </div>

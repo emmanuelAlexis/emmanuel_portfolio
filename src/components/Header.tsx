@@ -4,11 +4,14 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import DarkModeToggle from "./DarkModeToggle";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const { t } = useLanguage();
 
   // Gestion du défilement pour l'effet de header réduit
   useEffect(() => {
@@ -19,12 +22,26 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Navigation items
+  // Navigation items - sur la page d'accueil, on scroll vers les sections, sinon on navigue
   const navItems = [
-    { path: "/about", label: "À propos" },
-    { path: "/projects", label: "Projets" },
-    { path: "/contact", label: "Contact" },
+    { path: "/about", section: "about", label: t.nav.about },
+    { path: "/projects", section: "projects", label: t.nav.projects },
+    { path: "/contact", section: "contact", label: t.nav.contact },
   ];
+
+  // Fonction pour gérer le clic sur un lien de navigation
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, item: typeof navItems[0]) => {
+    // Si on est sur la page d'accueil, on scroll vers la section
+    if (pathname === '/') {
+      e.preventDefault();
+      const section = document.getElementById(item.section);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+        closeMenu();
+      }
+    }
+    // Sinon, on laisse le Link naviguer normalement vers la page
+  };
 
   // Fermer le menu mobile quand on clique sur un lien
   const closeMenu = () => setIsMenuOpen(false);
@@ -56,6 +73,7 @@ export default function Header() {
                 <Link
                   prefetch={false}
                   href={item.path}
+                  onClick={(e) => handleNavClick(e, item)}
                   className={`relative px-2 py-1 transition ${pathname.includes(item.path)
                     ? "text-primary font-medium"
                     : "text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary"
@@ -78,6 +96,9 @@ export default function Header() {
                 </Link>
               </li>
             ))}
+            <li>
+              <LanguageSwitcher />
+            </li>
             <li>
               <DarkModeToggle variants="block" />
             </li>
@@ -142,7 +163,10 @@ export default function Header() {
                   >
                     <Link
                       href={item.path}
-                      onClick={closeMenu}
+                      onClick={(e) => {
+                        handleNavClick(e, item);
+                        closeMenu();
+                      }}
                       className={`block py-2 px-4 rounded-lg transition ${pathname === item.path
                         ? "bg-blue-50 dark:bg-blue-900/30 text-primary font-medium"
                         : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
@@ -153,11 +177,12 @@ export default function Header() {
                   </motion.li>
                 ))}
                 <motion.li
-                  className="flex justify-center mt-6"
+                  className="flex justify-center mt-6 gap-4"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3 }}
                 >
+                  <LanguageSwitcher />
                   <DarkModeToggle variants="block" />
                 </motion.li>
               </ul>

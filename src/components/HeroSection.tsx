@@ -131,37 +131,44 @@ export default function HeroSection() {
                 className="space-y-4 sm:space-y-0 sm:space-x-4 flex flex-col sm:flex-row justify-center lg:justify-start"
                 variants={item}
               >
-                <motion.button
-                  className="bg-primary/70 hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded-lg font-medium 
-                          shadow-lg hover:shadow-primary/20 relative overflow-hidden"
+                <motion.a
+                  href="#projects"
+                  className="bg-primary/70 hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-medium 
+                          shadow-lg hover:shadow-primary/20 relative overflow-hidden text-center"
                   whileHover={{
                     scale: 1.05,
                     boxShadow: "0 10px 25px -5px rgba(14, 150, 82, 0.692)",
                   }}
                   whileTap={{ scale: 0.98 }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
                 >
                   <span className="relative z-10">Voir mes projets</span>
                   <motion.span
                     className="absolute inset-0 bg-white opacity-0"
                     whileHover={{ opacity: 0.1 }}
                   />
-                </motion.button>
+                </motion.a>
 
-                <motion.button
+                <motion.a
+                  href="/cv.pdf"
+                  download="Emmanuel_CV.pdf"
                   className="border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800 
-                          px-6 py-3 rounded-lg font-medium relative overflow-hidden"
+                          px-6 py-3 rounded-lg font-medium relative overflow-hidden text-center"
                   whileHover={{
                     scale: 1.05,
                     boxShadow: "0 4px 14px rgba(0, 0, 0, 0.1)",
                   }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <span className="relative z-10">Contactez-moi</span>
+                  <span className="relative z-10">Télécharger le CV</span>
                   <motion.span
                     className="absolute inset-0 bg-gray-200 dark:bg-gray-700 opacity-0"
                     whileHover={{ opacity: 0.2 }}
                   />
-                </motion.button>
+                </motion.a>
               </motion.div>
             </div>
             <TechPage />
@@ -169,7 +176,7 @@ export default function HeroSection() {
 
           {/* Partie image */}
           <motion.div
-            className="lg:w-1/2 flex justify-center"
+            className="lg:w-1/2 flex justify-center self-start p-10"
             variants={imageVariants}
             initial="hidden"
             animate="show"

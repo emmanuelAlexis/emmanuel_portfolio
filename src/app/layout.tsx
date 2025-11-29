@@ -4,6 +4,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import { Toaster } from "sonner";
 
+import { LanguageProvider } from "@/context/LanguageContext";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -16,10 +18,12 @@ export default function RootLayout({
           mode="wait"
           onExitComplete={() => window.scrollTo(0, 0)}
         >
-          <ThemeProvider>
-            {children}
-            <Toaster richColors />
-          </ThemeProvider>
+          <LanguageProvider>
+            <ThemeProvider>
+              {children}
+              <Toaster richColors />
+            </ThemeProvider>
+          </LanguageProvider>
         </AnimatePresence>
       </body>
     </html>

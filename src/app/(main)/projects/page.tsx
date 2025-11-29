@@ -1,6 +1,7 @@
 "use client";
 import ProjectCard from "@/components/ProjectCard";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 import {
   SiJavascript,
   SiLaravel,
@@ -24,7 +25,7 @@ const projects = [
     id: 1,
     title: "Système de Gestion de Bibliothèque",
     description:
-      "Application complète avec gestion des livres, auteurs, emprunts, avec interface d’upload d’images, rôles et relations Spring Boot / Next.js.",
+      "Application complète avec gestion des livres, auteurs, emprunts, avec interface d'upload d'images, rôles et relations Spring Boot / Next.js.",
     technologies: [
       {
         id: 0,
@@ -70,9 +71,6 @@ const projects = [
         id: 7,
         icon: <SiTailwindcss size="1.5rem" title="Tailwindcss" />,
       },
-
-
-
     ],
     imageUrl: "/picture.jpeg",
     projectUrl: "/projects/2",
@@ -141,9 +139,9 @@ const projects = [
   },
   {
     id: 5,
-    title: "Classificateur d’Images Offline",
+    title: "Classificateur d'Images Offline",
     description:
-      "Application offline avec MobileNetV2 pour prédire le genre (homme/femme) à partir d’images locales.",
+      "Application offline avec MobileNetV2 pour prédire le genre (homme/femme) à partir d'images locales.",
     technologies: [
       {
         id: 17,
@@ -167,7 +165,7 @@ const projects = [
     id: 6,
     title: "Timer Intelligent Personnalisable",
     description:
-      "Timer interactif avec déclenchement d’alerte sonore à partir d’un seuil défini.",
+      "Timer interactif avec déclenchement d'alerte sonore à partir d'un seuil défini.",
     technologies: [
       {
         id: 20,
@@ -205,20 +203,22 @@ const item = {
 };
 
 export default function ProjectsPage() {
+  const { t } = useLanguage();
+
   return (
-    <section className="py-24 min-h-screen bg-gray-50 dark:bg-gray-900">
-      <div className="container mx-auto px-4">
+    <section className="min-h-screen bg-gray-50 dark:bg-gray-900 py-20">
+      <div className="container mx-auto px-4 max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
+          className="mb-16 text-center pt-8"
         >
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-            Mes Projets
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
+            {t.projectsPage.title}
           </h1>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Découvrez une collection de mes travaux récents, allant des applications web complexes aux outils utilitaires.
+            {t.projectsPage.subtitle}
           </p>
         </motion.div>
 

@@ -2,7 +2,7 @@ import ContactSection from "@/components/ContactSection";
 
 export default function ContactPage() {
   return (
-    <section className="py-12">
+    <section className="">
       <ContactSection />
     </section>
   );

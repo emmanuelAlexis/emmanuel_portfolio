@@ -16,21 +16,21 @@ export default function Home() {
         <HeroSection />
       </section>
 
-      <ScrollAnimationSection>
+      <ScrollAnimationSection id="about">
         <AboutLayout children={<AboutPage />} />
       </ScrollAnimationSection>
 
       {/* Skills Section avec apparition/disparition */}
-      <ScrollAnimationSection>
+      <ScrollAnimationSection id="skills">
         <SkillsSection />
       </ScrollAnimationSection>
 
       {/* Featured Projects avec apparition/disparition */}
-      <ScrollAnimationSection delay={0.5}>
+      <ScrollAnimationSection delay={0.5} id="projects">
         <FeaturedProjects />
       </ScrollAnimationSection>
 
-      <ScrollAnimationSection delay={0.2}>
+      <ScrollAnimationSection delay={0.2} id="contact">
         <ContactSection />
       </ScrollAnimationSection>
 
@@ -44,9 +44,11 @@ export default function Home() {
 function ScrollAnimationSection({
   children,
   delay = 0,
+  id,
 }: {
   children: React.ReactNode;
   delay?: number;
+  id?: string;
 }) {
   const controls = useAnimation();
   const ref = useRef(null);
@@ -62,6 +64,7 @@ function ScrollAnimationSection({
 
   return (
     <motion.section
+      id={id}
       ref={ref}
       initial="hidden"
       animate={controls}
