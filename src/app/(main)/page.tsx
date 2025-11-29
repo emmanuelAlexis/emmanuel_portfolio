@@ -5,6 +5,8 @@ import FeaturedProjects from "@/components/FeaturedProjects";
 import HeroSection from "@/components/HeroSection";
 import SkillsSection from "@/components/SkillsSection";
 import ContactSection from "@/components/ContactSection";
+import AboutPage from "./about/page";
+import AboutLayout from "./about/layout";
 
 export default function Home() {
   return (
@@ -13,6 +15,10 @@ export default function Home() {
       <section className="relative">
         <HeroSection />
       </section>
+
+      <ScrollAnimationSection>
+        <AboutLayout children={<AboutPage />} />
+      </ScrollAnimationSection>
 
       {/* Skills Section avec apparition/disparition */}
       <ScrollAnimationSection>

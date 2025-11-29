@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
-import { FiMail, FiMapPin, FiPhone } from "react-icons/fi";
+import { FiMail, FiMapPin, FiPhone, FiSend } from "react-icons/fi";
 import InputWithIcon from "./Inputs";
 import { InfoIcon, Mail, User } from "lucide-react";
 import { useState } from "react";
@@ -23,161 +23,186 @@ export default function ContactSection() {
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+    hidden: { opacity: 0, y: 30 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
   };
 
   return (
     <section
       id="contact"
-      className="py-20 bg-white dark:bg-gray-900 transition-colors duration-300"
+      className="py-24 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-950 transition-colors duration-500"
     >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 max-w-6xl">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
-          className="text-center mb-16"
+          viewport={{ once: true, margin: "-50px" }}
+          className="text-center mb-20"
         >
+          <motion.span
+            variants={itemVariants}
+            className="inline-block py-1 px-3 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4"
+          >
+            Contact
+          </motion.span>
           <motion.h2
             variants={itemVariants}
-            className="text-4xl font-bold mb-4 text-gray-900 dark:text-white"
+            className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-400"
           >
-            Contactez-moi
+            Parlons de votre projet
           </motion.h2>
           <motion.p
             variants={itemVariants}
-            className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto"
+            className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed"
           >
-            Discutons de votre projet ou opportunité
+            Une idée en tête ? Je suis toujours ouvert aux nouvelles opportunités et collaborations intéressantes.
           </motion.p>
         </motion.div>
 
-        <div className="flex flex-col lg:flex-row items-center gap-12">
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
+          {/* Contact Info */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="lg:w-1/2"
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="lg:w-5/12 space-y-8"
           >
-            <div className="space-y-8">
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-primary/50 rounded-lg text-primary">
-                  <FiMail className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
-                    Email
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    emmanueladolphe0401@gmail.com
-                  </p>
-                  <a
-                    href="mailto:emmanueladolphe0401@gmail.com"
-                    className="text-primary hover:underline mt-1 inline-block"
-                  >
-                    Envoyer un message
-                  </a>
-                </div>
-              </div>
+            <div className="bg-white dark:bg-gray-800/50 p-8 rounded-3xl shadow-xl shadow-gray-100/50 dark:shadow-none border border-gray-100 dark:border-gray-700/50 backdrop-blur-sm">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">
+                Coordonnées
+              </h3>
 
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-primary/50 rounded-lg text-primary">
-                  <FiMapPin className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
-                    Localisation
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    Ville, Pays
-                  </p>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    Disponible pour des opportunités locales et distantes
-                  </p>
-                </div>
-              </div>
+              <div className="space-y-8">
+                <motion.div
+                  whileHover={{ x: 5 }}
+                  className="flex items-start gap-5 group"
+                >
+                  <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-2xl text-primary group-hover:scale-110 transition-transform duration-300">
+                    <FiMail className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-800 dark:text-white mb-1">
+                      Email
+                    </h4>
+                    <a
+                      href="mailto:emmanueladolphe0401@gmail.com"
+                      className="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors"
+                    >
+                      emmanueladolphe0401@gmail.com
+                    </a>
+                  </div>
+                </motion.div>
 
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-primary/50 rounded-lg text-primary">
-                  <FiPhone className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
-                    Téléphone
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    +261 34 08 548 16
-                  </p>
-                  <a
-                    href="tel:+261340854816"
-                    className="text-primary/70 hover:underline mt-1 inline-block"
-                  >
-                    Appeler maintenant
-                  </a>
-                </div>
+                <motion.div
+                  whileHover={{ x: 5 }}
+                  className="flex items-start gap-5 group"
+                >
+                  <div className="p-4 bg-purple-50 dark:bg-purple-900/20 rounded-2xl text-purple-600 dark:text-purple-400 group-hover:scale-110 transition-transform duration-300">
+                    <FiMapPin className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-800 dark:text-white mb-1">
+                      Localisation
+                    </h4>
+                    <p className="text-gray-600 dark:text-gray-300">
+                      Fianarantsoa, Madagascar
+                    </p>
+                    <span className="text-sm text-green-600 dark:text-green-400 font-medium mt-1 inline-block">
+                      • Disponible en remote
+                    </span>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  whileHover={{ x: 5 }}
+                  className="flex items-start gap-5 group"
+                >
+                  <div className="p-4 bg-green-50 dark:bg-green-900/20 rounded-2xl text-green-600 dark:text-green-400 group-hover:scale-110 transition-transform duration-300">
+                    <FiPhone className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-800 dark:text-white mb-1">
+                      Téléphone
+                    </h4>
+                    <a
+                      href="tel:+261340854816"
+                      className="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors"
+                    >
+                      +261 34 08 548 16
+                    </a>
+                  </div>
+                </motion.div>
               </div>
             </div>
           </motion.div>
 
+          {/* Contact Form */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="lg:w-1/2"
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            viewport={{ once: true }}
+            className="lg:w-7/12"
           >
-            <form onSubmit={onSubmit} className="space-y-6">
-              <InputWithIcon
-                icon={User}
-                type="text"
-                placeholder="Jhon Doe"
-                onChange={(value) => setName(value)}
-                label="Nom Complet"
-                value={name}
-              />
-              <InputWithIcon
-                label="Email"
-                onChange={(value) => setEmail(value)}
-                value={email}
-                type="email"
-                icon={Mail}
-                placeholder="exemple@domain.com"
-              />
+            <div className="bg-white dark:bg-gray-800 p-8 md:p-10 rounded-3xl shadow-2xl shadow-gray-200/50 dark:shadow-black/20 border border-gray-100 dark:border-gray-700">
+              <form onSubmit={onSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <InputWithIcon
+                    icon={User}
+                    type="text"
+                    placeholder="Votre nom"
+                    onChange={(value) => setName(value)}
+                    label="Nom Complet"
+                    value={name}
+                  />
+                  <InputWithIcon
+                    label="Email"
+                    onChange={(value) => setEmail(value)}
+                    value={email}
+                    type="email"
+                    icon={Mail}
+                    placeholder="exemple@email.com"
+                  />
+                </div>
 
-              <InputWithIcon
-                label="Sujet"
-                value={subject}
-                onChange={(value) => setSubject(value)}
-                type="text"
-                icon={InfoIcon}
-              />
+                <InputWithIcon
+                  label="Sujet"
+                  value={subject}
+                  onChange={(value) => setSubject(value)}
+                  type="text"
+                  icon={InfoIcon}
+                  placeholder="De quoi s'agit-il ?"
+                />
 
-              <InputWithIcon
-                label="Message"
-                value={message}
-                onChange={(value) => setMessage(value)}
-                type="textarea"
-                icon={FaEnvelope}
-              />
+                <InputWithIcon
+                  label="Message"
+                  value={message}
+                  onChange={(value) => setMessage(value)}
+                  type="textarea"
+                  icon={FaEnvelope}
+                  placeholder="Racontez-moi tout..."
+                />
 
-              <motion.button
-                type="submit"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-6 rounded-lg transition-all"
-              >
-                Envoyer le message
-              </motion.button>
-            </form>
+                <motion.button
+                  type="submit"
+                  whileHover={{ scale: 1.02, boxShadow: "0 10px 30px -10px rgba(37, 99, 235, 0.5)" }}
+                  whileTap={{ scale: 0.98 }}
+                  className="w-full bg-gradient-to-r from-primary to-blue-600 text-white font-bold py-4 px-8 rounded-xl transition-all flex items-center justify-center gap-3 group"
+                >
+                  <span>Envoyer le message</span>
+                  <FiSend className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </motion.button>
+              </form>
+            </div>
           </motion.div>
         </div>
       </div>

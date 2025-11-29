@@ -96,14 +96,14 @@ const Tech = () => {
   ];
   return (
     <div>
-      <div className="flex items-center gap-4 mb-8">
+      {/* <div className="flex items-center gap-4 mb-8">
         <div className="p-3 rounded-xl text-primary">
           <FiCode className="w-6 h-6" />
         </div>
         <h2 className="text-3xl font-semibold text-gray-900 dark:text-white">
           Mes Technologies
         </h2>
-      </div>
+      </div> */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -121,11 +121,10 @@ const Tech = () => {
             <button
               key={tech.categorie}
               onClick={() => setCat(tech.categorie)}
-              className={`px-4 py-2 flex gap-2 items-center rounded-lg transition-colors ${
-                cat === tech.categorie
-                  ? "bg-primary text-white font-medium"
-                  : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
-              }`}
+              className={`px-4 py-2 flex gap-2 items-center rounded-lg transition-colors ${cat === tech.categorie
+                ? "bg-primary text-white font-medium"
+                : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+                }`}
             >
               {tech.icon} {tech.categorie}
             </button>

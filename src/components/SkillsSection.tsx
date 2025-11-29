@@ -1,31 +1,45 @@
 "use client";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import {
+  FaReact, FaGitAlt, FaDocker, FaPython, FaJava
+} from "react-icons/fa";
+import {
+  SiNextdotjs, SiTypescript, SiTailwindcss, SiRedux, SiNestjs,
+  SiSpringboot, SiPostgresql, SiJest, SiFlutter, SiMysql, SiExpress,
+  SiDotnet, SiSqlite, SiPrisma, SiSocketdotio
+} from "react-icons/si";
+import { TbBrandCSharp } from "react-icons/tb";
 
-const SkillBar = ({ name, level }: { name: string; level: number }) => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.5,
-  });
-
+const SkillCard = ({ name, icon, color }: { name: string; icon: React.ReactNode; color: string }) => {
   return (
-    <li className="mb-6">
-      <div className="flex justify-between mb-2">
-        <span className="font-medium text-gray-800 dark:text-gray-200">
-          {name}
-        </span>
-        <span className="text-gray-600 dark:text-gray-400">{level}%</span>
+    <motion.div
+      whileHover={{ y: -8, scale: 1.05 }}
+      whileTap={{ scale: 0.98 }}
+      className="relative group w-[130px] md:w-[150px] flex flex-col items-center justify-center p-4 md:p-6 bg-white dark:bg-gray-800/50 backdrop-blur-md rounded-2xl shadow-lg shadow-gray-200/50 dark:shadow-black/40 border border-gray-100 dark:border-gray-700 hover:border-primary/50 overflow-hidden transition-all duration-300"
+    >
+      {/* Background Glow Effect */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+      {/* Animated Border Gradient */}
+      <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-transparent group-hover:ring-primary/20 transition-all duration-500" />
+
+      <div className={`text-4xl md:text-5xl mb-3 md:mb-4 ${color} transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 drop-shadow-sm`}>
+        {icon}
       </div>
-      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
-        <motion.div
-          ref={ref}
-          className="h-full rounded-full bg-gradient-to-r from-primary to-blue-500/30"
-          initial={{ width: 0 }}
-          animate={{ width: inView ? `${level}%` : 0 }}
-          transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
-        />
-      </div>
-    </li>
+
+      <span className="font-medium text-gray-700 dark:text-gray-200 text-center text-xs md:text-sm tracking-wide group-hover:text-primary transition-colors duration-300">
+        {name}
+      </span>
+
+      {/* Bottom Progress Bar Indicator */}
+      <motion.div
+        className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100"
+        initial={{ scaleX: 0 }}
+        whileHover={{ scaleX: 1 }}
+        transition={{ duration: 0.3 }}
+      />
+    </motion.div>
   );
 };
 
@@ -33,194 +47,133 @@ export default function SkillsSection() {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
+    rootMargin: "-50px",
   });
 
   const skills = [
     {
-      category: "Frontend",
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-8 w-8"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-          />
-        </svg>
-      ),
+      category: "Langages",
       items: [
-        { name: "React", level: 90 },
-        { name: "Next.js", level: 85 },
-        { name: "TypeScript", level: 80 },
-        { name: "Tailwind CSS", level: 85 },
-        { name: "Redux", level: 50 },
+        { name: "TypeScript", icon: <SiTypescript />, color: "text-blue-600" },
+        { name: "Java", icon: <FaJava />, color: "text-orange-600" },
+        { name: "Python", icon: <FaPython />, color: "text-yellow-500" },
+        { name: "C#", icon: <TbBrandCSharp />, color: "text-purple-600" },
+      ],
+    },
+    {
+      category: "Frontend & Mobile",
+      items: [
+        { name: "React", icon: <FaReact />, color: "text-cyan-400" },
+        { name: "Next.js", icon: <SiNextdotjs />, color: "text-black dark:text-white" },
+        { name: "Flutter", icon: <SiFlutter />, color: "text-sky-500" },
+        { name: "Tailwind", icon: <SiTailwindcss />, color: "text-cyan-500" },
+        { name: "Redux", icon: <SiRedux />, color: "text-purple-500" },
       ],
     },
     {
       category: "Backend",
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-8 w-8"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"
-          />
-        </svg>
-      ),
       items: [
-        { name: "Node.js & Express", level: 75 },
-        { name: "NestJs", level: 70 },
-        { name: "Spring Boot", level: 80 },
-        { name: "laravel", level: 80 },
-        { name: "PostgreSQL", level: 80 },
+        { name: "NestJS", icon: <SiNestjs />, color: "text-red-600" },
+        { name: "Spring Boot", icon: <SiSpringboot />, color: "text-green-600" },
+        { name: ".NET", icon: <SiDotnet />, color: "text-purple-700" },
+        { name: "Express", icon: <SiExpress />, color: "text-gray-600 dark:text-gray-300" },
+        { name: "Socket.IO", icon: <SiSocketdotio />, color: "text-black dark:text-white" },
       ],
     },
     {
-      category: "Outils & DevOps",
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-8 w-8"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-          />
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-          />
-        </svg>
-      ),
+      category: "Data & ORM",
       items: [
-        { name: "Git", level: 80 },
-        { name: "Figma", level: 70 },
-        { name: "Docker", level: 60 },
-        { name: "CI/CD", level: 65 },
+        { name: "PostgreSQL", icon: <SiPostgresql />, color: "text-blue-600" },
+        { name: "MySQL", icon: <SiMysql />, color: "text-orange-500" },
+        { name: "SQLite", icon: <SiSqlite />, color: "text-blue-400" },
+        { name: "Prisma", icon: <SiPrisma />, color: "text-teal-600" },
+      ],
+    },
+    {
+      category: "DevOps & Tools",
+      items: [
+        { name: "Git", icon: <FaGitAlt />, color: "text-orange-600" },
+        { name: "Docker", icon: <FaDocker />, color: "text-blue-500" },
+        { name: "Jest", icon: <SiJest />, color: "text-red-700" },
       ],
     },
   ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    show: {
+    visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.1,
       },
     },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
   };
 
   return (
     <section
       id="skills"
       ref={ref}
-      className="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300"
+      className="py-24 relative overflow-hidden bg-gradient-to-b from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900"
     >
-      <div className="container mx-auto px-4">
+      {/* Decorative Background Elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute top-[-10%] left-[-5%] w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-[-10%] right-[-5%] w-96 h-96 bg-purple-500/5 rounded-full blur-3xl" />
+      </div>
+
+      <div className="container mx-auto max-w-7xl px-4 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: -20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-20"
         >
-          <h2 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">
-            Mes Compétences
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-400 mb-6">
+            Arsenal Technique
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Technologies et outils que j'utilise pour créer des solutions
-            performantes
+          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
+            Une expertise complète couvrant l'ensemble du cycle de développement, de la conception à la mise en production.
           </p>
         </motion.div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={inView ? "show" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
-        >
-          {skills.map((skillCategory) => (
+        <div className="space-y-20">
+          {skills.map((category, idx) => (
             <motion.div
-              key={skillCategory.category}
-              variants={itemVariants}
-              whileHover={{ y: -5 }}
-              className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+              key={category.category}
+              initial="hidden"
+              animate={inView ? "visible" : "hidden"}
+              variants={containerVariants}
+              className="relative"
             >
-              <div className="flex items-center mb-6">
-                <div className="p-3 bg-primary/30 rounded-lg text-primary/70 mr-4">
-                  {skillCategory.icon}
-                </div>
-                <h3 className="text-2xl font-semibold text-gray-800 dark:text-white">
-                  {skillCategory.category}
+              <div className="flex items-center gap-4 mb-10">
+                <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-100 shrink-0">
+                  {category.category}
                 </h3>
+                <div className="h-px bg-gradient-to-r from-gray-200 via-gray-300 to-transparent dark:from-gray-700 dark:via-gray-600 w-full" />
               </div>
-              <ul className="space-y-6">
-                {skillCategory.items.map((skill) => (
-                  <SkillBar
-                    key={skill.name}
-                    name={skill.name}
-                    level={skill.level}
-                  />
+
+              <motion.div
+                className="flex flex-wrap gap-6 md:gap-8"
+                variants={containerVariants}
+              >
+                {category.items.map((skill) => (
+                  <motion.div key={skill.name} variants={itemVariants}>
+                    <SkillCard {...skill} />
+                  </motion.div>
                 ))}
-              </ul>
+              </motion.div>
             </motion.div>
           ))}
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.8 }}
-          className="mt-16 text-center"
-        >
-          <h3 className="text-xl font-medium text-gray-700 dark:text-gray-300 mb-4">
-            Et bien plus encore...
-          </h3>
-          <div className="flex flex-wrap justify-center gap-3 max-w-2xl mx-auto">
-            {[
-              "Jest",
-              "React Testing Library",
-              "Python",
-              "Vite",
-              "Symfony",
-              "C#",
-              "Flutter",
-              "React Native",
-            ].map((tech) => (
-              <span
-                key={tech}
-                className="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm font-medium text-gray-800 dark:text-gray-200"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

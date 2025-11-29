@@ -1,22 +1,15 @@
 "use client";
 import Moi from "@/components/sections/Me";
-import Parcours from "@/components/sections/Parcours";
-import Tech from "@/components/sections/Tech";
+import { motion } from "framer-motion";
 
-export default function AboutPage({
-  section,
-}: {
-  section: "Moi" | "Parcours" | "Tech";
-}) {
+export default function AboutPage() {
   return (
-    <div>
-      {section === "Moi" ? (
-        <Moi />
-      ) : section === "Parcours" ? (
-        <Parcours />
-      ) : (
-        <Tech />
-      )}
-    </div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+    >
+      <Moi />
+    </motion.div>
   );
 }

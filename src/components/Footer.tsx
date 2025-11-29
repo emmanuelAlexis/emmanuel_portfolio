@@ -60,7 +60,13 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-gray-900/80 text-white pt-12 pb-6 relative">
+    <motion.footer
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+      className="bg-gray-900/80 text-white pt-12 pb-6 relative"
+    >
       <div className="container mx-auto px-4">
         {/* Bouton retour en haut */}
         {isVisible && (
@@ -196,6 +202,6 @@ export default function Footer() {
           <p className="mt-1">Dernière mise à jour : {currentYear}</p>
         </motion.div>
       </div>
-    </footer>
+    </motion.footer>
   );
 }

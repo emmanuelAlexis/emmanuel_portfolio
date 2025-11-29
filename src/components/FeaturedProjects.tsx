@@ -1,78 +1,10 @@
 "use client";
+import { featuredProjects } from "@/lib/data";
 import { motion, stagger, useAnimate, useInView } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
 import { FiGithub, FiExternalLink } from "react-icons/fi";
-
-const featuredProjects = [
-  {
-    id: 1,
-    title: "Système de Gestion de Bibliothèque",
-    description:
-      "Application complète avec gestion des livres, auteurs, emprunts, avec interface d’upload d’images, rôles et relations Spring Boot / Next.js.",
-    technologies: ["Spring Boot", "Next.js", "PostgreSQL", "Tailwind CSS"],
-    imageUrl: "/picture.jpeg",
-    projectUrl: "/projects/1",
-    githubUrl: "#",
-    featured: true,
-  },
-  {
-    id: 2,
-    title: "Mini-Banque Numérique",
-    description:
-      "Plateforme bancaire locale avec comptes bancaires et Mobile Money, prêts, remboursements, génération de PDF et notifications.",
-    technologies: ["Laravel", "Next.js", "MySQL", "Bootstrap"],
-    imageUrl: "/picture.jpeg",
-    projectUrl: "/projects/2",
-    githubUrl: "#",
-    featured: true,
-  },
-  {
-    id: 3,
-    title: "Application de Chat en Temps Réel",
-    description:
-      "Messagerie avec rooms, rôles admin/guest, fichiers, WebSocket, et gestion complète avec NestJS + Prisma.",
-    technologies: ["NestJS", "Prisma", "PostgreSQL", "Socket.IO", "Next.js"],
-    imageUrl: "/picture.jpeg",
-    projectUrl: "/projects/3",
-    githubUrl: "#",
-    featured: true,
-  },
-  {
-    id: 4,
-    title: "Classificateur Vocal Hors-Ligne",
-    description:
-      "App vocale en local avec RNA entraîné, interface moderne PyQt5 et reconnaissance temps réel.",
-    technologies: ["Python", "TensorFlow", "PyQt5", "Sounddevice"],
-    imageUrl: "/picture.jpeg",
-    projectUrl: "/projects/4",
-    githubUrl: "#",
-    featured: true,
-  },
-  {
-    id: 5,
-    title: "Classificateur d’Images Offline",
-    description:
-      "Application offline avec MobileNetV2 pour prédire le genre (homme/femme) à partir d’images locales.",
-    technologies: ["Python", "TensorFlow", "OpenCV", "Tkinter"],
-    imageUrl: "/picture.jpeg",
-    projectUrl: "/projects/5",
-    githubUrl: "#",
-    featured: true,
-  },
-  {
-    id: 6,
-    title: "Timer Intelligent Personnalisable",
-    description:
-      "Timer interactif avec déclenchement d’alerte sonore à partir d’un seuil défini.",
-    technologies: ["Next.js", "JavaScript", "Tailwind CSS"],
-    imageUrl: "/picture.jpeg",
-    projectUrl: "/projects/6",
-    githubUrl: "#",
-    featured: true,
-  },
-];
 
 export const ProjectCard = ({
   project,
@@ -83,68 +15,75 @@ export const ProjectCard = ({
 }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true, margin: "-50px" }}
       transition={{
-        duration: 1,
-        delay: index * 0.5, // Délai progressif basé sur l'index
+        duration: 0.7,
+        delay: index * 0.2,
+        ease: "easeOut",
       }}
-      whileHover={{ y: -10 }}
-      className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300"
+      whileHover={{ y: -12 }}
+      className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 project-card"
     >
-      <div className="relative h-72">
+      <div className="relative h-64 overflow-hidden">
         <Image
           src={project.imageUrl}
           alt={project.title}
           fill
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
+          className="object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
           quality={90}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
       </div>
 
       <div className="absolute inset-0 p-6 flex flex-col justify-end">
-        <div className="mb-4">
-          <h3 className="text-2xl font-bold text-white mb-2">
+        <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+          <h3 className="text-2xl font-bold text-white mb-2 drop-shadow-md">
             {project.title}
           </h3>
-          <p className="text-gray-300 mb-4">{project.description}</p>
+          <p className="text-gray-200 mb-4 line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+            {project.description}
+          </p>
         </div>
 
-        <div className="flex flex-wrap gap-2 mb-6">
-          {project.technologies.map((tech) => (
-            <motion.span
-              key={tech}
-              whileHover={{ scale: 1.05 }}
-              className="bg-white/10 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium"
+        <div className="flex flex-wrap gap-2 mb-4 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-75">
+          {project.technologies.slice(0, 3).map((tech) => (
+            <span
+              key={tech.id}
+              className="bg-white/20 backdrop-blur-md text-white px-3 py-1 rounded-full text-xs font-medium border border-white/10"
             >
-              {tech}
-            </motion.span>
+              {tech.icon}
+            </span>
           ))}
+          {project.technologies.length > 3 && (
+            <span className="bg-white/20 backdrop-blur-md text-white px-3 py-1 rounded-full text-xs font-medium border border-white/10">
+              +{project.technologies.length - 3}
+            </span>
+          )}
         </div>
 
-        <div className="flex gap-4">
+        <div className="flex gap-4 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-150 opacity-0 group-hover:opacity-100">
           {project.githubUrl && (
             <motion.a
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ y: -2 }}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 text-white hover:text-blue-300 transition-colors"
+              className="flex items-center gap-2 text-white bg-black/50 hover:bg-black/70 px-4 py-2 rounded-lg backdrop-blur-sm transition-colors text-sm font-medium"
             >
-              <FiGithub className="w-5 h-5" />
+              <FiGithub className="w-4 h-4" />
               <span>Code</span>
             </motion.a>
           )}
           <motion.a
             href={project.projectUrl}
-            whileHover={{ y: -2 }}
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-2 text-white hover:text-blue-300 transition-colors"
+            className="flex items-center gap-2 text-white bg-primary/80 hover:bg-primary px-4 py-2 rounded-lg backdrop-blur-sm transition-colors text-sm font-medium shadow-lg shadow-primary/20"
           >
-            <FiExternalLink className="w-5 h-5" />
+            <FiExternalLink className="w-4 h-4" />
             <span>Détails</span>
           </motion.a>
         </div>

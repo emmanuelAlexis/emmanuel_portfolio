@@ -34,9 +34,9 @@ export default function ProjectCard({
         <h3 className="text-xl font-bold mb-2">{project.title}</h3>
         <p className="mb-4">{project.description}</p>
         <div className="flex flex-wrap gap-2 mb-4">
-          {project.technologies.map((tech: string) => (
-            <span key={tech} className="px-2 py-1 rounded text-primary text-sm">
-              {tech}
+          {project.technologies.map((tech: any) => (
+            <span key={tech.id} className="px-2 py-1 rounded text-primary text-sm">
+              {tech.icon}
             </span>
           ))}
         </div>

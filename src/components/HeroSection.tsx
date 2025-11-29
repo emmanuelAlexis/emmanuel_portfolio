@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import TechPage from "@/app/(main)/about/technologies/page";
 
 export default function HeroSection() {
   // Variantes d'animation pour les éléments
@@ -82,85 +83,88 @@ export default function HeroSection() {
         <div className="flex flex-col lg:flex-row items-center gap-12">
           {/* Partie texte */}
           <motion.div
-            className="lg:w-1/2 text-center lg:text-left"
+            className="lg:w-1/2 flex flex-col gap-10 text-center lg:text-left"
             variants={container}
             initial="hidden"
             animate="show"
           >
-            <motion.h1
-              className="text-4xl md:text-5xl font-bold mb-6"
-              variants={item}
-            >
-              Bonjour, je suis{" "}
-              <motion.span
-                className="text-primary"
-                animate={{
-                  textShadow: [
-                    "0 0 0px rgba(37, 99, 235, 0)",
-                    "0 0 10px rgba(52, 211, 113, 0.671)",
-                    "0 0 0px rgba(37, 99, 235, 0)",
-                  ],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                }}
+            <div className="flex flex-col gap-5">
+              <motion.h1
+                className="text-4xl md:text-5xl font-bold mb-6"
+                variants={item}
               >
-                Emmanuel
-              </motion.span>
-            </motion.h1>
+                Bonjour, je suis{" "}
+                <motion.span
+                  className="text-primary"
+                  animate={{
+                    textShadow: [
+                      "0 0 0px rgba(37, 99, 235, 0)",
+                      "0 0 10px rgba(52, 211, 113, 0.671)",
+                      "0 0 0px rgba(37, 99, 235, 0)",
+                    ],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                  }}
+                >
+                  Emmanuel
+                </motion.span>
+              </motion.h1>
 
-            <motion.p
-              className="text-xl mb-8 max-w-2xl mx-auto lg:mx-0"
-              variants={item}
-            >
-              Développeur Full-Stack spécialisé en{" "}
-              <motion.span
-                className="font-semibold text-primary/60"
-                whileHover={{ scale: 1.05 }}
+              <motion.p
+                className="text-xl mb-8 max-w-2xl mx-auto lg:mx-0"
+                variants={item}
               >
-                React/Next.js et SpringBoot
-              </motion.span>
-              , créant des expériences numériques exceptionnelles.
-            </motion.p>
+                Développeur Full-Stack spécialisé en{" "}
+                <motion.span
+                  className="font-semibold text-primary/60"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  React/Next.js et SpringBoot
+                </motion.span>
+                , créant des expériences numériques exceptionnelles.
+              </motion.p>
 
-            <motion.div
-              className="space-y-4 sm:space-y-0 sm:space-x-4 flex flex-col sm:flex-row justify-center lg:justify-start"
-              variants={item}
-            >
-              <motion.button
-                className="bg-primary/70 hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded-lg font-medium 
+              <motion.div
+                className="space-y-4 sm:space-y-0 sm:space-x-4 flex flex-col sm:flex-row justify-center lg:justify-start"
+                variants={item}
+              >
+                <motion.button
+                  className="bg-primary/70 hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded-lg font-medium 
                           shadow-lg hover:shadow-primary/20 relative overflow-hidden"
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0 10px 25px -5px rgba(14, 150, 82, 0.692)",
-                }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <span className="relative z-10">Voir mes projets</span>
-                <motion.span
-                  className="absolute inset-0 bg-white opacity-0"
-                  whileHover={{ opacity: 0.1 }}
-                />
-              </motion.button>
+                  whileHover={{
+                    scale: 1.05,
+                    boxShadow: "0 10px 25px -5px rgba(14, 150, 82, 0.692)",
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <span className="relative z-10">Voir mes projets</span>
+                  <motion.span
+                    className="absolute inset-0 bg-white opacity-0"
+                    whileHover={{ opacity: 0.1 }}
+                  />
+                </motion.button>
 
-              <motion.button
-                className="border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800 
+                <motion.button
+                  className="border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800 
                           px-6 py-3 rounded-lg font-medium relative overflow-hidden"
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0 4px 14px rgba(0, 0, 0, 0.1)",
-                }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <span className="relative z-10">Contactez-moi</span>
-                <motion.span
-                  className="absolute inset-0 bg-gray-200 dark:bg-gray-700 opacity-0"
-                  whileHover={{ opacity: 0.2 }}
-                />
-              </motion.button>
-            </motion.div>
+                  whileHover={{
+                    scale: 1.05,
+                    boxShadow: "0 4px 14px rgba(0, 0, 0, 0.1)",
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <span className="relative z-10">Contactez-moi</span>
+                  <motion.span
+                    className="absolute inset-0 bg-gray-200 dark:bg-gray-700 opacity-0"
+                    whileHover={{ opacity: 0.2 }}
+                  />
+                </motion.button>
+              </motion.div>
+            </div>
+            <TechPage />
           </motion.div>
 
           {/* Partie image */}
@@ -197,11 +201,13 @@ export default function HeroSection() {
                 />
                 <span className="font-medium">Disponible</span>
               </motion.div>
+
               <motion.div
                 className="absolute inset-0
                            opacity-30"
                 whileHover={{ opacity: 0.5 }}
               />
+
               <motion.div
                 className="relative w-full rounded-full max-w-md aspect-square overflow-hidden"
                 whileHover={{

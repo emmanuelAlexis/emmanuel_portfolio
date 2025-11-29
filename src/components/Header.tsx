@@ -30,12 +30,14 @@ export default function Header() {
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled
-          ? "py-2 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm"
-          : "py-4 bg-transparent"
-      }`}
+    <motion.header
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled
+        ? "py-2 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm"
+        : "py-4 bg-transparent"
+        }`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
         {/* Logo avec animation */}
@@ -54,11 +56,10 @@ export default function Header() {
                 <Link
                   prefetch={false}
                   href={item.path}
-                  className={`relative px-2 py-1 transition ${
-                    pathname.includes(item.path)
-                      ? "text-primary font-medium"
-                      : "text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary"
-                  }`}
+                  className={`relative px-2 py-1 transition ${pathname.includes(item.path)
+                    ? "text-primary font-medium"
+                    : "text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary"
+                    }`}
                   scroll={false}
                 >
                   {item.label}
@@ -142,11 +143,10 @@ export default function Header() {
                     <Link
                       href={item.path}
                       onClick={closeMenu}
-                      className={`block py-2 px-4 rounded-lg transition ${
-                        pathname === item.path
-                          ? "bg-blue-50 dark:bg-blue-900/30 text-primary font-medium"
-                          : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
-                      }`}
+                      className={`block py-2 px-4 rounded-lg transition ${pathname === item.path
+                        ? "bg-blue-50 dark:bg-blue-900/30 text-primary font-medium"
+                        : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+                        }`}
                     >
                       {item.label}
                     </Link>
@@ -165,6 +165,6 @@ export default function Header() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 }
