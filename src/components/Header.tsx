@@ -24,15 +24,30 @@ export default function Header() {
 
   // Navigation items - sur la page d'accueil, on scroll vers les sections, sinon on navigue
   const navItems = [
-    { path: "/about", section: "about", label: t.nav.about },
-    { path: "/projects", section: "projects", label: t.nav.projects },
-    { path: "/contact", section: "contact", label: t.nav.contact },
+    { path: "/#about", section: "about", label: t.nav.about },
+    { path: "/#projects", section: "projects", label: t.nav.projects },
+    { path: "/#contact", section: "contact", label: t.nav.contact },
   ];
 
   // Fonction pour gérer le clic sur un lien de navigation
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, item: typeof navItems[0]) => {
-    // Si on est sur la page d'accueil, on scroll vers la section
-    if (pathname === '/') {
+    // Si le lien contient un hash (#), on scroll vers la section
+    if (item.path.includes('#')) {
+      e.preventDefault();
+      if (pathname === '/') {
+        // Si on est déjà sur la page d'accueil, on scroll directement
+        const section = document.getElementById(item.section);
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth' });
+          closeMenu();
+        }
+      } else {
+        // Sinon, on navigue vers la page d'accueil avec le hash
+        window.location.href = item.path;
+        closeMenu();
+      }
+    } else if (pathname === '/') {
+      // Si on est sur la page d'accueil et que c'est un lien de section, on scroll
       e.preventDefault();
       const section = document.getElementById(item.section);
       if (section) {

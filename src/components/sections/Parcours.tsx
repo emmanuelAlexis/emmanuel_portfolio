@@ -1,8 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
 import { FiBriefcase, FiCalendar, FiMapPin } from "react-icons/fi";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Parcours() {
+  const { t } = useLanguage();
   const timeline = [
     {
       year: "2021 - Présent",
@@ -40,7 +42,7 @@ export default function Parcours() {
           <FiBriefcase className="w-6 h-6" />
         </div>
         <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
-          Mon Parcours
+          {t.parcours.title}
         </h2>
       </div>
 

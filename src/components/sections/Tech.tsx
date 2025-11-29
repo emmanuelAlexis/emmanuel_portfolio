@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   FaLaravel,
   FaNodeJs,
@@ -22,13 +22,20 @@ import {
   SiTailwindcss,
   SiTypescript,
 } from "react-icons/si";
+import { useLanguage } from "@/context/LanguageContext";
 
 const Tech = () => {
-  const [cat, setCat] = useState("Front-end");
+  const { t } = useLanguage();
+  const [cat, setCat] = useState(t.technologies.categories.frontend);
+  
+  // Mettre à jour la catégorie active quand la langue change
+  useEffect(() => {
+    setCat(t.technologies.categories.frontend);
+  }, [t]);
 
   const technologies = [
     {
-      categorie: "Front-end",
+      categorie: t.technologies.categories.frontend,
       icon: <SiCssdesignawards className="w-6 h-6" />,
       items: [
         { name: "React", icon: <FaReact className="w-6 h-6" />, level: 90 },
@@ -55,7 +62,7 @@ const Tech = () => {
       ],
     },
     {
-      categorie: "Back-end",
+      categorie: t.technologies.categories.backend,
       icon: <FiTerminal className="w-6 h-6" />,
       items: [
         { name: "Node.js", icon: <FaNodeJs className="w-6 h-6" />, level: 90 },
@@ -74,7 +81,7 @@ const Tech = () => {
       ],
     },
     {
-      categorie: "Outils & DevOps",
+      categorie: t.technologies.categories.devops,
       icon: <FaTools className="w-6 h-6" />,
       items: [
         { name: "Docker", icon: <SiDocker className="w-6 h-6" />, level: 75 },
@@ -82,7 +89,7 @@ const Tech = () => {
       ],
     },
     {
-      categorie: "Bases de données",
+      categorie: t.technologies.categories.database,
       icon: <FiDatabase className="w-6 h-6" />,
       items: [
         { name: "MySql", icon: <SiMysql className="w-6 h-6" />, level: 80 },

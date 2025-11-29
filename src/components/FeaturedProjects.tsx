@@ -1,18 +1,19 @@
 "use client";
-import { featuredProjects } from "@/lib/data";
+import { getAllProjects } from "@/lib/data";
 import { motion, stagger, useAnimate, useInView } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { FiGithub, FiExternalLink } from "react-icons/fi";
 import { useLanguage } from "@/context/LanguageContext";
+
+type Project = ReturnType<typeof getAllProjects>[0];
 
 export const ProjectCard = ({
   project,
   index,
 }: {
   index: number;
-  project: (typeof featuredProjects)[0];
+  project: Project;
 }) => {
   const { t } = useLanguage();
 
@@ -96,9 +97,67 @@ export const ProjectCard = ({
 };
 
 export default function FeaturedProjects() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const allProjects = getAllProjects(language);
+  const [filter, setFilter] = useState<"all" | "recent" | "mobile" | "ai" | "nextjs" | "springboot" | "nestjs">("all");
   const [scope, animate] = useAnimate();
   const isInView = useInView(scope, { once: true, margin: "-100px" });
+
+  // Fonction pour vérifier si un projet correspond à une technologie
+  const hasTechnology = (project: Project, techName: string): boolean => {
+    return project.technologies.some(tech => 
+      tech.name?.toLowerCase().includes(techName.toLowerCase())
+    );
+  };
+
+  // Filtrer les projets
+  const filteredProjects = useMemo(() => {
+    let filtered = [...allProjects];
+
+    if (filter === "recent") {
+      // Trier par date (les plus récents en premier)
+      filtered = filtered.sort((a, b) => {
+        const dateA = new Date(a.date || "2020-01").getTime();
+        const dateB = new Date(b.date || "2020-01").getTime();
+        return dateB - dateA;
+      });
+      // Prendre les 3 plus récents
+      filtered = filtered.slice(0, 3);
+    } else if (filter === "mobile") {
+      // Filtrer les projets avec Flutter ou technologies mobiles
+      filtered = filtered.filter(project => 
+        hasTechnology(project, "Flutter") || 
+        hasTechnology(project, "React Native") ||
+        hasTechnology(project, "Mobile")
+      );
+    } else if (filter === "ai") {
+      // Filtrer les projets avec IA/ML
+      filtered = filtered.filter(project => 
+        hasTechnology(project, "TensorFlow") || 
+        hasTechnology(project, "Python") ||
+        hasTechnology(project, "OpenCV") ||
+        project.title.toLowerCase().includes("classificateur") ||
+        project.title.toLowerCase().includes("classifier")
+      );
+    } else if (filter === "nextjs") {
+      filtered = filtered.filter(project => 
+        hasTechnology(project, "Next.js") || 
+        hasTechnology(project, "NextJS")
+      );
+    } else if (filter === "springboot") {
+      filtered = filtered.filter(project => 
+        hasTechnology(project, "Spring Boot") || 
+        hasTechnology(project, "SpringBoot")
+      );
+    } else if (filter === "nestjs") {
+      filtered = filtered.filter(project => 
+        hasTechnology(project, "NestJS") || 
+        hasTechnology(project, "Nest.js")
+      );
+    }
+
+    return filtered;
+  }, [allProjects, filter]);
 
   useEffect(() => {
     if (isInView && scope.current) {
@@ -111,7 +170,7 @@ export default function FeaturedProjects() {
         );
       }
     }
-  }, [isInView, animate, scope]);
+  }, [isInView, animate, scope, filteredProjects]);
 
   return (
     <section id="projects" className="py-20 px-4 bg-gray-50 dark:bg-gray-900" ref={scope}>
@@ -131,38 +190,106 @@ export default function FeaturedProjects() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {featuredProjects.map((project, index) => (
-            <ProjectCard index={index} key={project.id} project={project} />
-          ))}
-        </div>
-
+        {/* Filtres */}
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-          className="text-center mt-16"
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mb-12"
         >
-          <Link
-            href="/projects"
-            className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary/60 to-blue-400 text-white rounded-lg font-medium hover:shadow-lg transition-all"
-          >
-            <span>{t.projects.viewAll}</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 ml-2"
-              viewBox="0 0 20 20"
-              fill="currentColor"
+          <div className="flex gap-2 flex-wrap justify-center">
+            <button
+              onClick={() => setFilter("all")}
+              className={`px-6 py-2 rounded-lg font-medium transition-all ${
+                filter === "all"
+                  ? "bg-primary text-white shadow-lg"
+                  : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+              }`}
             >
-              <path
-                fillRule="evenodd"
-                d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </Link>
+              {t.projects.filters.all}
+            </button>
+            <button
+              onClick={() => setFilter("recent")}
+              className={`px-6 py-2 rounded-lg font-medium transition-all ${
+                filter === "recent"
+                  ? "bg-primary text-white shadow-lg"
+                  : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+              }`}
+            >
+              {t.projects.filters.recent}
+            </button>
+            <button
+              onClick={() => setFilter("mobile")}
+              className={`px-6 py-2 rounded-lg font-medium transition-all ${
+                filter === "mobile"
+                  ? "bg-primary text-white shadow-lg"
+                  : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+              }`}
+            >
+              {t.projects.filters.mobile}
+            </button>
+            <button
+              onClick={() => setFilter("ai")}
+              className={`px-6 py-2 rounded-lg font-medium transition-all ${
+                filter === "ai"
+                  ? "bg-primary text-white shadow-lg"
+                  : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+              }`}
+            >
+              {t.projects.filters.ai}
+            </button>
+            <button
+              onClick={() => setFilter("nextjs")}
+              className={`px-6 py-2 rounded-lg font-medium transition-all ${
+                filter === "nextjs"
+                  ? "bg-primary text-white shadow-lg"
+                  : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+              }`}
+            >
+              {t.projects.filters.nextjs}
+            </button>
+            <button
+              onClick={() => setFilter("springboot")}
+              className={`px-6 py-2 rounded-lg font-medium transition-all ${
+                filter === "springboot"
+                  ? "bg-primary text-white shadow-lg"
+                  : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+              }`}
+            >
+              {t.projects.filters.springboot}
+            </button>
+            <button
+              onClick={() => setFilter("nestjs")}
+              className={`px-6 py-2 rounded-lg font-medium transition-all ${
+                filter === "nestjs"
+                  ? "bg-primary text-white shadow-lg"
+                  : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+              }`}
+            >
+              {t.projects.filters.nestjs}
+            </button>
+          </div>
         </motion.div>
+
+        {/* Liste des projets */}
+        {filteredProjects.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredProjects.map((project, index) => (
+              <ProjectCard index={index} key={project.id} project={project} />
+            ))}
+          </div>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center py-12"
+          >
+            <p className="text-gray-600 dark:text-gray-400 text-lg">
+              {t.projects.noProjects}
+            </p>
+          </motion.div>
+        )}
       </div>
     </section>
   );

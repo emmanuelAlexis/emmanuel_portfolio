@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   FaLaravel,
   FaNodeJs,
@@ -28,101 +28,108 @@ import {
   SiRedux,
   SiJest
 } from "react-icons/si";
+import { useLanguage } from "@/context/LanguageContext";
 
 const TechPage = () => {
-  const [activeCategory, setActiveCategory] = useState("Front-end");
+  const { t } = useLanguage();
+  const [activeCategory, setActiveCategory] = useState(t.technologies.categories.frontend);
+  
+  // Mettre à jour la catégorie active quand la langue change
+  useEffect(() => {
+    setActiveCategory(t.technologies.categories.frontend);
+  }, [t]);
 
   const technologies = [
     {
-      category: "Front-end",
+      category: t.technologies.categories.frontend,
       icon: <FiLayers className="w-5 h-5" />,
-      description: "Création d'interfaces utilisateur modernes et réactives.",
+      description: t.technologies.descriptions.frontend,
       items: [
         {
-          name: "React",
+          name: t.technologies.items.react.name,
           icon: <FaReact className="w-8 h-8 text-blue-400" />,
-          desc: "Bibliothèque principale pour mes interfaces."
+          desc: t.technologies.items.react.desc
         },
         {
-          name: "Next.js",
+          name: t.technologies.items.nextjs.name,
           icon: <SiNextdotjs className="w-8 h-8 text-black dark:text-white" />,
-          desc: "Framework React pour la production."
+          desc: t.technologies.items.nextjs.desc
         },
         {
-          name: "Tailwind CSS",
+          name: t.technologies.items.tailwind.name,
           icon: <SiTailwindcss className="w-8 h-8 text-cyan-400" />,
-          desc: "Styling utilitaire rapide et flexible."
+          desc: t.technologies.items.tailwind.desc
         },
         {
-          name: "Flutter",
+          name: t.technologies.items.flutter.name,
           icon: <SiFlutter className="w-8 h-8 text-blue-400" />,
-          desc: "Développement mobile multiplateforme."
+          desc: t.technologies.items.flutter.desc
         },
       ],
     },
     {
-      category: "Back-end",
+      category: t.technologies.categories.backend,
       icon: <FiTerminal className="w-5 h-5" />,
-      description: "Logique serveur, API et gestion des données.",
+      description: t.technologies.descriptions.backend,
       items: [
         {
-          name: "Node.js",
+          name: t.technologies.items.nodejs.name,
           icon: <FaNodeJs className="w-8 h-8 text-green-500" />,
-          desc: "Runtime JavaScript côté serveur."
+          desc: t.technologies.items.nodejs.desc
         },
         {
-          name: "NestJS",
+          name: t.technologies.items.nestjs.name,
           icon: <SiNestjs className="w-8 h-8 text-red-600" />,
-          desc: "Framework Node.js progressif."
+          desc: t.technologies.items.nestjs.desc
         },
         {
-          name: "Spring Boot",
+          name: t.technologies.items.springboot.name,
           icon: <SiSpringboot className="w-8 h-8 text-green-600" />,
-          desc: "Framework Java pour entreprises."
+          desc: t.technologies.items.springboot.desc
         },
         {
-          name: "Laravel",
+          name: t.technologies.items.laravel.name,
           icon: <FaLaravel className="w-8 h-8 text-red-500" />,
-          desc: "Framework PHP élégant."
+          desc: t.technologies.items.laravel.desc
         },
       ],
     },
     {
-      category: "Bases de données",
+      category: t.technologies.categories.database,
       icon: <FiDatabase className="w-5 h-5" />,
-      description: "Stockage et optimisation des données.",
+      description: t.technologies.descriptions.database,
       items: [
         {
-          name: "PostgreSQL",
+          name: t.technologies.items.postgresql.name,
           icon: <SiPostgresql className="w-8 h-8 text-blue-400" />,
-          desc: "SGBD relationnel avancé."
+          desc: t.technologies.items.postgresql.desc
         },
         {
-          name: "MySQL",
+          name: t.technologies.items.mysql.name,
           icon: <SiMysql className="w-8 h-8 text-orange-500" />,
-          desc: "Base de données relationnelle populaire."
+          desc: t.technologies.items.mysql.desc
         },
       ],
     },
     {
-      category: "Outils & DevOps",
+      category: t.technologies.categories.devops,
       icon: <FaTools className="w-5 h-5" />,
-      description: "Outils pour le développement, le déploiement et la collaboration.",
+      description: t.technologies.descriptions.devops,
       items: [
         {
-          name: "Docker",
+          name: t.technologies.items.docker.name,
           icon: <SiDocker className="w-8 h-8 text-blue-500" />,
-          desc: "Conteneurisation d'applications."
+          desc: t.technologies.items.docker.desc
         },
         {
-          name: "Git",
+          name: t.technologies.items.git.name,
           icon: <SiGit className="w-8 h-8 text-orange-600" />,
-          desc: "Contrôle de version distribué."
+          desc: t.technologies.items.git.desc
         },
         {
-          name: "Figma",
+          name: t.technologies.items.figma.name,
           icon: <SiFigma className="w-8 h-8 text-purple-500" />,
-          desc: "Design d'interface et prototypage."
+          desc: t.technologies.items.figma.desc
         },
       ],
     },

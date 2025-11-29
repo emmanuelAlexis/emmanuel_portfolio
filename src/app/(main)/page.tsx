@@ -5,10 +5,12 @@ import FeaturedProjects from "@/components/FeaturedProjects";
 import HeroSection from "@/components/HeroSection";
 import SkillsSection from "@/components/SkillsSection";
 import ContactSection from "@/components/ContactSection";
-import AboutPage from "./about/page";
-import AboutLayout from "./about/layout";
+import Me from "@/components/sections/Me";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Home() {
+  const { t } = useLanguage();
+
   return (
     <main className="overflow-hidden">
       {/* Hero Section - toujours visible */}
@@ -16,17 +18,48 @@ export default function Home() {
         <HeroSection />
       </section>
 
+      {/* About Section */}
       <ScrollAnimationSection id="about">
-        <AboutLayout children={<AboutPage />} />
+        <section className="relative overflow-hidden min-h-screen bg-gray-50/50 dark:bg-gray-950/50 py-20 lg:py-28">
+          {/* Background decorative elements */}
+          <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+            <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-3xl" />
+            <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-500/5 rounded-full blur-3xl" />
+          </div>
+
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl relative z-10">
+            {/* En-tête */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="text-center mb-16"
+            >
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
+                {t.about.pageTitle}{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-600">
+                  {t.about.pageTitle === "About" ? "me" : "moi"}
+                </span>
+              </h1>
+              <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                {t.about.pageSubtitle}
+              </p>
+            </motion.div>
+
+            {/* Contenu About */}
+            <Me />
+          </div>
+        </section>
       </ScrollAnimationSection>
 
       {/* Skills Section avec apparition/disparition */}
-      <ScrollAnimationSection id="skills">
+      <ScrollAnimationSection delay={0.2} id="skills">
         <SkillsSection />
       </ScrollAnimationSection>
 
       {/* Featured Projects avec apparition/disparition */}
-      <ScrollAnimationSection delay={0.5} id="projects">
+      <ScrollAnimationSection delay={0.2} id="projects">
         <FeaturedProjects />
       </ScrollAnimationSection>
 
@@ -95,6 +128,7 @@ function ScrollAnimationSection({
 
 // Bouton retour en haut amélioré
 function ScrollToTopButton() {
+  const { t } = useLanguage();
   const controls = useAnimation();
   const ref = useRef(null);
   const isInView = useInView(ref);
@@ -131,7 +165,7 @@ function ScrollToTopButton() {
       <a
         href="#top"
         className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 transition-colors"
-        aria-label="Retour en haut"
+        aria-label={t.common.scrollToTop}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

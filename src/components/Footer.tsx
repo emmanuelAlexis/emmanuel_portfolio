@@ -30,9 +30,9 @@ export default function Footer() {
   ];
 
   const quickLinks = [
-    { name: t.nav.about, href: "/about" },
-    { name: t.nav.projects, href: "/projects" },
-    { name: t.nav.contact, href: "/contact" },
+    { name: t.nav.about, href: "/#about" },
+    { name: t.nav.projects, href: "/#projects" },
+    { name: t.nav.contact, href: "/#contact" },
   ];
 
   return (

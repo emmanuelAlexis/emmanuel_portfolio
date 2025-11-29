@@ -2,8 +2,12 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import TechPage from "@/app/(main)/about/technologies/page";
+import { Phone } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function HeroSection() {
+  const { t } = useLanguage();
+  
   // Variantes d'animation pour les éléments
   const container = {
     hidden: { opacity: 0 },
@@ -55,7 +59,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="py-20 min-h-screen relative overflow-hidden">
+    <section className="pt-20 min-h-screen relative overflow-hidden">
       {/* Background décoratif animé */}
       <motion.div
         className="absolute inset-0 z-0"
@@ -93,7 +97,7 @@ export default function HeroSection() {
                 className="text-4xl md:text-5xl font-bold mb-6"
                 variants={item}
               >
-                Bonjour, je suis{" "}
+                {t.hero.greeting}{" "}
                 <motion.span
                   className="text-primary"
                   animate={{
@@ -117,14 +121,14 @@ export default function HeroSection() {
                 className="text-xl mb-8 max-w-2xl mx-auto lg:mx-0"
                 variants={item}
               >
-                Développeur Full-Stack spécialisé en{" "}
+                {t.hero.role}{" "}
                 <motion.span
-                  className="font-semibold text-primary/60"
+                  className="font-semibold text-primary/90 text-3xl"
                   whileHover={{ scale: 1.05 }}
                 >
                   React/Next.js et SpringBoot
                 </motion.span>
-                , créant des expériences numériques exceptionnelles.
+                , {t.hero.description}
               </motion.p>
 
               <motion.div
@@ -133,11 +137,11 @@ export default function HeroSection() {
               >
                 <motion.a
                   href="#projects"
-                  className="bg-primary/70 hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-medium 
+                  className="bg-primary/80 hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-medium 
                           shadow-lg hover:shadow-primary/20 relative overflow-hidden text-center"
                   whileHover={{
                     scale: 1.05,
-                    boxShadow: "0 10px 25px -5px rgba(14, 150, 82, 0.692)",
+                    boxShadow: "0 10px 25px -5px rgba(7, 126, 66, 0.76)",
                   }}
                   whileTap={{ scale: 0.98 }}
                   onClick={(e) => {
@@ -145,7 +149,7 @@ export default function HeroSection() {
                     document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
                   }}
                 >
-                  <span className="relative z-10">Voir mes projets</span>
+                  <span className="relative z-10">{t.hero.viewProjects}</span>
                   <motion.span
                     className="absolute inset-0 bg-white opacity-0"
                     whileHover={{ opacity: 0.1 }}
@@ -163,7 +167,7 @@ export default function HeroSection() {
                   }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <span className="relative z-10">Télécharger le CV</span>
+                  <span className="relative z-10">{t.common.downloadCV}</span>
                   <motion.span
                     className="absolute inset-0 bg-gray-200 dark:bg-gray-700 opacity-0"
                     whileHover={{ opacity: 0.2 }}
@@ -176,13 +180,13 @@ export default function HeroSection() {
 
           {/* Partie image */}
           <motion.div
-            className="lg:w-1/2 flex justify-center self-start p-10"
+            className="lg:w-1/2 flex flex-col items-center gap-10 justify-center self-start max-lg:self-center p-10"
             variants={imageVariants}
             initial="hidden"
             animate="show"
           >
             <motion.div
-              className="relative w-full max-w-md rounded-full aspect-square shadow-2xl"
+              className="relative w-full max-w-md rounded-full  aspect-square shadow-2xl"
               transition={{ duration: 0.4 }}
             >
               {/* Badge animé */}
@@ -206,7 +210,7 @@ export default function HeroSection() {
                     ease: "easeInOut",
                   }}
                 />
-                <span className="font-medium">Disponible</span>
+                <span className="font-medium">{t.hero.available}</span>
               </motion.div>
 
               <motion.div
@@ -214,7 +218,6 @@ export default function HeroSection() {
                            opacity-30"
                 whileHover={{ opacity: 0.5 }}
               />
-
               <motion.div
                 className="relative w-full rounded-full max-w-md aspect-square overflow-hidden"
                 whileHover={{
@@ -224,22 +227,44 @@ export default function HeroSection() {
                 transition={{ duration: 0.4 }}
               >
                 <Image
-                  src="/picture.jpeg" // Remplacez par le chemin de votre image
-                  alt="Photo de profil"
+                  src="/picture.jpeg"
+                  alt={t.common.profilePhoto}
                   width={500}
                   height={500}
                   className="object-cover rounded-full w-full h-full"
                 />
               </motion.div>
             </motion.div>
+            <motion.a
+              href="#contact"
+              className="bg-primary/80 flex gap-3 hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-medium 
+                          shadow-lg hover:shadow-primary/20 relative overflow-hidden text-center"
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 10px 25px -5px rgba(7, 126, 66, 0.76)",
+              }}
+              whileTap={{ scale: 0.98 }}
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              <Phone className="w-4 h-4 ml-2" />
+              <span className="relative z-10">{t.hero.contactMe}</span>
+              <motion.span
+                className="absolute inset-0 bg-white opacity-0"
+                whileHover={{ opacity: 0.1 }}
+              />
+            </motion.a>
           </motion.div>
         </div>
       </div>
 
       {/* Indicateur de défilement animé */}
       <motion.div
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full 
-                  border-2 border-gray-300 flex items-center justify-center cursor-pointer"
+        className="absolute bottom-8 md:bottom-12 left-1/2 transform -translate-x-1/2 w-8 h-8 md:w-10 md:h-10 rounded-full 
+                  border-2 border-gray-300 dark:border-gray-600 flex items-center justify-center cursor-pointer z-20
+                  hidden sm:flex"
         animate={{
           y: [0, -10, 0],
           borderColor: ["#d1d5db", "#3BF679FF", "#D2DBD1FF"],
@@ -255,7 +280,7 @@ export default function HeroSection() {
         }
       >
         <motion.svg
-          className="w-4 h-4 text-primary"
+          className="w-4 h-4 md:w-5 md:h-5 text-primary"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

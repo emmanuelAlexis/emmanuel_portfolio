@@ -77,7 +77,7 @@ export default function ContactSection() {
           >
             <div className="bg-white dark:bg-gray-800/50 p-8 rounded-3xl shadow-xl shadow-gray-100/50 dark:shadow-none border border-gray-100 dark:border-gray-700/50 backdrop-blur-sm">
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">
-                Coordonnées
+                {t.common.coordinates}
               </h3>
 
               <div className="space-y-8">
