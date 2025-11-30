@@ -11,6 +11,12 @@ import {
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
 
+export const socialLinks = [
+  { icon: <FiGithub />, href: "https://github.com/emmanuelAlexis", label: "GitHub" },
+  { icon: <FiLinkedin />, href: "https://linkedin.com", label: "LinkedIn" },
+  { icon: <FiMail />, href: "mailto:emmanueladolphe0401@gmail.com", label: "Email" },
+];
+
 export default function Footer() {
   const { t } = useLanguage();
 
@@ -20,14 +26,6 @@ export default function Footer() {
       behavior: "smooth",
     });
   };
-
-  const socialLinks = [
-    { icon: <FiGithub />, href: "https://github.com/emmanuelAlexis", label: "GitHub" },
-    { icon: <FiLinkedin />, href: "https://linkedin.com", label: "LinkedIn" },
-    { icon: <FiTwitter />, href: "https://twitter.com", label: "Twitter" },
-    { icon: <FiInstagram />, href: "https://instagram.com", label: "Instagram" },
-    { icon: <FiMail />, href: "mailto:emmanueladolphe0401@gmail.com", label: "Email" },
-  ];
 
   const quickLinks = [
     { name: t.nav.about, href: "/#about" },

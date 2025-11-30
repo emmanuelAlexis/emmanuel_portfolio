@@ -3,7 +3,7 @@ import { getAllProjects } from "@/lib/data";
 import { motion, stagger, useAnimate, useInView } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState, useMemo } from "react";
-import { FiGithub, FiExternalLink } from "react-icons/fi";
+import { FiGithub, FiExternalLink, FiLock, FiUnlock, FiEyeOff } from "react-icons/fi";
 import { useLanguage } from "@/context/LanguageContext";
 
 type Project = ReturnType<typeof getAllProjects>[0];
@@ -16,6 +16,26 @@ export const ProjectCard = ({
   project: Project;
 }) => {
   const { t } = useLanguage();
+
+  const accessConfig = {
+    public: {
+      icon: <FiUnlock className="w-3 h-3" />,
+      label: t.projects.access.public,
+      color: "bg-green-500/20 text-green-400 border-green-500/20"
+    },
+    protected: {
+      icon: <FiLock className="w-3 h-3" />,
+      label: t.projects.access.protected,
+      color: "bg-blue-500/20 text-blue-900 border-blue-500/20"
+    },
+    private: {
+      icon: <FiEyeOff className="w-3 h-3" />,
+      label: t.projects.access.private,
+      color: "bg-red-500/20 text-red-400 border-red-500/20"
+    }
+  };
+
+  const accessInfo = accessConfig[project.access as keyof typeof accessConfig] || accessConfig.private;
 
   return (
     <motion.div
@@ -39,6 +59,12 @@ export const ProjectCard = ({
           quality={90}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+
+        {/* Access Badge */}
+        <div className={`absolute top-4 right-4 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-medium border flex items-center gap-1.5 z-10 ${accessInfo.color}`}>
+          {accessInfo.icon}
+          <span>{accessInfo.label}</span>
+        </div>
       </div>
 
       <div className="absolute inset-0 p-6 flex flex-col justify-end">
@@ -68,9 +94,9 @@ export const ProjectCard = ({
         </div>
 
         <div className="flex gap-4 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-150 opacity-0 group-hover:opacity-100">
-          {project.githubUrl && (
+          {project.access === 'public' && project.githubLinks && project.githubLinks.length > 0 && (
             <motion.a
-              href={project.githubUrl}
+              href={project.githubLinks[0].url}
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
@@ -105,7 +131,7 @@ export default function FeaturedProjects() {
 
   // Fonction pour vérifier si un projet correspond à une technologie
   const hasTechnology = (project: Project, techName: string): boolean => {
-    return project.technologies.some(tech => 
+    return project.technologies.some(tech =>
       tech.name?.toLowerCase().includes(techName.toLowerCase())
     );
   };
@@ -125,33 +151,34 @@ export default function FeaturedProjects() {
       filtered = filtered.slice(0, 3);
     } else if (filter === "mobile") {
       // Filtrer les projets avec Flutter ou technologies mobiles
-      filtered = filtered.filter(project => 
-        hasTechnology(project, "Flutter") || 
+      filtered = filtered.filter(project =>
+        hasTechnology(project, "Flutter") ||
         hasTechnology(project, "React Native") ||
         hasTechnology(project, "Mobile")
       );
     } else if (filter === "ai") {
       // Filtrer les projets avec IA/ML
-      filtered = filtered.filter(project => 
-        hasTechnology(project, "TensorFlow") || 
+      filtered = filtered.filter(project =>
+        hasTechnology(project, "TensorFlow") ||
         hasTechnology(project, "Python") ||
         hasTechnology(project, "OpenCV") ||
         project.title.toLowerCase().includes("classificateur") ||
-        project.title.toLowerCase().includes("classifier")
+        project.title.toLowerCase().includes("classifier") ||
+        project.title.toLowerCase().includes("assist")
       );
     } else if (filter === "nextjs") {
-      filtered = filtered.filter(project => 
-        hasTechnology(project, "Next.js") || 
+      filtered = filtered.filter(project =>
+        hasTechnology(project, "Next.js") ||
         hasTechnology(project, "NextJS")
       );
     } else if (filter === "springboot") {
-      filtered = filtered.filter(project => 
-        hasTechnology(project, "Spring Boot") || 
+      filtered = filtered.filter(project =>
+        hasTechnology(project, "Spring Boot") ||
         hasTechnology(project, "SpringBoot")
       );
     } else if (filter === "nestjs") {
-      filtered = filtered.filter(project => 
-        hasTechnology(project, "NestJS") || 
+      filtered = filtered.filter(project =>
+        hasTechnology(project, "NestJS") ||
         hasTechnology(project, "Nest.js")
       );
     }
@@ -201,71 +228,64 @@ export default function FeaturedProjects() {
           <div className="flex gap-2 flex-wrap justify-center">
             <button
               onClick={() => setFilter("all")}
-              className={`px-6 py-2 rounded-lg font-medium transition-all ${
-                filter === "all"
-                  ? "bg-primary text-white shadow-lg"
-                  : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
-              }`}
+              className={`px-6 py-2 rounded-lg font-medium transition-all ${filter === "all"
+                ? "bg-primary text-white shadow-lg"
+                : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                }`}
             >
               {t.projects.filters.all}
             </button>
             <button
               onClick={() => setFilter("recent")}
-              className={`px-6 py-2 rounded-lg font-medium transition-all ${
-                filter === "recent"
-                  ? "bg-primary text-white shadow-lg"
-                  : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
-              }`}
+              className={`px-6 py-2 rounded-lg font-medium transition-all ${filter === "recent"
+                ? "bg-primary text-white shadow-lg"
+                : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                }`}
             >
               {t.projects.filters.recent}
             </button>
             <button
               onClick={() => setFilter("mobile")}
-              className={`px-6 py-2 rounded-lg font-medium transition-all ${
-                filter === "mobile"
-                  ? "bg-primary text-white shadow-lg"
-                  : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
-              }`}
+              className={`px-6 py-2 rounded-lg font-medium transition-all ${filter === "mobile"
+                ? "bg-primary text-white shadow-lg"
+                : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                }`}
             >
               {t.projects.filters.mobile}
             </button>
             <button
               onClick={() => setFilter("ai")}
-              className={`px-6 py-2 rounded-lg font-medium transition-all ${
-                filter === "ai"
-                  ? "bg-primary text-white shadow-lg"
-                  : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
-              }`}
+              className={`px-6 py-2 rounded-lg font-medium transition-all ${filter === "ai"
+                ? "bg-primary text-white shadow-lg"
+                : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                }`}
             >
               {t.projects.filters.ai}
             </button>
             <button
               onClick={() => setFilter("nextjs")}
-              className={`px-6 py-2 rounded-lg font-medium transition-all ${
-                filter === "nextjs"
-                  ? "bg-primary text-white shadow-lg"
-                  : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
-              }`}
+              className={`px-6 py-2 rounded-lg font-medium transition-all ${filter === "nextjs"
+                ? "bg-primary text-white shadow-lg"
+                : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                }`}
             >
               {t.projects.filters.nextjs}
             </button>
             <button
               onClick={() => setFilter("springboot")}
-              className={`px-6 py-2 rounded-lg font-medium transition-all ${
-                filter === "springboot"
-                  ? "bg-primary text-white shadow-lg"
-                  : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
-              }`}
+              className={`px-6 py-2 rounded-lg font-medium transition-all ${filter === "springboot"
+                ? "bg-primary text-white shadow-lg"
+                : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                }`}
             >
               {t.projects.filters.springboot}
             </button>
             <button
               onClick={() => setFilter("nestjs")}
-              className={`px-6 py-2 rounded-lg font-medium transition-all ${
-                filter === "nestjs"
-                  ? "bg-primary text-white shadow-lg"
-                  : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
-              }`}
+              className={`px-6 py-2 rounded-lg font-medium transition-all ${filter === "nestjs"
+                ? "bg-primary text-white shadow-lg"
+                : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                }`}
             >
               {t.projects.filters.nestjs}
             </button>

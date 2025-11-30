@@ -4,10 +4,11 @@ import Image from "next/image";
 import TechPage from "@/app/(main)/about/technologies/page";
 import { Phone } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { socialLinks } from "./Footer";
 
 export default function HeroSection() {
   const { t } = useLanguage();
-  
+
   // Variantes d'animation pour les éléments
   const container = {
     hidden: { opacity: 0 },
@@ -234,6 +235,32 @@ export default function HeroSection() {
                   className="object-cover rounded-full w-full h-full"
                 />
               </motion.div>
+            </motion.div>
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className="flex flex-col items-center"
+            >
+              <h3 className="text-lg font-semibold mb-6 text-gray-900 dark:text-white">
+                {t.footer.socials}
+              </h3>
+              <div className="flex flex-wrap gap-4">
+                {socialLinks.map((social) => (
+                  <motion.a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ y: -3, scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-all shadow-sm hover:shadow-lg hover:shadow-primary/30"
+                    aria-label={social.label}
+                  >
+                    {social.icon}
+                  </motion.a>
+                ))}
+              </div>
             </motion.div>
             <motion.a
               href="#contact"

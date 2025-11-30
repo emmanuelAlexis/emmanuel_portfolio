@@ -5,6 +5,7 @@ export const translations = {
         nav: {
             about: "À propos",
             projects: "Projets",
+            skills: "Compétences",
             contact: "Contact",
         },
         hero: {
@@ -45,6 +46,11 @@ export const translations = {
                 nextjs: "NextJS",
                 springboot: "SpringBoot",
                 nestjs: "NestJS",
+            },
+            access: {
+                public: "Public",
+                protected: "Protégé",
+                private: "Privé",
             },
             noProjects: "Aucun projet trouvé",
         },
@@ -178,44 +184,35 @@ export const translations = {
             title: "Mon Parcours",
         },
         projectsData: {
-            library: {
-                title: "Bibliothèque Numérique",
-                description: "Plateforme de gestion de bibliothèque avec téléchargement de livres, espaces de discussion et système de notation.",
-                detailedDescription: "Cette application complète de gestion de bibliothèque permet aux utilisateurs de télécharger et consulter des livres numériques. Elle inclut un système de discussion pour échanger sur les ouvrages, un système de notation et de commentaires, ainsi qu'une interface d'administration complète pour la gestion des utilisateurs et du contenu. L'application utilise Spring Boot pour le backend avec une API REST sécurisée, Next.js pour le frontend avec un design moderne et responsive, et PostgreSQL pour la base de données relationnelle.",
+            chessAssist: {
+                title: "ChessAssist",
+                description: "Assistant d'échecs intelligent propulsé par l'IA avec moteur Minimax optimisé et interface moderne.",
+                detailedDescription: "Application web d'assistance aux échecs combinant une interface élégante avec un moteur d'IA puissant. Utilise l'algorithme Minimax avec élagage Alpha-Beta, tables de transposition et quiescence search pour des suggestions de coups en temps réel. L'interface offre un échiquier interactif, un historique des coups en notation algébrique, et un mode sombre avec animations fluides via Framer Motion. Développée avec Next.js 15, React 19, TypeScript et chess.js pour la logique d'échecs.",
             },
-            libraryFull: {
-                title: "Système de Gestion de Bibliothèque",
-                description: "Application complète avec gestion des livres, auteurs, emprunts, avec interface d'upload d'images, rôles et relations Spring Boot / Next.js.",
+            devTracker: {
+                title: "DevTracker",
+                description: "Application de suivi et gestion de projets de développement avec interface moderne et API RESTful.",
+                detailedDescription: "Plateforme complète de gestion de projets de développement avec frontend Next.js 15 et backend ASP.NET Core 9.0. Le frontend offre une interface moderne avec Tailwind CSS 4, animations Framer Motion, mode sombre et gestion CRUD complète des projets. Le backend fournit une API RESTful avec Entity Framework Core, PostgreSQL, upload d'images et CORS configuré. Permet de créer, suivre et gérer des projets avec leurs technologies, statuts (en cours, terminé, abandonné) et liens associés.",
             },
-            bank: {
-                title: "Mini-Banque Numérique",
-                description: "Plateforme bancaire locale avec comptes bancaires et Mobile Money, prêts, remboursements, génération de PDF et notifications.",
+            globydep: {
+                title: "Globydep / Mofidra",
+                description: "Gestionnaire de dépenses hebdomadaires, mensuelles et annuelles avec gestion d'emprunts et notifications.",
+                detailedDescription: "Application mobile Flutter pour suivre, analyser et optimiser les dépenses personnelles. Permet de planifier des semaines avec solde initial, gérer les dépenses obligatoires et ponctuelles, suivre les emprunts auprès des contacts, et visualiser l'activité dans un dashboard animé. Inclut des notifications locales pour rappels d'emprunts et alertes de solde faible, stockage local avec Hive pour le mode hors-ligne, et synchronisation Firebase optionnelle. Interface avec thème clair/sombre et graphiques de dépenses (Pie/Bar charts).",
             },
-            stock: {
-                title: "Système de Gestion de Stock",
-                description: "Logiciel de bureau pour la gestion commerciale : stocks, ventes, clients et fournisseurs avec authentification sécurisée.",
-                detailedDescription: "Application desktop complète développée en C# avec .NET 8.0 pour la gestion commerciale d'une entreprise. Le système permet de gérer les stocks en temps réel, suivre les ventes et les achats, gérer les clients et fournisseurs avec leurs historiques, générer des factures et rapports, et inclut un système d'authentification sécurisé avec différents niveaux d'accès. L'interface utilisateur est intuitive avec SQLite comme base de données locale pour une performance optimale.",
+            roomApp: {
+                title: "Room Application",
+                description: "Plateforme de création d'une espace de discussion avec authentification, recherche en temps réel et gestion complète.",
+                detailedDescription: "Application web création d'une espace de discussion construite avec Next.js et NestJS. Le frontend offre une interface responsive avec Material-UI, navigation fluide avec React Router, et communication API via Axios. Le backend NestJS fournit une architecture modulaire avec authentification sécurisée, gestion des discussions en temps réel, et API RESTful complète. Permet aux utilisateurs de créer/modifier/annuler des discussions, et gérer leur profil.",
             },
-            chat: {
-                title: "Chat en Temps Réel",
-                description: "Messagerie instantanée avec salons, rôles utilisateurs et partage de fichiers en temps réel.",
-                detailedDescription: "Application de messagerie instantanée moderne avec communication en temps réel via WebSocket. Les utilisateurs peuvent créer et rejoindre des salons de discussion, partager des fichiers, et bénéficier d'un système de rôles (admin, modérateur, utilisateur) avec permissions granulaires. L'application utilise NestJS pour le backend avec architecture modulaire, Prisma comme ORM pour PostgreSQL, et Socket.IO pour la communication en temps réel. Le frontend Next.js offre une expérience utilisateur fluide avec notifications en temps réel.",
+            regionDiana: {
+                title: "Portail Région Diana",
+                description: "Portail citoyen et interface d'administration pour les services de la Région Diana.",
+                detailedDescription: "Système complet avec deux interfaces Next.js : un portail client pour les citoyens et une interface d'administration pour les agents. Le portail client permet aux usagers d'accéder aux services et informations de la région avec une interface moderne et responsive. L'interface d'administration offre une gestion complète des données, contenus et paramètres via un dashboard sécurisé. Les deux applications consomment une API backend commune et sont optimisées pour la performance avec Next.js et déploiement en production.",
             },
-            chatApp: {
-                title: "Application de Chat en Temps Réel",
-                description: "Messagerie avec rooms, rôles admin/guest, fichiers, WebSocket, et gestion complète avec NestJS + Prisma.",
-            },
-            voiceClassifier: {
-                title: "Classificateur Vocal Hors-Ligne",
-                description: "App vocale en local avec RNA entraîné, interface moderne PyQt5 et reconnaissance temps réel.",
-            },
-            imageClassifier: {
-                title: "Classificateur d'Images Offline",
-                description: "Application offline avec MobileNetV2 pour prédire le genre (homme/femme) à partir d'images locales.",
-            },
-            timer: {
-                title: "Timer Intelligent Personnalisable",
-                description: "Timer interactif avec déclenchement d'alerte sonore à partir d'un seuil défini.",
+            nextFrontStarter: {
+                title: "Next.js Startup Frontend",
+                description: "Template de démarrage Next.js moderne avec support du mode sombre, composants UI réutilisables et configuration optimisée.",
+                detailedDescription: "Template frontend Next.js 15 prêt à l'emploi avec App Router, TypeScript et React 19. Inclut un système de thème clair/sombre via ThemeProvider personnalisé, Tailwind CSS 4 pour le styling rapide, et composants UI réutilisables (DarkModeToggle, inputs). Intègre des notifications toast avec Sonner, animations avec Framer Motion, et outils modernes (Turbopack, PostCSS). Conçu comme point de départ pour nouveaux projets avec routing, theming et bonnes pratiques configurés par défaut.",
             },
         },
     },
@@ -223,6 +220,7 @@ export const translations = {
         nav: {
             about: "About",
             projects: "Projects",
+            skills: "Skills",
             contact: "Contact",
         },
         hero: {
@@ -263,6 +261,11 @@ export const translations = {
                 nextjs: "NextJS",
                 springboot: "SpringBoot",
                 nestjs: "NestJS",
+            },
+            access: {
+                public: "Public",
+                protected: "Protected",
+                private: "Private",
             },
             noProjects: "No projects found",
         },
@@ -396,44 +399,35 @@ export const translations = {
             title: "My Journey",
         },
         projectsData: {
-            library: {
-                title: "Digital Library",
-                description: "Library management platform with book downloads, discussion spaces and rating system.",
-                detailedDescription: "This complete library management application allows users to download and browse digital books. It includes a discussion system to exchange about works, a rating and comment system, as well as a complete administration interface for managing users and content. The application uses Spring Boot for the backend with a secure REST API, Next.js for the frontend with a modern and responsive design, and PostgreSQL for the relational database.",
+            chessAssist: {
+                title: "ChessAssist",
+                description: "Intelligent chess assistant powered by AI with optimized Minimax engine and modern interface.",
+                detailedDescription: "Chess assistance web application combining an elegant interface with a powerful AI engine. Uses Minimax algorithm with Alpha-Beta pruning, transposition tables and quiescence search for real-time move suggestions. The interface offers an interactive chessboard, move history in algebraic notation, and dark mode with smooth animations via Framer Motion. Built with Next.js 15, React 19, TypeScript and chess.js for chess logic.",
             },
-            libraryFull: {
-                title: "Library Management System",
-                description: "Complete application with book, author, and loan management, image upload interface, roles and relationships Spring Boot / Next.js.",
+            devTracker: {
+                title: "DevTracker",
+                description: "Development project tracking and management application with modern interface and RESTful API.",
+                detailedDescription: "Complete development project management platform with Next.js 15 frontend and ASP.NET Core 9.0 backend. The frontend offers a modern interface with Tailwind CSS 4, Framer Motion animations, dark mode and complete CRUD project management. The backend provides a RESTful API with Entity Framework Core, PostgreSQL, image upload and configured CORS. Allows creating, tracking and managing projects with their technologies, statuses (in progress, completed, abandoned) and associated links.",
             },
-            bank: {
-                title: "Mini Digital Bank",
-                description: "Local banking platform with bank accounts and Mobile Money, loans, repayments, PDF generation and notifications.",
+            globydep: {
+                title: "Globydep / Mofidra",
+                description: "Weekly, monthly and annual expense manager with loan management and notifications.",
+                detailedDescription: "Flutter mobile application to track, analyze and optimize personal expenses. Allows planning weeks with initial balance, managing mandatory and occasional expenses, tracking loans from contacts, and visualizing activity in an animated dashboard. Includes local notifications for loan reminders and low balance alerts, local storage with Hive for offline mode, and optional Firebase synchronization. Interface with light/dark theme and expense charts (Pie/Bar charts).",
             },
-            stock: {
-                title: "Stock Management System",
-                description: "Desktop software for business management: inventory, sales, customers and suppliers with secure authentication.",
-                detailedDescription: "Complete desktop application developed in C# with .NET 8.0 for business management. The system allows real-time inventory management, tracking sales and purchases, managing customers and suppliers with their histories, generating invoices and reports, and includes a secure authentication system with different access levels. The user interface is intuitive with SQLite as a local database for optimal performance.",
+            roomApp: {
+                title: "Room Application",
+                description: "Room reservation platform with authentication, real-time search and complete management.",
+                detailedDescription: "Web room reservation application built with Next.js and NestJS. The frontend offers a responsive interface with Material-UI, smooth navigation with React Router, and API communication via Axios. The NestJS backend provides a modular architecture with secure authentication, real-time reservation management, and complete RESTful API. Allows users to browse available rooms, check real-time availability, create/edit/cancel reservations, and manage their profile.",
             },
-            chat: {
-                title: "Real-Time Chat",
-                description: "Instant messaging with rooms, user roles and real-time file sharing.",
-                detailedDescription: "Modern instant messaging application with real-time communication via WebSocket. Users can create and join discussion rooms, share files, and benefit from a role system (admin, moderator, user) with granular permissions. The application uses NestJS for the backend with modular architecture, Prisma as ORM for PostgreSQL, and Socket.IO for real-time communication. The Next.js frontend offers a smooth user experience with real-time notifications.",
+            regionDiana: {
+                title: "Diana Region Portal",
+                description: "Citizen portal and administration interface for Diana Region services.",
+                detailedDescription: "Complete system with two Next.js interfaces: a client portal for citizens and an administration interface for agents. The client portal allows users to access regional services and information with a modern and responsive interface. The administration interface offers complete management of data, content and settings via a secure dashboard. Both applications consume a common backend API and are optimized for performance with Next.js and production deployment.",
             },
-            chatApp: {
-                title: "Real-Time Chat Application",
-                description: "Messaging with rooms, admin/guest roles, files, WebSocket, and complete management with NestJS + Prisma.",
-            },
-            voiceClassifier: {
-                title: "Offline Voice Classifier",
-                description: "Local voice app with trained neural network, modern PyQt5 interface and real-time recognition.",
-            },
-            imageClassifier: {
-                title: "Offline Image Classifier",
-                description: "Offline application with MobileNetV2 to predict gender (male/female) from local images.",
-            },
-            timer: {
-                title: "Customizable Smart Timer",
-                description: "Interactive timer with sound alert trigger from a defined threshold.",
+            nextFrontStarter: {
+                title: "Next.js Startup Frontend",
+                description: "Modern Next.js starter template with dark mode support, reusable UI components and optimized configuration.",
+                detailedDescription: "Ready-to-use Next.js 15 frontend template with App Router, TypeScript and React 19. Includes light/dark theme system via custom ThemeProvider, Tailwind CSS 4 for rapid styling, and reusable UI components (DarkModeToggle, inputs). Integrates toast notifications with Sonner, animations with Framer Motion, and modern tooling (Turbopack, PostCSS). Designed as a starting point for new projects with routing, theming and best practices configured by default.",
             },
         },
     },

@@ -25,6 +25,7 @@ export default function Header() {
   // Navigation items - sur la page d'accueil, on scroll vers les sections, sinon on navigue
   const navItems = [
     { path: "/#about", section: "about", label: t.nav.about },
+    { path: "/#skills", section: "skills", label: t.nav.skills },
     { path: "/#projects", section: "projects", label: t.nav.projects },
     { path: "/#contact", section: "contact", label: t.nav.contact },
   ];

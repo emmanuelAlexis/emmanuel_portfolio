@@ -11,6 +11,20 @@ import { useLanguage } from "@/context/LanguageContext";
 export default function Home() {
   const { t } = useLanguage();
 
+  useEffect(() => {
+    // Handle hash scrolling on mount
+    const hash = window.location.hash;
+    if (hash) {
+      // Small timeout to ensure DOM is ready
+      setTimeout(() => {
+        const element = document.getElementById(hash.substring(1));
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    }
+  }, []);
+
   return (
     <main className="overflow-hidden">
       {/* Hero Section - toujours visible */}
@@ -53,14 +67,14 @@ export default function Home() {
         </section>
       </ScrollAnimationSection>
 
-      {/* Skills Section avec apparition/disparition */}
-      <ScrollAnimationSection delay={0.2} id="skills">
-        <SkillsSection />
-      </ScrollAnimationSection>
-
       {/* Featured Projects avec apparition/disparition */}
       <ScrollAnimationSection delay={0.2} id="projects">
         <FeaturedProjects />
+      </ScrollAnimationSection>
+
+      {/* Skills Section avec apparition/disparition */}
+      <ScrollAnimationSection delay={0.2} id="skills">
+        <SkillsSection />
       </ScrollAnimationSection>
 
       <ScrollAnimationSection delay={0.2} id="contact">

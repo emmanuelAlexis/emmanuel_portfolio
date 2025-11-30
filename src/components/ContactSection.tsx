@@ -8,16 +8,47 @@ import { useState } from "react";
 import { FaEnvelope } from "react-icons/fa";
 import { useLanguage } from "@/context/LanguageContext";
 
+import { toast } from "sonner";
+
 export default function ContactSection() {
   const { t } = useLanguage();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("");
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, subject, message }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Une erreur est survenue');
+      }
+
+      toast.success('Message envoyé avec succès ! Je vous répondrai dès que possible.');
+      // Reset form
+      setName("");
+      setEmail("");
+      setSubject("");
+      setMessage("");
+    } catch (error) {
+      toast.error("Erreur lors de l'envoi du message. Veuillez réessayer.");
+      console.error(error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const containerVariants = {
@@ -193,12 +224,19 @@ export default function ContactSection() {
 
                 <motion.button
                   type="submit"
+                  disabled={isSubmitting}
                   whileHover={{ scale: 1.02, boxShadow: "0 10px 30px -10px rgba(37, 99, 235, 0.5)" }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full bg-gradient-to-r from-primary to-blue-600 text-white font-bold py-4 px-8 rounded-xl transition-all flex items-center justify-center gap-3 group"
+                  className={`w-full bg-gradient-to-r from-primary to-blue-600 text-white font-bold py-4 px-8 rounded-xl transition-all flex items-center justify-center gap-3 group ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                 >
-                  <span>{t.contact.form.send}</span>
-                  <FiSend className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  {isSubmitting ? (
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  ) : (
+                    <>
+                      <span>{t.contact.form.send}</span>
+                      <FiSend className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    </>
+                  )}
                 </motion.button>
               </form>
             </div>

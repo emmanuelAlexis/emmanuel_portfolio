@@ -2,7 +2,9 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { FiArrowRight, FiGithub } from "react-icons/fi";
+import { FiArrowRight, FiGithub, FiLock, FiUnlock, FiEyeOff } from "react-icons/fi";
+
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function ProjectCard({
   project,
@@ -11,6 +13,28 @@ export default function ProjectCard({
   project: any;
   index: number;
 }) {
+  const { t } = useLanguage();
+
+  const accessConfig = {
+    public: {
+      icon: <FiUnlock className="w-3 h-3" />,
+      label: t.projects.access.public,
+      color: "bg-green-500/20 text-green-400 border-green-500/20"
+    },
+    protected: {
+      icon: <FiLock className="w-3 h-3" />,
+      label: t.projects.access.protected,
+      color: "bg-blue-500/80 text-blue-900 border-blue-500/20"
+    },
+    private: {
+      icon: <FiEyeOff className="w-3 h-3" />,
+      label: t.projects.access.private,
+      color: "bg-red-500/20 text-red-400 border-red-500/20"
+    }
+  };
+
+  const accessInfo = accessConfig[project.access as keyof typeof accessConfig] || accessConfig.private;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -33,6 +57,12 @@ export default function ProjectCard({
           quality={90}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+
+        {/* Access Badge */}
+        <div className={`absolute top-4 right-4 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-medium border flex items-center gap-1.5 z-10 ${accessInfo.color}`}>
+          {accessInfo.icon}
+          <span>{accessInfo.label}</span>
+        </div>
 
         {/* Technologies Overlay */}
         <div className="absolute bottom-4 left-4 right-4 flex flex-wrap gap-2">
@@ -63,9 +93,9 @@ export default function ProjectCard({
 
         {/* Action Buttons */}
         <div className="flex gap-3 mt-auto">
-          {project.githubUrl && project.githubUrl !== "#" && (
+          {project.access === 'public' && project.githubLinks && project.githubLinks.length > 0 && (
             <a
-              href={project.githubUrl}
+              href={project.githubLinks[0].url}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-600 hover:border-primary dark:hover:border-primary transition-all text-sm font-medium"

@@ -1,139 +1,20 @@
 "use client";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
-import {
-  FaLaravel,
-  FaNodeJs,
-  FaPython,
-  FaReact,
-  FaTools,
-  FaJava
-} from "react-icons/fa";
-import { FiCode, FiDatabase, FiTerminal, FiLayers, FiCpu } from "react-icons/fi";
-import {
-  SiDocker,
-  SiExpress,
-  SiFlutter,
-  SiGit,
-  SiMysql,
-  SiNextdotjs,
-  SiPostgresql,
-  SiSpringboot,
-  SiTailwindcss,
-  SiTypescript,
-  SiFigma,
-  SiVite,
-  SiGithubactions,
-  SiNestjs,
-  SiRedux,
-  SiJest
-} from "react-icons/si";
 import { useLanguage } from "@/context/LanguageContext";
+import { getSkills } from "@/lib/data";
 
 const TechPage = () => {
-  const { t } = useLanguage();
-  const [activeCategory, setActiveCategory] = useState(t.technologies.categories.frontend);
-  
+  const { t, language } = useLanguage();
+  const technologies = getSkills(language);
+  const [activeCategory, setActiveCategory] = useState(technologies[0].category);
+
   // Mettre à jour la catégorie active quand la langue change
   useEffect(() => {
-    setActiveCategory(t.technologies.categories.frontend);
-  }, [t]);
-
-  const technologies = [
-    {
-      category: t.technologies.categories.frontend,
-      icon: <FiLayers className="w-5 h-5" />,
-      description: t.technologies.descriptions.frontend,
-      items: [
-        {
-          name: t.technologies.items.react.name,
-          icon: <FaReact className="w-8 h-8 text-blue-400" />,
-          desc: t.technologies.items.react.desc
-        },
-        {
-          name: t.technologies.items.nextjs.name,
-          icon: <SiNextdotjs className="w-8 h-8 text-black dark:text-white" />,
-          desc: t.technologies.items.nextjs.desc
-        },
-        {
-          name: t.technologies.items.tailwind.name,
-          icon: <SiTailwindcss className="w-8 h-8 text-cyan-400" />,
-          desc: t.technologies.items.tailwind.desc
-        },
-        {
-          name: t.technologies.items.flutter.name,
-          icon: <SiFlutter className="w-8 h-8 text-blue-400" />,
-          desc: t.technologies.items.flutter.desc
-        },
-      ],
-    },
-    {
-      category: t.technologies.categories.backend,
-      icon: <FiTerminal className="w-5 h-5" />,
-      description: t.technologies.descriptions.backend,
-      items: [
-        {
-          name: t.technologies.items.nodejs.name,
-          icon: <FaNodeJs className="w-8 h-8 text-green-500" />,
-          desc: t.technologies.items.nodejs.desc
-        },
-        {
-          name: t.technologies.items.nestjs.name,
-          icon: <SiNestjs className="w-8 h-8 text-red-600" />,
-          desc: t.technologies.items.nestjs.desc
-        },
-        {
-          name: t.technologies.items.springboot.name,
-          icon: <SiSpringboot className="w-8 h-8 text-green-600" />,
-          desc: t.technologies.items.springboot.desc
-        },
-        {
-          name: t.technologies.items.laravel.name,
-          icon: <FaLaravel className="w-8 h-8 text-red-500" />,
-          desc: t.technologies.items.laravel.desc
-        },
-      ],
-    },
-    {
-      category: t.technologies.categories.database,
-      icon: <FiDatabase className="w-5 h-5" />,
-      description: t.technologies.descriptions.database,
-      items: [
-        {
-          name: t.technologies.items.postgresql.name,
-          icon: <SiPostgresql className="w-8 h-8 text-blue-400" />,
-          desc: t.technologies.items.postgresql.desc
-        },
-        {
-          name: t.technologies.items.mysql.name,
-          icon: <SiMysql className="w-8 h-8 text-orange-500" />,
-          desc: t.technologies.items.mysql.desc
-        },
-      ],
-    },
-    {
-      category: t.technologies.categories.devops,
-      icon: <FaTools className="w-5 h-5" />,
-      description: t.technologies.descriptions.devops,
-      items: [
-        {
-          name: t.technologies.items.docker.name,
-          icon: <SiDocker className="w-8 h-8 text-blue-500" />,
-          desc: t.technologies.items.docker.desc
-        },
-        {
-          name: t.technologies.items.git.name,
-          icon: <SiGit className="w-8 h-8 text-orange-600" />,
-          desc: t.technologies.items.git.desc
-        },
-        {
-          name: t.technologies.items.figma.name,
-          icon: <SiFigma className="w-8 h-8 text-purple-500" />,
-          desc: t.technologies.items.figma.desc
-        },
-      ],
-    },
-  ];
+    // On reset sur la première catégorie quand la langue change pour éviter des mismatchs
+    const currentTechs = getSkills(language);
+    setActiveCategory(currentTechs[0].category);
+  }, [language]);
 
   return (
     <div className="flex flex-col hidden lg:flex gap-8">
@@ -188,7 +69,9 @@ const TechPage = () => {
                       className="group bg-white dark:bg-gray-800/50 p-4 rounded-2xl border border-gray-100 dark:border-gray-700/50 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 flex flex-wrap items-start gap-4"
                     >
                       <div className="p-3 bg-gray-50 dark:bg-gray-700/50 rounded-xl group-hover:scale-110 transition-transform duration-300">
-                        {item.icon}
+                        <div className={`text-2xl ${item.color || "text-gray-600"}`}>
+                          {item.icon}
+                        </div>
                       </div>
                       <div>
                         <h4 className="font-bold text-gray-900 dark:text-white mb-1">

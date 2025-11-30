@@ -1,27 +1,256 @@
-import { SiSpringboot, SiNextdotjs, SiPostgresql, SiTailwindcss, SiDotnet, SiSqlite, SiNestjs, SiPrisma, SiSocketdotio, SiJavascript, SiLaravel, SiMysql, SiOpencv, SiPython, SiQt, SiSoundcloud, SiTensorflow } from "react-icons/si";
-import { TbBrandCSharp } from "react-icons/tb";
+import {
+    SiSpringboot, SiNextdotjs, SiPostgresql, SiTailwindcss, SiDotnet, SiSqlite,
+    SiNestjs, SiPrisma, SiSocketdotio, SiJavascript, SiLaravel, SiMysql,
+    SiOpencv, SiPython, SiQt, SiSoundcloud, SiTensorflow, SiReact, SiExpress,
+    SiMongodb, SiDocker, SiGit, SiFigma, SiRedux, SiJest, SiFlutter, SiVite,
+    SiGithubactions, SiTypescript, SiNodedotjs, SiFramer, SiHive, SiFirebase,
+    SiMaterialdesign,
+    SiBotblecms,
+    SiGodotengine
+} from "react-icons/si";
+import { TbBrandCSharp, TbChess } from "react-icons/tb";
+import { FaJava, FaNodeJs, FaTools, FaReact } from "react-icons/fa";
+import { FiDatabase, FiTerminal, FiLayers } from "react-icons/fi";
 import { translations } from "./translations";
+import { BotIcon } from "lucide-react";
+
+// Fonction pour obtenir les compétences
+const getSkills = (lang: 'fr' | 'en' = 'fr') => {
+    const t = translations[lang];
+
+    return [
+        {
+            category: t.skills.categories.languages,
+            icon: <FiLayers className="w-5 h-5" />,
+            description: t.technologies.descriptions.frontend,
+            items: [
+                {
+                    name: "TypeScript",
+                    icon: <SiTypescript />,
+                    color: "text-blue-600",
+                    desc: "Superset JavaScript typé."
+                },
+                {
+                    name: "Java",
+                    icon: <FaJava />,
+                    color: "text-red-500",
+                    desc: "Langage orienté objet robuste."
+                },
+                {
+                    name: "C#",
+                    icon: <TbBrandCSharp />,
+                    color: "text-purple-600",
+                    desc: "Langage polyvalent Microsoft."
+                },
+                {
+                    name: "Python",
+                    icon: <SiPython />,
+                    color: "text-blue-500",
+                    desc: "Langage pour IA et Scripting."
+                },
+            ],
+        },
+        {
+            category: t.skills.categories.frontend,
+            icon: <FiLayers className="w-5 h-5" />,
+            description: t.technologies.descriptions.frontend,
+            items: [
+                {
+                    name: "Next.js",
+                    icon: <SiNextdotjs />,
+                    color: "text-black dark:text-white",
+                    desc: t.technologies.items.nextjs.desc
+                },
+                {
+                    name: "Tailwind",
+                    icon: <SiTailwindcss />,
+                    color: "text-cyan-500",
+                    desc: t.technologies.items.tailwind.desc
+                },
+                {
+                    name: "Flutter",
+                    icon: <SiFlutter />,
+                    color: "text-blue-400",
+                    desc: t.technologies.items.flutter.desc
+                }
+            ],
+        },
+        {
+            category: t.skills.categories.backend,
+            icon: <FiTerminal className="w-5 h-5" />,
+            description: t.technologies.descriptions.backend,
+            items: [
+                {
+                    name: "Spring Boot",
+                    icon: <SiSpringboot />,
+                    color: "text-green-600",
+                    desc: t.technologies.items.springboot.desc
+                },
+                {
+                    name: "NestJS",
+                    icon: <SiNestjs />,
+                    color: "text-red-600",
+                    desc: t.technologies.items.nestjs.desc
+                },
+                {
+                    name: "Laravel",
+                    icon: <SiLaravel />,
+                    color: "text-red-500",
+                    desc: t.technologies.items.laravel.desc
+                },
+                {
+                    name: ".NET",
+                    icon: <SiDotnet />,
+                    color: "text-purple-600",
+                    desc: "Framework de développement."
+                },
+            ],
+        },
+        {
+            category: t.skills.categories.data,
+            icon: <FiDatabase className="w-5 h-5" />,
+            description: t.technologies.descriptions.database,
+            items: [
+                {
+                    name: "PostgreSQL",
+                    icon: <SiPostgresql />,
+                    color: "text-blue-400",
+                    desc: t.technologies.items.postgresql.desc
+                },
+                {
+                    name: "MySQL",
+                    icon: <SiMysql />,
+                    color: "text-orange-500",
+                    desc: t.technologies.items.mysql.desc
+                },
+                {
+                    name: "SQLite",
+                    icon: <SiSqlite />,
+                    color: "text-blue-400",
+                    desc: "Base de données légère."
+                },
+            ],
+        },
+        {
+            category: t.skills.categories.devops,
+            icon: <FaTools className="w-5 h-5" />,
+            description: t.technologies.descriptions.devops,
+            items: [
+                {
+                    name: "Docker",
+                    icon: <SiDocker />,
+                    color: "text-blue-500",
+                    desc: t.technologies.items.docker.desc
+                },
+                {
+                    name: "Git",
+                    icon: <SiGit />,
+                    color: "text-orange-500",
+                    desc: t.technologies.items.git.desc
+                },
+                {
+                    name: "Figma",
+                    icon: <SiFigma />,
+                    color: "text-purple-400",
+                    desc: t.technologies.items.figma.desc
+                },
+                {
+                    name: "GitHub Actions",
+                    icon: <SiGithubactions />,
+                    color: "text-blue-600",
+                    desc: "Automatisation de workflow."
+                },
+            ],
+        },
+    ];
+};
 
 // Fonction pour obtenir tous les projets
 const getAllProjects = (lang: 'fr' | 'en' = 'fr') => {
     const t = translations[lang];
-    
+
     return [
         {
             id: 1,
-            title: t.projectsData.library.title,
-            description: t.projectsData.library.description,
-            detailedDescription: t.projectsData.library.detailedDescription,
+            title: t.projectsData.chessAssist.title,
+            description: t.projectsData.chessAssist.description,
+            detailedDescription: t.projectsData.chessAssist.detailedDescription,
             technologies: [
                 {
                     id: 0,
-                    icon: <SiSpringboot size="1.5rem" title="Spring Boot" />,
-                    name: "Spring Boot"
+                    icon: <SiNextdotjs size="1.5rem" title="Next.js" />,
+                    name: "Next.js"
                 },
                 {
                     id: 1,
+                    icon: <SiReact size="1.5rem" title="React" />,
+                    name: "React"
+                },
+                {
+                    id: 2,
+                    icon: <SiTypescript size="1.5rem" title="TypeScript" />,
+                    name: "TypeScript"
+                },
+                {
+                    id: 3,
+                    icon: <TbChess size="1.5rem" title="chess.js" />,
+                    name: "chess.js"
+                },
+                {
+                    id: 4,
+                    icon: <SiFramer size="1.5rem" title="Framer Motion" />,
+                    name: "Framer Motion"
+                },
+                {
+                    id: 5,
+                    icon: <SiTailwindcss size="1.5rem" title="TailwindCSS" />,
+                    name: "TailwindCSS"
+                },
+                {
+                    id: 6,
+                    icon: <SiGodotengine size="1.5rem" title="AI" />,
+                    name: "AI"
+                },
+            ],
+            imageUrl: "/chess/illustration_1.png",
+            images: [
+                {
+                    id: 0,
+                    src: "/chess/home.png",
+                },
+                {
+                    id: 1,
+                    src: "/chess/game.png",
+                },
+                {
+                    id: 2,
+                    src: "/chess/dark.png",
+                }
+            ],
+            projectUrl: "/projects/1",
+            liveUrl: "https://chess-assistantio.vercel.app/",
+            githubLinks: [
+                { label: "Frontend", url: "https://github.com/emmanuelAlexis/chessAssistant.git" }
+            ],
+            access: "public",
+            featured: true,
+            date: "2025-01"
+        },
+        {
+            id: 2,
+            title: t.projectsData.devTracker.title,
+            description: t.projectsData.devTracker.description,
+            detailedDescription: t.projectsData.devTracker.detailedDescription,
+            technologies: [
+                {
+                    id: 0,
                     icon: <SiNextdotjs size="1.5rem" title="Next.js" />,
                     name: "Next.js"
+                },
+                {
+                    id: 1,
+                    icon: <SiDotnet size="1.5rem" title="ASP.NET Core" />,
+                    name: "ASP.NET Core"
                 },
                 {
                     id: 2,
@@ -33,344 +262,239 @@ const getAllProjects = (lang: 'fr' | 'en' = 'fr') => {
                     icon: <SiTailwindcss size="1.5rem" title="TailwindCSS" />,
                     name: "TailwindCSS"
                 },
+                {
+                    id: 4,
+                    icon: <SiFramer size="1.5rem" title="Framer Motion" />,
+                    name: "Framer Motion"
+                },
             ],
-            imageUrl: "/biblio/illustration_2.png",
+            imageUrl: "/devtracker/illustration_tracker.png",
             images: [
                 {
                     id: 0,
-                    src: "/biblio/illustration_2.png",
+                    src: "/devtracker/home.png",
                 },
                 {
                     id: 1,
-                    src: "/biblio/illustration_1.png",
+                    src: "/devtracker/projects.png",
                 },
                 {
                     id: 2,
-                    src: "/biblio/biblio-1.png",
-                },
-                {
-                    id: 3,
-                    src: "/biblio/biblio-2.png",
-                }
-            ],
-            projectUrl: "/projects/1",
-            liveUrl: "#",
-            githubUrl: "#",
-            featured: true,
-            date: "2024-01"
-        },
-        {
-            id: 2,
-            title: t.projectsData.stock.title,
-            description: t.projectsData.stock.description,
-            detailedDescription: t.projectsData.stock.detailedDescription,
-            technologies: [
-                {
-                    id: 4,
-                    icon: <TbBrandCSharp size="1.5rem" title="C#" />,
-                    name: "C#"
-                },
-                {
-                    id: 5,
-                    icon: <SiDotnet size="1.5rem" title=".NET 8.0" />,
-                    name: ".NET"
-                },
-                {
-                    id: 6,
-                    icon: <SiSqlite size="1.5rem" title="SQLite" />,
-                    name: "SQLite"
-                },
-            ],
-            imageUrl: "/stock/illustration_2.png",
-            images: [
-                {
-                    id: 0,
-                    src: "/stock/illustration_2.png",
-                },
-                {
-                    id: 1,
-                    src: "/stock/illustration_1.png",
+                    src: "/devtracker/form.png",
                 }
             ],
             projectUrl: "/projects/2",
             liveUrl: "#",
-            githubUrl: "#",
+            githubLinks: [],
+            access: "private",
             featured: true,
-            date: "2023-12"
+            date: "2025-01"
         },
         {
             id: 3,
-            title: t.projectsData.chat.title,
-            description: t.projectsData.chat.description,
-            detailedDescription: t.projectsData.chat.detailedDescription,
-            technologies: [
-                {
-                    id: 7,
-                    icon: <SiNestjs size="1.5rem" title="NestJS" />,
-                    name: "NestJS"
-                },
-                {
-                    id: 8,
-                    icon: <SiPrisma size="1.5rem" title="Prisma" />,
-                    name: "Prisma"
-                },
-                {
-                    id: 9,
-                    icon: <SiPostgresql size="1.5rem" title="PostgreSQL" />,
-                    name: "PostgreSQL"
-                },
-                {
-                    id: 10,
-                    icon: <SiSocketdotio size="1.5rem" title="Socket.IO" />,
-                    name: "Socket.IO"
-                },
-                {
-                    id: 11,
-                    icon: <SiNextdotjs size="1.5rem" title="Next.js" />,
-                    name: "Next.js"
-                },
-            ],
-            imageUrl: "/chat/illustration_2.png",
-            images: [
-                {
-                    id: 0,
-                    src: "/chat/illustration_2.png",
-                }
-            ],
-            projectUrl: "/projects/3",
-            liveUrl: "#",
-            githubUrl: "#",
-            featured: true,
-            date: "2024-02"
-        },
-        {
-            id: 4,
-            title: t.projectsData.libraryFull.title,
-            description: t.projectsData.libraryFull.description,
+            title: t.projectsData.globydep.title,
+            description: t.projectsData.globydep.description,
+            detailedDescription: t.projectsData.globydep.detailedDescription,
             technologies: [
                 {
                     id: 0,
-                    icon: <SiSpringboot size="1.5rem" title="Spring Boot" />,
-                    name: "Spring Boot"
+                    icon: <SiFlutter size="1.5rem" title="Flutter" />,
+                    name: "Flutter"
                 },
                 {
                     id: 1,
-                    icon: <SiNextdotjs size="1.5rem" title="NextJs" />,
-                    name: "Next.js"
+                    icon: <SiHive size="1.5rem" title="Hive" />,
+                    name: "Hive"
                 },
                 {
                     id: 2,
-                    icon: <SiPostgresql size="1.5rem" title="PostgreSql" />,
-                    name: "PostgreSQL"
-                },
-                {
-                    id: 3,
-                    icon: <SiTailwindcss size="1.5rem" title="Tailwindcss" />,
-                    name: "TailwindCSS"
+                    icon: <SiFirebase size="1.5rem" title="Firebase" />,
+                    name: "Firebase"
                 },
             ],
-            imageUrl: "/picture.jpeg",
+            imageUrl: "/globydep/illustration_1.png",
             images: [
                 {
                     id: 0,
-                    src: "/picture.jpeg",
-                }
-            ],
-            projectUrl: "/projects/1",
-            liveUrl: "#",
-            githubUrl: "#",
-            featured: false,
-            date: "2023-11"
-        },
-        {
-            id: 5,
-            title: t.projectsData.bank.title,
-            description: t.projectsData.bank.description,
-            technologies: [
-                {
-                    id: 4,
-                    icon: <SiLaravel size="1.5rem" title="Laravel" />,
-                    name: "Laravel"
+                    src: "/globydep/dashboard.png",
                 },
                 {
-                    id: 5,
-                    icon: <SiNextdotjs size="1.5rem" title="NextJs" />,
-                    name: "Next.js"
+                    id: 1,
+                    src: "/globydep/expenses.png",
                 },
                 {
-                    id: 6,
-                    icon: <SiMysql size="1.5rem" title="MySql" />,
-                    name: "MySQL"
-                },
-                {
-                    id: 7,
-                    icon: <SiTailwindcss size="1.5rem" title="Tailwindcss" />,
-                    name: "TailwindCSS"
-                },
-            ],
-            imageUrl: "/picture.jpeg",
-            images: [
-                {
-                    id: 0,
-                    src: "/picture.jpeg",
-                }
-            ],
-            projectUrl: "/projects/2",
-            liveUrl: "#",
-            githubUrl: "#",
-            featured: false,
-            date: "2023-10"
-        },
-        {
-            id: 6,
-            title: t.projectsData.chatApp.title,
-            description: t.projectsData.chatApp.description,
-            technologies: [
-                {
-                    id: 8,
-                    icon: <SiNestjs size="1.5rem" title="NestJS" />,
-                    name: "NestJS"
-                },
-                {
-                    id: 9,
-                    icon: <SiPrisma size="1.5rem" title="Prisma" />,
-                    name: "Prisma"
-                },
-                {
-                    id: 10,
-                    icon: <SiPostgresql size="1.5rem" title="PostgreSql" />,
-                    name: "PostgreSQL"
-                },
-                {
-                    id: 11,
-                    icon: <SiSocketdotio size="1.5rem" title="Socket.io" />,
-                    name: "Socket.IO"
-                },
-                {
-                    id: 12,
-                    icon: <SiNextdotjs size="1.5rem" title="NextJS" />,
-                    name: "Next.js"
-                },
-            ],
-            imageUrl: "/picture.jpeg",
-            images: [
-                {
-                    id: 0,
-                    src: "/picture.jpeg",
+                    id: 2,
+                    src: "/globydep/loans.png",
                 }
             ],
             projectUrl: "/projects/3",
             liveUrl: "#",
-            githubUrl: "#",
-            featured: false,
-            date: "2024-01"
+            githubLinks: [],
+            access: "private",
+            featured: true,
+            date: "2024-12"
         },
         {
-            id: 7,
-            title: t.projectsData.voiceClassifier.title,
-            description: t.projectsData.voiceClassifier.description,
+            id: 4,
+            title: t.projectsData.roomApp.title,
+            description: t.projectsData.roomApp.description,
+            detailedDescription: t.projectsData.roomApp.detailedDescription,
             technologies: [
                 {
-                    id: 13,
-                    icon: <SiPython size="1.5rem" title="Python" />,
-                    name: "Python"
+                    id: 0,
+                    icon: <SiNextdotjs size="1.5rem" title="Next.js" />,
+                    name: "Next.js"
                 },
                 {
-                    id: 14,
-                    icon: <SiTensorflow size="1.5rem" title="TensorFlow" />,
-                    name: "TensorFlow"
+                    id: 1,
+                    icon: <SiNestjs size="1.5rem" title="NestJS" />,
+                    name: "NestJS"
                 },
                 {
-                    id: 15,
-                    icon: <SiQt size="1.5rem" title="PyQt5" />,
-                    name: "PyQt5"
+                    id: 2,
+                    icon: <SiMaterialdesign size="1.5rem" title="Material-UI" />,
+                    name: "Material-UI"
                 },
                 {
-                    id: 16,
-                    icon: <SiSoundcloud size="1.5rem" title="SoundService" />,
-                    name: "SoundService"
+                    id: 3,
+                    icon: <SiTypescript size="1.5rem" title="TypeScript" />,
+                    name: "TypeScript"
                 },
             ],
-            imageUrl: "/picture.jpeg",
+            imageUrl: "/room/home.png",
             images: [
                 {
                     id: 0,
-                    src: "/picture.jpeg",
+                    src: "/room/home.png",
+                },
+                {
+                    id: 1,
+                    src: "/room/dashboard.png",
+                },
+                {
+                    id: 2,
+                    src: "/room/discussion.png",
                 }
             ],
             projectUrl: "/projects/4",
             liveUrl: "#",
-            githubUrl: "#",
-            featured: false,
-            date: "2023-09"
+            githubLinks: [],
+            access: "private",
+            featured: true,
+            date: "2024-11"
         },
         {
-            id: 8,
-            title: t.projectsData.imageClassifier.title,
-            description: t.projectsData.imageClassifier.description,
+            id: 5,
+            title: t.projectsData.regionDiana.title,
+            description: t.projectsData.regionDiana.description,
+            detailedDescription: t.projectsData.regionDiana.detailedDescription,
             technologies: [
-                {
-                    id: 17,
-                    icon: <SiPython size="1.5rem" title="Python" />,
-                    name: "Python"
-                },
-                {
-                    id: 18,
-                    icon: <SiTensorflow size="1.5rem" title="TensorFlow" />,
-                    name: "TensorFlow"
-                },
-                {
-                    id: 19,
-                    icon: <SiOpencv size="1.5rem" title="OpenCv" />,
-                    name: "OpenCV"
-                },
-            ],
-            imageUrl: "/picture.jpeg",
-            images: [
                 {
                     id: 0,
-                    src: "/picture.jpeg",
-                }
-            ],
-            projectUrl: "/projects/5",
-            liveUrl: "#",
-            githubUrl: "#",
-            featured: false,
-            date: "2023-08"
-        },
-        {
-            id: 9,
-            title: t.projectsData.timer.title,
-            description: t.projectsData.timer.description,
-            technologies: [
-                {
-                    id: 20,
-                    icon: <SiNextdotjs size="1.5rem" title="NextJS" />,
+                    icon: <SiNextdotjs size="1.5rem" title="Next.js" />,
                     name: "Next.js"
                 },
                 {
-                    id: 21,
-                    icon: <SiJavascript size="1.5rem" title="Javascript" />,
-                    name: "JavaScript"
+                    id: 1,
+                    icon: <SiSpringboot size="1.5rem" title="Spring Boot" />,
+                    name: "Spring Boot"
                 },
                 {
-                    id: 22,
-                    icon: <SiTailwindcss size="1.5rem" title="Tailwindcss" />,
-                    name: "TailwindCSS"
+                    id: 2,
+                    icon: <SiPostgresql size="1.5rem" title="PostgreSQL" />,
+                    name: "PostgreSQL"
+                },
+                {
+                    id: 3,
+                    icon: <SiTypescript size="1.5rem" title="TypeScript" />,
+                    name: "TypeScript"
                 },
             ],
-            imageUrl: "/picture.jpeg",
+            imageUrl: "/region/illustration_region.png",
             images: [
                 {
                     id: 0,
-                    src: "/picture.jpeg",
+                    src: "/region/auth_1.png",
+                },
+                {
+                    id: 1,
+                    src: "/region/auth_2.png",
+                },
+                {
+                    id: 2,
+                    src: "/region/dashboard.png",
+                },
+                {
+                    id: 3,
+                    src: "/region/light.png",
+                },
+                {
+                    id: 4,
+                    src: "/region/responsive.png",
+                },
+                {
+                    id: 5,
+                    src: "/region/form.png",
                 }
             ],
+            projectUrl: "/projects/5",
+            liveUrl: "https://front-client-region-8vbl3y0nh-emmanuelalexis-projects.vercel.app/",
+            githubLinks: [],
+            access: "protected",
+            featured: true,
+            date: "2024-10"
+        },
+        {
+            id: 6,
+            title: t.projectsData.nextFrontStarter.title,
+            description: t.projectsData.nextFrontStarter.description,
+            detailedDescription: t.projectsData.nextFrontStarter.detailedDescription,
+            technologies: [
+                {
+                    id: 0,
+                    icon: <SiNextdotjs size="1.5rem" title="Next.js" />,
+                    name: "Next.js"
+                },
+                {
+                    id: 1,
+                    icon: <SiReact size="1.5rem" title="React" />,
+                    name: "React"
+                },
+                {
+                    id: 2,
+                    icon: <SiTypescript size="1.5rem" title="TypeScript" />,
+                    name: "TypeScript"
+                },
+                {
+                    id: 3,
+                    icon: <SiTailwindcss size="1.5rem" title="TailwindCSS" />,
+                    name: "TailwindCSS"
+                },
+                {
+                    id: 4,
+                    icon: <SiFramer size="1.5rem" title="Framer Motion" />,
+                    name: "Framer Motion"
+                },
+            ],
+            imageUrl: "/starter/illustration_starter.png",
+            images: [
+                {
+                    id: 0,
+                    src: "/starter/illustration_starter.png",
+                },
+                {
+                    id: 1,
+                    src: "/starter/home.png",
+                },
+            ],
             projectUrl: "/projects/6",
-            liveUrl: "#",
-            githubUrl: "#",
-            featured: false,
-            date: "2024-03"
+            liveUrl: "https://next-theme-starter-docs.vercel.app/",
+            githubLinks: [
+                { label: "Template", url: "https://github.com/emmanuelAlexis/next_front_startup_with_dark_mode.git" }
+            ],
+            access: "public",
+            featured: true,
+            date: "2024-09"
         },
     ];
 };
@@ -385,4 +509,4 @@ const getFeaturedProjects = (lang: 'fr' | 'en' = 'fr') => {
 export const featuredProjects = getFeaturedProjects('fr');
 
 // Export de la fonction pour utilisation avec traductions
-export { getFeaturedProjects, getAllProjects };
+export { getFeaturedProjects, getAllProjects, getSkills };
