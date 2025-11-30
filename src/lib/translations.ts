@@ -189,10 +189,10 @@ export const translations = {
                 description: "Assistant d'échecs intelligent propulsé par l'IA avec moteur Minimax optimisé et interface moderne.",
                 detailedDescription: "Application web d'assistance aux échecs combinant une interface élégante avec un moteur d'IA puissant. Utilise l'algorithme Minimax avec élagage Alpha-Beta, tables de transposition et quiescence search pour des suggestions de coups en temps réel. L'interface offre un échiquier interactif, un historique des coups en notation algébrique, et un mode sombre avec animations fluides via Framer Motion. Développée avec Next.js 15, React 19, TypeScript et chess.js pour la logique d'échecs.",
             },
-            devTracker: {
-                title: "DevTracker",
-                description: "Application de suivi et gestion de projets de développement avec interface moderne et API RESTful.",
-                detailedDescription: "Plateforme complète de gestion de projets de développement avec frontend Next.js 15 et backend ASP.NET Core 9.0. Le frontend offre une interface moderne avec Tailwind CSS 4, animations Framer Motion, mode sombre et gestion CRUD complète des projets. Le backend fournit une API RESTful avec Entity Framework Core, PostgreSQL, upload d'images et CORS configuré. Permet de créer, suivre et gérer des projets avec leurs technologies, statuts (en cours, terminé, abandonné) et liens associés.",
+            biblio: {
+                title: "Bibliothèque Numérique",
+                description: "Application web de bibliothèque numérique avec gestion des utilisateurs, livres, auteurs et interactions sociales.",
+                detailedDescription: "Plateforme complète de bibliothèque numérique avec frontend Next.js 15 et backend Spring Boot. Permet la gestion des utilisateurs avec photos de profil, publication et gestion de livres par les utilisateurs, gestion des auteurs, espace de discussion et notation par livre, et téléchargement sécurisé des livres. Le frontend utilise React Query pour la consommation de l'API, TailwindCSS pour le design, et React Hook Form avec Zod pour les formulaires. Le backend offre une API RESTful avec Spring Security (JWT), Spring Data JPA, stockage de fichiers (images et PDF), et base de données PostgreSQL/H2.",
             },
             globydep: {
                 title: "Globydep / Mofidra",
@@ -200,9 +200,9 @@ export const translations = {
                 detailedDescription: "Application mobile Flutter pour suivre, analyser et optimiser les dépenses personnelles. Permet de planifier des semaines avec solde initial, gérer les dépenses obligatoires et ponctuelles, suivre les emprunts auprès des contacts, et visualiser l'activité dans un dashboard animé. Inclut des notifications locales pour rappels d'emprunts et alertes de solde faible, stockage local avec Hive pour le mode hors-ligne, et synchronisation Firebase optionnelle. Interface avec thème clair/sombre et graphiques de dépenses (Pie/Bar charts).",
             },
             roomApp: {
-                title: "Room Application",
-                description: "Plateforme de création d'une espace de discussion avec authentification, recherche en temps réel et gestion complète.",
-                detailedDescription: "Application web création d'une espace de discussion construite avec Next.js et NestJS. Le frontend offre une interface responsive avec Material-UI, navigation fluide avec React Router, et communication API via Axios. Le backend NestJS fournit une architecture modulaire avec authentification sécurisée, gestion des discussions en temps réel, et API RESTful complète. Permet aux utilisateurs de créer/modifier/annuler des discussions, et gérer leur profil.",
+                title: "Conv-Ghost - Room Application",
+                description: "Application de messagerie éphémère avec salons de discussion privés, communication temps réel et partage de fichiers.",
+                detailedDescription: "Plateforme de messagerie instantanée construite avec Next.js 15 et NestJS permettant de créer des salons de discussion éphémères et sécurisés. Le frontend offre une interface moderne avec Tailwind CSS 4, animations Framer Motion, mode sombre, et communication temps réel via Socket.IO. Fonctionnalités : authentification JWT, création de salons avec mot de passe, chat en temps réel, partage de fichiers et médias, sélecteur d'emojis, gestion de profil, et téléchargement de fichiers. Le backend NestJS fournit une API RESTful complète avec WebSocket pour la messagerie instantanée.",
             },
             regionDiana: {
                 title: "Portail Région Diana",
@@ -404,10 +404,10 @@ export const translations = {
                 description: "Intelligent chess assistant powered by AI with optimized Minimax engine and modern interface.",
                 detailedDescription: "Chess assistance web application combining an elegant interface with a powerful AI engine. Uses Minimax algorithm with Alpha-Beta pruning, transposition tables and quiescence search for real-time move suggestions. The interface offers an interactive chessboard, move history in algebraic notation, and dark mode with smooth animations via Framer Motion. Built with Next.js 15, React 19, TypeScript and chess.js for chess logic.",
             },
-            devTracker: {
-                title: "DevTracker",
-                description: "Development project tracking and management application with modern interface and RESTful API.",
-                detailedDescription: "Complete development project management platform with Next.js 15 frontend and ASP.NET Core 9.0 backend. The frontend offers a modern interface with Tailwind CSS 4, Framer Motion animations, dark mode and complete CRUD project management. The backend provides a RESTful API with Entity Framework Core, PostgreSQL, image upload and configured CORS. Allows creating, tracking and managing projects with their technologies, statuses (in progress, completed, abandoned) and associated links.",
+            biblio: {
+                title: "Digital Library",
+                description: "Digital library web application with user management, books, authors and social interactions.",
+                detailedDescription: "Complete digital library platform with Next.js 15 frontend and Spring Boot backend. Enables user management with profile photos, book publication and management by users, author management, discussion space and rating per book, and secure book downloads. The frontend uses React Query for API consumption, TailwindCSS for design, and React Hook Form with Zod for forms. The backend offers a RESTful API with Spring Security (JWT), Spring Data JPA, file storage (images and PDFs), and PostgreSQL/H2 database.",
             },
             globydep: {
                 title: "Globydep / Mofidra",
@@ -415,9 +415,9 @@ export const translations = {
                 detailedDescription: "Flutter mobile application to track, analyze and optimize personal expenses. Allows planning weeks with initial balance, managing mandatory and occasional expenses, tracking loans from contacts, and visualizing activity in an animated dashboard. Includes local notifications for loan reminders and low balance alerts, local storage with Hive for offline mode, and optional Firebase synchronization. Interface with light/dark theme and expense charts (Pie/Bar charts).",
             },
             roomApp: {
-                title: "Room Application",
-                description: "Room reservation platform with authentication, real-time search and complete management.",
-                detailedDescription: "Web room reservation application built with Next.js and NestJS. The frontend offers a responsive interface with Material-UI, smooth navigation with React Router, and API communication via Axios. The NestJS backend provides a modular architecture with secure authentication, real-time reservation management, and complete RESTful API. Allows users to browse available rooms, check real-time availability, create/edit/cancel reservations, and manage their profile.",
+                title: "Conv-Ghost - Room Application",
+                description: "Ephemeral messaging application with private discussion rooms, real-time communication and file sharing.",
+                detailedDescription: "Instant messaging platform built with Next.js 15 and NestJS enabling creation of ephemeral and secure discussion rooms. The frontend offers a modern interface with Tailwind CSS 4, Framer Motion animations, dark mode, and real-time communication via Socket.IO. Features: JWT authentication, password-protected room creation, real-time chat, file and media sharing, emoji picker, profile management, and file downloads. The NestJS backend provides a complete RESTful API with WebSocket for instant messaging.",
             },
             regionDiana: {
                 title: "Diana Region Portal",
