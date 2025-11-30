@@ -228,7 +228,7 @@ export default function HeroSection() {
                 transition={{ duration: 0.4 }}
               >
                 <Image
-                  src="/picture.jpeg"
+                  src="/picture.png"
                   alt={t.common.profilePhoto}
                   width={500}
                   height={500}

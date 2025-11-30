@@ -288,8 +288,8 @@ const getAllProjects = (lang: 'fr' | 'en' = 'fr') => {
             projectUrl: "/projects/2",
             liveUrl: "",
             githubLinks: [
-                { label: "Frontend", url: "https://github.com/emmanuelAlexis/chessAssistant.git" },
-                { label: "Backend", url: "https://github.com/emmanuelAlexis/chessAssistant.git" }
+                { label: "Frontend", url: "https://github.com/emmanuelAlexis/room-app.git" },
+                { label: "Backend", url: "https://github.com/emmanuelAlexis/room-app-backend.git" }
             ],
             access: "private",
             featured: true,
@@ -391,9 +391,8 @@ const getAllProjects = (lang: 'fr' | 'en' = 'fr') => {
                 }
             ],
             projectUrl: "/projects/4",
-            liveUrl: "#",
-            githubLinks: [
-            ],
+            liveUrl: "",
+            githubLinks: [],
             access: "private",
             featured: true,
             date: "2024-12"
@@ -431,24 +430,44 @@ const getAllProjects = (lang: 'fr' | 'en' = 'fr') => {
                     name: "Java"
                 },
             ],
-            imageUrl: "/biblio/illustration_1.png",
+            imageUrl: "/biblio/illustration_2.png",
             images: [
                 {
                     id: 0,
-                    src: "/biblio/illustration_1.png",
+                    src: "/biblio/home.png",
                 },
                 {
                     id: 1,
-                    src: "/biblio/illustration_2.png",
-                }
+                    src: "/biblio/catalogue.png",
+                },
+                {
+                    id: 2,
+                    src: "/biblio/infos.png",
+                },
+                {
+                    id: 3,
+                    src: "/biblio/discuss.png",
+                },
+                {
+                    id: 4,
+                    src: "/biblio/lecture.png",
+                },
+                {
+                    id: 5,
+                    src: "/biblio/space.png",
+                },
+                {
+                    id: 6,
+                    src: "/biblio/add.png",
+                },
             ],
             projectUrl: "/projects/5",
-            liveUrl: "#",
+            liveUrl: "",
             githubLinks: [
-                { label: "Frontend", url: "https://github.com/emmanuelAlexis/chessAssistant.git" },
-                { label: "Backend", url: "https://github.com/emmanuelAlexis/chessAssistant.git" }
+                { label: "Frontend", url: "https://github.com/emmanuelAlexis/FRONT_BIBLIO.git" },
+                { label: "Backend", url: "https://github.com/emmanuelAlexis/BACK_BIBLIO.git" }
             ],
-            access: "private",
+            access: "public",
             featured: true,
             date: "2024-11"
         },
@@ -517,7 +536,7 @@ const getAllProjects = (lang: 'fr' | 'en' = 'fr') => {
             ],
             access: "public",
             featured: true,
-            date: "2025-01"
+            date: "2025-11"
         },
 
     ];
