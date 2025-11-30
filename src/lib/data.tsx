@@ -291,7 +291,7 @@ const getAllProjects = (lang: 'fr' | 'en' = 'fr') => {
                 { label: "Frontend", url: "https://github.com/emmanuelAlexis/room-app.git" },
                 { label: "Backend", url: "https://github.com/emmanuelAlexis/room-app-backend.git" }
             ],
-            access: "private",
+            access: "public",
             featured: true,
             date: "2024-11"
         },
@@ -471,73 +471,73 @@ const getAllProjects = (lang: 'fr' | 'en' = 'fr') => {
             featured: true,
             date: "2024-11"
         },
-        // Chess
-        {
-            id: 6,
-            title: t.projectsData.chessAssist.title,
-            description: t.projectsData.chessAssist.description,
-            detailedDescription: t.projectsData.chessAssist.detailedDescription,
-            technologies: [
-                {
-                    id: 0,
-                    icon: <SiNextdotjs size="1.5rem" title="Next.js" />,
-                    name: "Next.js"
-                },
-                {
-                    id: 1,
-                    icon: <SiReact size="1.5rem" title="React" />,
-                    name: "React"
-                },
-                {
-                    id: 2,
-                    icon: <SiTypescript size="1.5rem" title="TypeScript" />,
-                    name: "TypeScript"
-                },
-                {
-                    id: 3,
-                    icon: <TbChess size="1.5rem" title="chess.js" />,
-                    name: "chess.js"
-                },
-                {
-                    id: 4,
-                    icon: <SiFramer size="1.5rem" title="Framer Motion" />,
-                    name: "Framer Motion"
-                },
-                {
-                    id: 5,
-                    icon: <SiTailwindcss size="1.5rem" title="TailwindCSS" />,
-                    name: "TailwindCSS"
-                },
-                {
-                    id: 6,
-                    icon: <SiGodotengine size="1.5rem" title="AI" />,
-                    name: "AI"
-                },
-            ],
-            imageUrl: "/chess/illustration_1.png",
-            images: [
-                {
-                    id: 0,
-                    src: "/chess/home.png",
-                },
-                {
-                    id: 1,
-                    src: "/chess/game.png",
-                },
-                {
-                    id: 2,
-                    src: "/chess/dark.png",
-                }
-            ],
-            projectUrl: "/projects/6",
-            liveUrl: "https://chess-assistantio.vercel.app/",
-            githubLinks: [
-                { label: "Frontend", url: "https://github.com/emmanuelAlexis/chessAssistant.git" }
-            ],
-            access: "public",
-            featured: true,
-            date: "2025-11"
-        },
+        // // Chess
+        // {
+        //     id: 6,
+        //     title: t.projectsData.chessAssist.title,
+        //     description: t.projectsData.chessAssist.description,
+        //     detailedDescription: t.projectsData.chessAssist.detailedDescription,
+        //     technologies: [
+        //         {
+        //             id: 0,
+        //             icon: <SiNextdotjs size="1.5rem" title="Next.js" />,
+        //             name: "Next.js"
+        //         },
+        //         {
+        //             id: 1,
+        //             icon: <SiReact size="1.5rem" title="React" />,
+        //             name: "React"
+        //         },
+        //         {
+        //             id: 2,
+        //             icon: <SiTypescript size="1.5rem" title="TypeScript" />,
+        //             name: "TypeScript"
+        //         },
+        //         {
+        //             id: 3,
+        //             icon: <TbChess size="1.5rem" title="chess.js" />,
+        //             name: "chess.js"
+        //         },
+        //         {
+        //             id: 4,
+        //             icon: <SiFramer size="1.5rem" title="Framer Motion" />,
+        //             name: "Framer Motion"
+        //         },
+        //         {
+        //             id: 5,
+        //             icon: <SiTailwindcss size="1.5rem" title="TailwindCSS" />,
+        //             name: "TailwindCSS"
+        //         },
+        //         {
+        //             id: 6,
+        //             icon: <SiGodotengine size="1.5rem" title="AI" />,
+        //             name: "AI"
+        //         },
+        //     ],
+        //     imageUrl: "/chess/illustration_1.png",
+        //     images: [
+        //         {
+        //             id: 0,
+        //             src: "/chess/home.png",
+        //         },
+        //         {
+        //             id: 1,
+        //             src: "/chess/game.png",
+        //         },
+        //         {
+        //             id: 2,
+        //             src: "/chess/dark.png",
+        //         }
+        //     ],
+        //     projectUrl: "/projects/6",
+        //     liveUrl: "https://chess-assistantio.vercel.app/",
+        //     githubLinks: [
+        //         { label: "Frontend", url: "https://github.com/emmanuelAlexis/chessAssistant.git" }
+        //     ],
+        //     access: "public",
+        //     featured: true,
+        //     date: "2025-11"
+        // },
 
     ];
 };

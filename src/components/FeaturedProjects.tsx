@@ -125,7 +125,8 @@ export const ProjectCard = ({
 export default function FeaturedProjects() {
   const { t, language } = useLanguage();
   const allProjects = getAllProjects(language);
-  const [filter, setFilter] = useState<"all" | "recent" | "mobile" | "ai" | "nextjs" | "springboot" | "nestjs">("all");
+  const [filter, setFilter] = useState<"all" | "recent" | "mobile" | "nextjs" | "springboot" | "nestjs">("all");
+  // const [filter, setFilter] = useState<"all" | "recent" | "mobile" | "ai" | "nextjs" | "springboot" | "nestjs">("all");
   const [scope, animate] = useAnimate();
   const isInView = useInView(scope, { once: true, margin: "-100px" });
 
@@ -156,16 +157,16 @@ export default function FeaturedProjects() {
         hasTechnology(project, "React Native") ||
         hasTechnology(project, "Mobile")
       );
-    } else if (filter === "ai") {
-      // Filtrer les projets avec IA/ML
-      filtered = filtered.filter(project =>
-        hasTechnology(project, "TensorFlow") ||
-        hasTechnology(project, "Python") ||
-        hasTechnology(project, "OpenCV") ||
-        project.title.toLowerCase().includes("classificateur") ||
-        project.title.toLowerCase().includes("classifier") ||
-        project.title.toLowerCase().includes("assist")
-      );
+      // } else if (filter === "ai") {
+      //   // Filtrer les projets avec IA/ML
+      //   filtered = filtered.filter(project =>
+      //     hasTechnology(project, "TensorFlow") ||
+      //     hasTechnology(project, "Python") ||
+      //     hasTechnology(project, "OpenCV") ||
+      //     project.title.toLowerCase().includes("classificateur") ||
+      //     project.title.toLowerCase().includes("classifier") ||
+      //     project.title.toLowerCase().includes("assist")
+      //   );
     } else if (filter === "nextjs") {
       filtered = filtered.filter(project =>
         hasTechnology(project, "Next.js") ||
@@ -253,7 +254,7 @@ export default function FeaturedProjects() {
             >
               {t.projects.filters.mobile}
             </button>
-            <button
+            {/* <button
               onClick={() => setFilter("ai")}
               className={`px-6 py-2 rounded-lg font-medium transition-all ${filter === "ai"
                 ? "bg-primary text-white shadow-lg"
@@ -261,7 +262,7 @@ export default function FeaturedProjects() {
                 }`}
             >
               {t.projects.filters.ai}
-            </button>
+            </button> */}
             <button
               onClick={() => setFilter("nextjs")}
               className={`px-6 py-2 rounded-lg font-medium transition-all ${filter === "nextjs"
