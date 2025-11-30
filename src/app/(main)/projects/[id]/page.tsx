@@ -238,7 +238,7 @@ export default function ProjectDetailsPage({ params }: { params: Promise<{ id: s
                                             src={images[currentImageIndex].src}
                                             alt={`${project.title} - Image ${currentImageIndex + 1}`}
                                             fill
-                                            className="object-center"
+                                            className="object-scale-down"
                                             priority={currentImageIndex === 0}
                                         />
                                     </motion.div>
