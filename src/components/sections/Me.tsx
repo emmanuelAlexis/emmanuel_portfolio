@@ -53,7 +53,7 @@ export default function Me() {
                 className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl"
               >
                 <Image
-                  src="/picture.jpeg" // Assurez-vous d'avoir votre photo ici
+                  src="/picture.png" // Assurez-vous d'avoir votre photo ici
                   alt="Emmanuel A.A"
                   fill
                   className="object-cover"
