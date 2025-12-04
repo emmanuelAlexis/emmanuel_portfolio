@@ -27,6 +27,7 @@ Ce projet est construit avec les technologies les plus modernes de l'écosystèm
 *   **Animations** : [Framer Motion](https://www.framer.com/motion/)
 *   **Icônes** : [React Icons](https://react-icons.github.io/react-icons/) & [Lucide React](https://lucide.dev/)
 *   **Formulaires** : React Hook Form
+*   **Email** : [Resend](https://resend.com/) - Service d'envoi d'emails
 
 ## 📦 Installation et Démarrage
 
@@ -47,12 +48,20 @@ Pour lancer ce projet localement, suivez ces étapes :
     yarn install
     ```
 
-3.  **Lancer le serveur de développement** :
+3.  **Configurer les variables d'environnement** :
+    ```bash
+    cp .env.example .env.local
+    ```
+    Puis éditez `.env.local` et ajoutez vos clés API :
+    - `RESEND_API_KEY` : Votre clé API Resend (voir [RESEND_SETUP.md](./RESEND_SETUP.md))
+    - `CONTACT_EMAIL` : Votre adresse email pour recevoir les messages
+
+4.  **Lancer le serveur de développement** :
     ```bash
     npm run dev
     ```
 
-4.  **Accéder à l'application** :
+5.  **Accéder à l'application** :
     Ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur.
 
 ## 📂 Structure du Projet
