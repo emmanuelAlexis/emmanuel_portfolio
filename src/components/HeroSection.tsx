@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import TechPage from "@/app/(main)/about/technologies/page";
 import { Phone } from "lucide-react";
@@ -10,7 +10,7 @@ export default function HeroSection() {
   const { t } = useLanguage();
 
   // Variantes d'animation pour les éléments
-  const container = {
+  const container: Variants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -20,12 +20,12 @@ export default function HeroSection() {
     },
   };
 
-  const item = {
+  const item: Variants = {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
   };
 
-  const imageVariants = {
+  const imageVariants: Variants = {
     hidden: { opacity: 0, scale: 0.8 },
     show: {
       opacity: 1,
@@ -38,7 +38,7 @@ export default function HeroSection() {
     },
   };
 
-  const badgeVariants = {
+  const badgeVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     show: {
       opacity: 1,
