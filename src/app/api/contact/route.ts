@@ -39,7 +39,7 @@ export async function POST(req: Request) {
 
     // Envoyer l'email avec Resend
     const { data, error } = await resend.emails.send({
-      from: 'onboarding@resend.dev', // Adresse par défaut de Resend (à changer avec votre domaine)
+      from: 'Portfolio Contact <onboarding@resend.dev>', // Adresse par défaut de Resend (à changer avec votre domaine)
       to: [toEmail],
       replyTo: email, // Pour répondre directement à l'utilisateur
       subject: `Portfolio Contact: ${subject}`,
