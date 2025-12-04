@@ -32,31 +32,24 @@ export default function Header() {
 
   // Fonction pour gérer le clic sur un lien de navigation
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, item: typeof navItems[0]) => {
-    // Si le lien contient un hash (#), on scroll vers la section
-    if (item.path.includes('#')) {
-      e.preventDefault();
-      if (pathname === '/') {
-        // Si on est déjà sur la page d'accueil, on scroll directement
-        const section = document.getElementById(item.section);
-        if (section) {
-          section.scrollIntoView({ behavior: 'smooth' });
-          closeMenu();
-        }
-      } else {
-        // Sinon, on navigue vers la page d'accueil avec le hash
-        window.location.href = item.path;
-        closeMenu();
-      }
-    } else if (pathname === '/') {
-      // Si on est sur la page d'accueil et que c'est un lien de section, on scroll
-      e.preventDefault();
+    e.preventDefault();
+
+    // Fermer le menu immédiatement pour une meilleure UX
+    setIsMenuOpen(false);
+
+    if (pathname === '/') {
+      // Si on est déjà sur la page d'accueil, on scroll directement
       const section = document.getElementById(item.section);
       if (section) {
-        section.scrollIntoView({ behavior: 'smooth' });
-        closeMenu();
+        // Petit délai pour permettre au menu de se fermer avant le scroll
+        setTimeout(() => {
+          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
       }
+    } else {
+      // Sinon, on navigue vers la page d'accueil avec le hash
+      window.location.href = item.path;
     }
-    // Sinon, on laisse le Link naviguer normalement vers la page
   };
 
   // Fermer le menu mobile quand on clique sur un lien
@@ -179,10 +172,7 @@ export default function Header() {
                   >
                     <Link
                       href={item.path}
-                      onClick={(e) => {
-                        handleNavClick(e, item);
-                        closeMenu();
-                      }}
+                      onClick={(e) => handleNavClick(e, item)}
                       className={`block py-2 px-4 rounded-lg transition ${pathname === item.path
                         ? "bg-blue-50 dark:bg-blue-900/30 text-primary font-medium"
                         : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
