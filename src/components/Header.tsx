@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
@@ -12,6 +12,7 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const { t } = useLanguage();
+  const headerRef = useRef<HTMLElement>(null);
 
   // Gestion du défilement pour l'effet de header réduit
   useEffect(() => {
@@ -21,6 +22,30 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Fermer le menu mobile quand on clique en dehors
+  useEffect(() => {
+    const handleClickOutside = (event: Event) => {
+      if (
+        isMenuOpen &&
+        headerRef.current &&
+        !headerRef.current.contains(event.target as Node)
+      ) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    // Ajouter l'écouteur seulement si le menu est ouvert
+    if (isMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("touchstart", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, [isMenuOpen]);
 
   // Navigation items - sur la page d'accueil, on scroll vers les sections, sinon on navigue
   const navItems = [
@@ -57,6 +82,7 @@ export default function Header() {
 
   return (
     <motion.header
+      ref={headerRef}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
@@ -183,7 +209,7 @@ export default function Header() {
                   </motion.li>
                 ))}
                 <motion.li
-                  className="flex justify-center mt-6 gap-4"
+                  className="flex justify-center items-center mt-6 gap-4"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3 }}

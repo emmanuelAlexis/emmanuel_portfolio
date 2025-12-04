@@ -176,3 +176,31 @@
 .animate-bounce {
   animation: bounce 1.5s infinite;
 }
+
+/* Amélioration de l'interaction tactile pour les cartes de projet */
+@media (hover: none) and (pointer: coarse) {
+  /* Sur les appareils tactiles, afficher un indicateur visuel */
+  .project-card {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Ajouter un effet de pression visuel sur mobile */
+  .project-card:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+  
+  /* S'assurer que les cartes actives affichent le contenu */
+  .project-card.is-active {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+}
+
+/* Améliorer la zone de clic des boutons sur mobile */
+@media (max-width: 768px) {
+  .project-card a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+

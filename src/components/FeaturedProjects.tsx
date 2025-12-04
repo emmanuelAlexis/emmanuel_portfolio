@@ -16,6 +16,7 @@ export const ProjectCard = ({
   project: Project;
 }) => {
   const { t } = useLanguage();
+  const [isActive, setIsActive] = useState(false);
 
   const accessConfig = {
     public: {
@@ -37,6 +38,15 @@ export const ProjectCard = ({
 
   const accessInfo = accessConfig[project.access as keyof typeof accessConfig] || accessConfig.private;
 
+  // Gérer le clic/tap pour les appareils mobiles
+  const handleCardClick = (e: React.MouseEvent) => {
+    // Ne pas activer si on clique sur un lien
+    if ((e.target as HTMLElement).tagName === 'A' || (e.target as HTMLElement).closest('a')) {
+      return;
+    }
+    setIsActive(!isActive);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -48,7 +58,8 @@ export const ProjectCard = ({
         ease: "easeOut",
       }}
       whileHover={{ y: -12 }}
-      className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 project-card"
+      onClick={handleCardClick}
+      className={`group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 project-card cursor-pointer ${isActive ? 'is-active' : ''}`}
     >
       <div className="relative h-64 overflow-hidden">
         <Image
@@ -58,7 +69,7 @@ export const ProjectCard = ({
           className="object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
           quality={90}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+        <div className={`absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/40 to-transparent transition-opacity duration-500 ${isActive ? 'opacity-90' : 'opacity-80 group-hover:opacity-90'}`} />
 
         {/* Access Badge */}
         <div className={`absolute top-4 right-4 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-medium border flex items-center gap-1.5 z-10 ${accessInfo.color}`}>
@@ -67,17 +78,17 @@ export const ProjectCard = ({
         </div>
       </div>
 
-      <div className="absolute inset-0 p-6 flex flex-col justify-end">
-        <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+      <div className="absolute inset-0 p-6 flex flex-col justify-end pointer-events-none">
+        <div className={`transform transition-transform duration-500 ${isActive ? 'translate-y-0' : 'translate-y-4 group-hover:translate-y-0'}`}>
           <h3 className="text-2xl font-bold text-white mb-2 drop-shadow-md">
             {project.title}
           </h3>
-          <p className="text-gray-200 mb-4 line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+          <p className={`text-gray-200 mb-4 line-clamp-2 transition-opacity duration-500 delay-100 ${isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}>
             {project.description}
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-2 mb-4 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-75">
+        <div className={`flex flex-wrap gap-2 mb-4 transform transition-transform duration-500 delay-75 ${isActive ? 'translate-y-0' : 'translate-y-8 group-hover:translate-y-0'}`}>
           {project.technologies.slice(0, 3).map((tech) => (
             <span
               key={tech.id}
@@ -93,7 +104,7 @@ export const ProjectCard = ({
           )}
         </div>
 
-        <div className="flex gap-4 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-150 opacity-0 group-hover:opacity-100">
+        <div className={`flex gap-4 transform transition-all duration-500 delay-150 pointer-events-auto ${isActive ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100'}`}>
           {project.access === 'public' && project.githubLinks && project.githubLinks.length > 0 && (
             <motion.a
               href={project.githubLinks[0].url}
