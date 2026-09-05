@@ -57,6 +57,7 @@ export default function Me() {
                   alt="Emmanuel A.A"
                   fill
                   className="object-cover"
+  priority
                 />
               </motion.div>
             </div>

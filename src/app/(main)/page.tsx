@@ -1,12 +1,63 @@
 "use client";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { useEffect, useRef } from "react";
-import FeaturedProjects from "@/components/FeaturedProjects";
+import dynamic from "next/dynamic";
 import HeroSection from "@/components/HeroSection";
-import SkillsSection from "@/components/SkillsSection";
-import ContactSection from "@/components/ContactSection";
 import Me from "@/components/sections/Me";
 import { useLanguage } from "@/context/LanguageContext";
+
+// Lazy load components below the fold for better performance
+const FeaturedProjects = dynamic(() => import("@/components/FeaturedProjects"), {
+  loading: () => (
+    <div className="space-y-6">
+      {[1, 2, 3].map((i) => (
+        <div key={i} className="animate-pulse space-y-4">
+          <div className="h-16 bg-gray-200 rounded-lg w-3/4" />
+          <div className="h-4 bg-gray-200 rounded w-1/2" />
+          <div className="flex space-x-3">
+            <div className="h-10 w-10 bg-gray-200 rounded-full" />
+            <div className="space-y-2">
+              <div className="h-4 bg-gray-200 rounded w-2/3" />
+              <div className="h-2 bg-gray-200 rounded w-1/2" />
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  ),
+});
+
+const SkillsSection = dynamic(() => import("@/components/SkillsSection"), {
+  loading: () => (
+    <div className="space-y-6">
+      {[1, 2, 3].map((i) => (
+        <div key={i} className="animate-pulse">
+          <div className="h-12 bg-gray-200 rounded-lg w-2/3" />
+          <div className="h-8 bg-gray-200 rounded w-1/2 mt-2" />
+        </div>
+      ))}
+    </div>
+  ),
+});
+
+const ContactSection = dynamic(() => import("@/components/ContactSection"), {
+  loading: () => (
+    <div className="space-y-6">
+      <div className="animate-pulse">
+        <div className="h-12 bg-gray-200 rounded-lg w-1/2" />
+        <div className="h-8 bg-gray-200 rounded w-1/3 mt-2" />
+      </div>
+      <div className="space-y-4">
+        {[1, 2, 3].map((i) => (
+          <div key={i} className="animate-pulse">
+            <div className="h-10 bg-gray-200 rounded w-3/4" />
+            <div className="h-4 bg-gray-200 rounded w-1/2 mt-2" />
+          </div>
+        ))}
+      </div>
+    </div>
+  ),
+});
 
 export default function Home() {
   const { t } = useLanguage();

@@ -22,6 +22,10 @@ interface InputWithIconProps {
   onKeyDown?: (
     e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
+  // Optional id for accessibility (label association)
+  id?: string;
+  // Error message for validation feedback
+  error?: string;
 }
 
 const InputWithIcon: React.FC<InputWithIconProps> = ({
@@ -41,7 +45,13 @@ const InputWithIcon: React.FC<InputWithIconProps> = ({
   minLength = 2,
   rows = 3,
   onKeyDown,
+  id,
+  error,
 }: InputWithIconProps) => {
+  // Generate a unique ID if none is provided for accessibility
+  const inputId = id || `${label.toLowerCase().replace(/\s+/g, '-')}-${Math.random()
+    .toString(36)
+    .substr(2, 9)}`;
   const [charCount, setCharCount] = useState(value.length ? value.length : 0);
   const [remainingChars, setRemainingChars] = useState(
     maxLength ? maxLength - value.length : null
@@ -64,7 +74,7 @@ const InputWithIcon: React.FC<InputWithIconProps> = ({
   return (
     <div className={`${className}`}>
       <div className="flex justify-between items-center mb-2">
-        <label className="block text-foreground/50 text-sm font-medium">
+        <label htmlFor={inputId} className="block text-foreground/50 text-sm font-medium">
           {label}
         </label>
         {maxLength && showCharCount && (
@@ -84,10 +94,17 @@ const InputWithIcon: React.FC<InputWithIconProps> = ({
         )}
       </div>
 
+      {error && (
+        <p className="mt-1 text-sm text-destructive">
+          {error}
+        </p>
+      )}
+
       <div className="relative">
         {type === "textarea" ? (
           <motion.div className="relative">
             <motion.textarea
+              id={inputId}
               disabled={disabled}
               value={value}
               onChange={handleChange}
@@ -95,7 +112,7 @@ const InputWithIcon: React.FC<InputWithIconProps> = ({
               rows={rows}
               maxLength={maxLength}
               required={required}
-              className={`w-full border tracking-widest disabled:bg-primary/30 disabled:text-foreground border-border rounded-lg px-4 py-2 
+              className={`w-full border tracking-widest disabled:bg-primary/30 disabled:text-foreground border-border rounded-lg px-4 py-2
                 placeholder-foreground/50 focus:outline-none focus:ring-2 text-foreground focus:ring-primary/50
                 pl-12 transition-all duration-200 ${inputClassName}`}
               onKeyDown={onKeyDown}
@@ -106,6 +123,7 @@ const InputWithIcon: React.FC<InputWithIconProps> = ({
           </motion.div>
         ) : (
           <motion.input
+            id={inputId}
             type={type}
             disabled={disabled}
             value={value}
@@ -114,7 +132,7 @@ const InputWithIcon: React.FC<InputWithIconProps> = ({
             minLength={minLength}
             placeholder={placeholder}
             maxLength={maxLength}
-            className={`w-full border tracking-widest disabled:bg-primary/30 disabled:text-foreground border-border rounded-lg px-4 py-2 
+            className={`w-full border tracking-widest disabled:bg-primary/30 disabled:text-foreground border-border rounded-lg px-4 py-2
               placeholder-foreground/50 focus:outline-none focus:ring-2 text-foreground focus:ring-primary/50
               pl-12 transition-all duration-200 ${inputClassName}`}
             onKeyDown={onKeyDown}

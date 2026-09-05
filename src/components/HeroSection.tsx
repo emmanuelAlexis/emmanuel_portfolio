@@ -138,17 +138,13 @@ export default function HeroSection() {
               >
                 <motion.a
                   href="#projects"
-                  className="bg-primary/80 hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-medium 
+                  className="bg-primary/80 hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-medium
                           shadow-lg hover:shadow-primary/20 relative overflow-hidden text-center"
                   whileHover={{
                     scale: 1.05,
                     boxShadow: "0 10px 25px -5px rgba(7, 126, 66, 0.76)",
                   }}
                   whileTap={{ scale: 0.98 }}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
-                  }}
                 >
                   <span className="relative z-10">{t.hero.viewProjects}</span>
                   <motion.span
@@ -160,7 +156,7 @@ export default function HeroSection() {
                 <motion.a
                   href="/cv.pdf"
                   download="Emmanuel_CV.pdf"
-                  className="border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800 
+                  className="border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800
                           px-6 py-3 rounded-lg font-medium relative overflow-hidden text-center"
                   whileHover={{
                     scale: 1.05,
@@ -233,6 +229,7 @@ export default function HeroSection() {
                   width={500}
                   height={500}
                   className="object-cover rounded-full w-full h-full"
+  priority
                 />
               </motion.div>
             </motion.div>
@@ -261,20 +258,14 @@ export default function HeroSection() {
                   </motion.a>
                 ))}
               </div>
-            </motion.div>
             <motion.a
               href="#contact"
-              className="bg-primary/80 flex gap-3 hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-medium 
-                          shadow-lg hover:shadow-primary/20 relative overflow-hidden text-center"
+              className="bg-primary/80 flex gap-3 hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-medium shadow-lg hover:shadow-primary/20 relative overflow-hidden text-center"
               whileHover={{
                 scale: 1.05,
                 boxShadow: "0 10px 25px -5px rgba(7, 126, 66, 0.76)",
               }}
               whileTap={{ scale: 0.98 }}
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-              }}
             >
               <Phone className="w-4 h-4 ml-2" />
               <span className="relative z-10">{t.hero.contactMe}</span>
@@ -283,15 +274,17 @@ export default function HeroSection() {
                 whileHover={{ opacity: 0.1 }}
               />
             </motion.a>
+            </motion.div>
           </motion.div>
         </div>
       </div>
 
       {/* Indicateur de défilement animé */}
-      <motion.div
-        className="absolute bottom-8 md:bottom-12 left-1/2 transform -translate-x-1/2 w-8 h-8 md:w-10 md:h-10 rounded-full 
+      <motion.button
+        className="absolute bottom-8 md:bottom-12 left-1/2 transform -translate-x-1/2 w-8 h-8 md:w-10 md:h-10 rounded-full
                   border-2 border-gray-300 dark:border-gray-600 flex items-center justify-center cursor-pointer z-20
                   hidden sm:flex"
+        aria-label="Scroll down"
         animate={{
           y: [0, -10, 0],
           borderColor: ["#d1d5db", "#3BF679FF", "#D2DBD1FF"],
@@ -328,7 +321,7 @@ export default function HeroSection() {
             d="M19 14l-7 7m0 0l-7-7m7 7V3"
           ></path>
         </motion.svg>
-      </motion.div>
+      </motion.button>
     </section>
   );
 }
