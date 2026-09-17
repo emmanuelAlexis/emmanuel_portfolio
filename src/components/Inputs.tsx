@@ -1,4 +1,4 @@
-import { IconType } from "react-icons";
+import type { IconType } from "react-icons";
 import { FaUser } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -48,10 +48,10 @@ const InputWithIcon: React.FC<InputWithIconProps> = ({
   id,
   error,
 }: InputWithIconProps) => {
-  // Generate a unique ID if none is provided for accessibility
-  const inputId = id || `${label.toLowerCase().replace(/\s+/g, '-')}-${Math.random()
-    .toString(36)
-    .substr(2, 9)}`;
+  // Stable, SSR-safe id used to associate the <label> with its control.
+  // Using label-based ID eliminates hydration mismatches caused by useId() or Math.random()
+  // in components that render conditionally (like those with whileInView animations).
+  const inputId = id || `input-${label.toLowerCase().replace(/\s+/g, '-')}`;
   const [charCount, setCharCount] = useState(value.length ? value.length : 0);
   const [remainingChars, setRemainingChars] = useState(
     maxLength ? maxLength - value.length : null
@@ -117,7 +117,7 @@ const InputWithIcon: React.FC<InputWithIconProps> = ({
                 pl-12 transition-all duration-200 ${inputClassName}`}
               onKeyDown={onKeyDown}
             />
-            <motion.div className="absolute left-3 top-3">
+            <motion.div className="absolute left-3 top-3" aria-hidden="true">
               <Icon size={15} className={`${iconClassName}`} />
             </motion.div>
           </motion.div>
@@ -140,7 +140,7 @@ const InputWithIcon: React.FC<InputWithIconProps> = ({
         )}
 
         {type !== "textarea" && (
-          <motion.div className="absolute left-3 top-1/2 -translate-y-1/2">
+          <motion.div className="absolute left-3 top-1/2 -translate-y-1/2" aria-hidden="true">
             <Icon size={15} className={`${iconClassName}`} />
           </motion.div>
         )}

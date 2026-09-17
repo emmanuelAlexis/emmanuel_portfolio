@@ -53,6 +53,21 @@ export const metadata: Metadata = {
   },
   // Additional SEO attributes
   referrer: "strict-origin-when-cross-origin",
+  metadataBase: new URL("https://emmanuelsite.com"), // TODO: Replace with actual domain
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -61,8 +76,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
+    <html lang="fr">
+      <body className="min-h-screen flex flex-col">
         {/* JSON-LD Structured Data */}
         <script
           type="application/ld+json"
@@ -126,14 +141,12 @@ export default function RootLayout({
           }}
         />
       )}
-    </head>
-    <body className={`min-h-screen flex flex-col`}>
         {/* Skip to content link for accessibility */}
         <a
           href="#main-content"
-          className="pointer-hidden absolute top-4 left-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-3 py-1 rounded-xs shadow-sm transition-all duration-200 z-50 focus-visible:pointer-visible focus-visible:bg-primary focus-visible:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/20"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:bg-primary focus:px-3 focus:py-2 focus:text-white focus:outline-none focus:ring-2 focus:ring-primary/40"
         >
-          Skip to content
+          Aller au contenu principal
         </a>
         <Providers>{children}</Providers>
       </body>

@@ -48,7 +48,7 @@ export default function Parcours() {
 
       <div className="relative">
         {/* Ligne verticale continue */}
-        <div className="absolute left-8 md:left-1/2 top-4 bottom-0 w-0.5 bg-gradient-to-b from-primary via-purple-500 to-transparent opacity-30" />
+        <div className="absolute left-8 md:left-1/2 top-4 bottom-0 w-0.5 bg-primary/20" />
 
         <div className="space-y-12">
           {timeline.map((item, index) => (

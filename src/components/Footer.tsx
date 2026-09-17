@@ -12,9 +12,9 @@ import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
 
 export const socialLinks = [
-  { icon: <FiGithub />, href: "https://github.com/emmanuelAlexis", label: "GitHub" },
-  { icon: <FiLinkedin />, href: "https://linkedin.com", label: "LinkedIn" },
-  { icon: <FiMail />, href: "mailto:emmanueladolphe0401@gmail.com", label: "Email" },
+  { icon: <FiGithub aria-hidden="true" />, href: "https://github.com/emmanuelAlexis", label: "GitHub" },
+  { icon: <FiLinkedin aria-hidden="true" />, href: "https://linkedin.com", label: "LinkedIn" },
+  { icon: <FiMail aria-hidden="true" />, href: "mailto:emmanueladolphe0401@gmail.com", label: "Email" },
 ];
 
 export default function Footer() {
@@ -76,9 +76,9 @@ export default function Footer() {
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
-            <h3 className="text-lg font-semibold mb-6 text-gray-900 dark:text-white">
+            <h2 className="text-lg font-semibold mb-6 text-gray-900 dark:text-white">
               {t.footer.quickLinks}
-            </h3>
+            </h2>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.name}>
@@ -100,9 +100,9 @@ export default function Footer() {
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.3 }}
           >
-            <h3 className="text-lg font-semibold mb-6 text-gray-900 dark:text-white">
+            <h2 className="text-lg font-semibold mb-6 text-gray-900 dark:text-white">
               {t.footer.socials}
-            </h3>
+            </h2>
             <div className="flex flex-wrap gap-4">
               {socialLinks.map((social) => (
                 <motion.a
@@ -148,7 +148,7 @@ export default function Footer() {
         className="absolute bottom-8 right-8 w-10 h-10 bg-primary text-white rounded-full shadow-lg flex items-center justify-center hover:bg-primary/90 transition-colors z-20"
         aria-label="Scroll to top"
       >
-        <FiArrowUp />
+        <FiArrowUp aria-hidden="true" />
       </motion.button>
     </motion.footer>
   );

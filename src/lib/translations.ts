@@ -304,7 +304,7 @@ export const translations = {
             },
         },
         about: {
-            title: "Who am I?",
+            title: "Who I am?",
             pageTitle: "About",
             pageSubtitle: "Passionate about creating innovative digital solutions that combine performance and elegance.",
             p1: "Full Stack Developer with <span class='font-semibold text-primary'>a Computer Science Licence Degree</span> in designing high-performance web applications. I combine technical expertise and design sense to create exceptional user experiences.",

@@ -1,7 +1,7 @@
 "use client";
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
-import TechPage from "@/app/(main)/about/technologies/page";
+import TechnologiesShowcase from "@/components/TechnologiesShowcase";
 import { Phone } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { socialLinks } from "./Footer";
@@ -9,140 +9,45 @@ import { socialLinks } from "./Footer";
 export default function HeroSection() {
   const { t } = useLanguage();
 
-  // Variantes d'animation pour les éléments
-  const container: Variants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const item: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-  };
-
-  const imageVariants: Variants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    show: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 0.8,
-        ease: "anticipate",
-        delay: 0.4,
-      },
-    },
-  };
-
-  const badgeVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-        delay: 0.8,
-      },
-    },
-    pulse: {
-      scale: [1, 1.05, 1],
-      transition: {
-        duration: 2,
-        repeat: Infinity,
-        ease: "easeInOut",
-      },
-    },
-  };
-
+  // Entrance animations are CSS-driven (see globals.css) instead of framer-motion
+  // `initial="hidden"`. They therefore start at the first paint and never wait
+  // for hydration, which is what used to push LCP past 4s.
   return (
     <section className="pt-20 min-h-screen relative overflow-hidden">
-      {/* Background décoratif animé */}
-      <motion.div
-        className="absolute inset-0 z-0"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-        <motion.div
-          className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-primary/10 rounded-full blur-3xl"
-          initial={{ x: "-50%", y: "50%" }}
-          animate={{
-            x: ["-50%", "-55%", "-50%"],
-            y: ["50%", "55%", "50%"],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1,
-          }}
-        />
-      </motion.div>
+      {/* Background décoratif — CSS only, transform-driven so it stays on the
+          compositor thread instead of repainting a 300px blur-3xl every frame. */}
+      <div className="absolute inset-0 z-0" aria-hidden="true">
+        <div className="animate-drift absolute bottom-0 left-0 w-[300px] h-[300px] bg-primary/10 rounded-full blur-3xl" />
+      </div>
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-12">
           {/* Partie texte */}
-          <motion.div
-            className="lg:w-1/2 flex flex-col gap-10 text-center lg:text-left"
-            variants={container}
-            initial="hidden"
-            animate="show"
-          >
+          <div className="lg:w-1/2 flex flex-col gap-10 text-center lg:text-left">
             <div className="flex flex-col gap-5">
-              <motion.h1
-                className="text-4xl md:text-5xl font-bold mb-6"
-                variants={item}
-              >
+              {/* Intentionally NOT animated: this <h1> is the LCP element and must
+                  be painted with the first frame, not after hydration. */}
+              <h1 className="text-4xl md:text-5xl font-bold mb-6">
                 {t.hero.greeting}{" "}
-                <motion.span
-                  className="text-primary"
-                  animate={{
-                    textShadow: [
-                      "0 0 0px rgba(37, 99, 235, 0)",
-                      "0 0 10px rgba(52, 211, 113, 0.671)",
-                      "0 0 0px rgba(37, 99, 235, 0)",
-                    ],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                  }}
-                >
-                  Emmanuel
-                </motion.span>
-              </motion.h1>
+                <span className="text-primary">Emmanuel</span>
+              </h1>
 
-              <motion.p
-                className="text-xl mb-8 max-w-2xl mx-auto lg:mx-0"
-                variants={item}
-              >
+              <p className="animate-rise animation-delay-100 text-xl mb-8 max-w-2xl mx-auto lg:mx-0">
                 {t.hero.role}{" "}
-                <motion.span
-                  className="font-semibold text-primary/90 text-3xl"
-                  whileHover={{ scale: 1.05 }}
-                >
+                <span className="font-semibold text-primary/90 text-3xl inline-block transition-transform duration-200 hover:scale-105">
                   React/Next.js et SpringBoot
-                </motion.span>
+                </span>
                 , {t.hero.description}
-              </motion.p>
+              </p>
 
-              <motion.div
-                className="space-y-4 sm:space-y-0 sm:space-x-4 flex flex-col sm:flex-row justify-center lg:justify-start"
-                variants={item}
-              >
+              <div className="animate-rise animation-delay-200 space-y-4 sm:space-y-0 sm:space-x-4 flex flex-col sm:flex-row justify-center lg:justify-start">
                 <motion.a
                   href="#projects"
                   className="bg-primary/80 hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-medium
                           shadow-lg hover:shadow-primary/20 relative overflow-hidden text-center"
                   whileHover={{
                     scale: 1.05,
-                    boxShadow: "0 10px 25px -5px rgba(7, 126, 66, 0.76)",
+                    boxShadow: "0 10px 25px -5px rgba(152, 89, 55, 0.3)",
                   }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -170,78 +75,42 @@ export default function HeroSection() {
                     whileHover={{ opacity: 0.2 }}
                   />
                 </motion.a>
-              </motion.div>
+              </div>
             </div>
-            <TechPage />
-          </motion.div>
+            <TechnologiesShowcase />
+          </div>
 
           {/* Partie image */}
-          <motion.div
-            className="lg:w-1/2 flex flex-col items-center gap-10 justify-center self-start max-lg:self-center p-10"
-            variants={imageVariants}
-            initial="hidden"
-            animate="show"
-          >
-            <motion.div
-              className="relative w-full max-w-md rounded-full  aspect-square shadow-2xl"
-              transition={{ duration: 0.4 }}
-            >
+          <div className="animate-scale-in lg:w-1/2 flex flex-col items-center gap-10 justify-center self-start max-lg:self-center p-10">
+            <div className="relative w-full max-w-md rounded-full aspect-square">
               {/* Badge animé */}
-              <motion.div
-                className="absolute bottom-6 z-50 left-6 bg-white dark:bg-gray-800/50 px-4 py-2 rounded-full 
-                           shadow-lg flex items-center gap-2"
-                variants={badgeVariants}
-                initial="hidden"
-                animate="show"
-                whileHover="pulse"
+              <div
+                className="animate-rise animation-delay-300 absolute bottom-6 z-50 left-6 bg-white dark:bg-gray-800/50 px-4 py-2 rounded-full
+                           shadow-lg flex items-center gap-2 transition-transform duration-300 hover:scale-105"
               >
-                <motion.div
-                  className="w-3 h-3 bg-green-500 rounded-full"
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [1, 0.8, 1],
-                  }}
-                  transition={{
-                    duration: 1.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                />
+                <div className="animate-pulse w-3 h-3 bg-primary/20 rounded-full" />
                 <span className="font-medium">{t.hero.available}</span>
-              </motion.div>
+              </div>
 
-              <motion.div
-                className="absolute inset-0
-                           opacity-30"
-                whileHover={{ opacity: 0.5 }}
-              />
-              <motion.div
-                className="relative w-full rounded-full max-w-md aspect-square overflow-hidden"
-                whileHover={{
-                  boxShadow: "0 25px 50px -12px rgba(11, 161, 44, 0.671)",
-                  scale: 1.02,
-                }}
-                transition={{ duration: 0.4 }}
-              >
+              <div className="absolute inset-0 opacity-30 transition-opacity duration-300 hover:opacity-50" />
+              <div className="relative w-full rounded-full max-w-md aspect-square overflow-hidden transition-transform duration-300 hover:scale-[1.02] hover:shadow-[0_25px_50px_-12px_rgba(152,89,55,0.25)]">
                 <Image
                   src="/picture.png"
                   alt={t.common.profilePhoto}
-                  width={500}
-                  height={500}
-                  className="object-cover rounded-full w-full h-full"
-  priority
+                  width={440}
+                  height={440}
+                  sizes="(max-width: 1024px) 90vw, 448px"
+                  className="object-contain rounded-full w-full h-full"
+                  priority
+                  fetchPriority="high"
                 />
-              </motion.div>
-            </motion.div>
-            <motion.div
-              initial={{ y: 20, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.3 }}
-              className="flex flex-col items-center"
-            >
-              <h3 className="text-lg font-semibold mb-6 text-gray-900 dark:text-white">
+              </div>
+            </div>
+            <div className="animate-rise animation-delay-400 flex flex-col items-center gap-5">
+              {/* h2 (not h3): the hero <h1> must not be followed by a skipped level. */}
+              <h2 className="text-lg font-semibold mb-6 text-gray-900 dark:text-white">
                 {t.footer.socials}
-              </h3>
+              </h2>
               <div className="flex flex-wrap gap-4">
                 {socialLinks.map((social) => (
                   <motion.a
@@ -263,7 +132,7 @@ export default function HeroSection() {
               className="bg-primary/80 flex gap-3 hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-medium shadow-lg hover:shadow-primary/20 relative overflow-hidden text-center"
               whileHover={{
                 scale: 1.05,
-                boxShadow: "0 10px 25px -5px rgba(7, 126, 66, 0.76)",
+                boxShadow: "0 10px 25px -5px rgba(152, 89, 55, 0.3)",
               }}
               whileTap={{ scale: 0.98 }}
             >
@@ -274,45 +143,30 @@ export default function HeroSection() {
                 whileHover={{ opacity: 0.1 }}
               />
             </motion.a>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Indicateur de défilement animé */}
-      <motion.button
+      {/* Indicateur de défilement (CSS only, transform-driven) */}
+      <button
+        type="button"
         className="absolute bottom-8 md:bottom-12 left-1/2 transform -translate-x-1/2 w-8 h-8 md:w-10 md:h-10 rounded-full
                   border-2 border-gray-300 dark:border-gray-600 flex items-center justify-center cursor-pointer z-20
+                  transition-transform duration-300 hover:scale-110 hover:border-primary/50 hover:bg-primary/10
                   hidden sm:flex"
         aria-label="Scroll down"
-        animate={{
-          y: [0, -10, 0],
-          borderColor: ["#d1d5db", "#3BF679FF", "#D2DBD1FF"],
-        }}
-        transition={{
-          duration: 1.5,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        whileHover={{ scale: 1.2, backgroundColor: "rgba(59, 130, 246, 0.1)" }}
         onClick={() =>
           window.scrollTo({ top: window.innerHeight, behavior: "smooth" })
         }
       >
-        <motion.svg
-          className="w-4 h-4 md:w-5 md:h-5 text-primary"
+        <svg
+          className="animate-chevron w-4 h-4 md:w-5 md:h-5 text-primary"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
-          animate={{
-            y: [0, 5, 0],
-            opacity: [1, 0.7, 1],
-          }}
-          transition={{
-            duration: 1.5,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+          aria-hidden="true"
+          focusable="false"
         >
           <path
             strokeLinecap="round"
@@ -320,8 +174,8 @@ export default function HeroSection() {
             strokeWidth="2"
             d="M19 14l-7 7m0 0l-7-7m7 7V3"
           ></path>
-        </motion.svg>
-      </motion.button>
+        </svg>
+      </button>
     </section>
   );
 }

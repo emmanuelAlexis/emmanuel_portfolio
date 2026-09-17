@@ -1,8 +1,8 @@
 "use client";
 import { getAllProjects } from "@/lib/data";
-import { motion, stagger, useAnimate, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { FiGithub, FiExternalLink, FiLock, FiUnlock, FiEyeOff } from "react-icons/fi";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -20,17 +20,17 @@ export const ProjectCard = ({
 
   const accessConfig = {
     public: {
-      icon: <FiUnlock className="w-3 h-3" />,
+      icon: <FiUnlock className="w-3 h-3" aria-hidden="true" />,
       label: t.projects.access.public,
       color: "bg-green-500/20 text-green-400 border-green-500/20"
     },
     protected: {
-      icon: <FiLock className="w-3 h-3" />,
+      icon: <FiLock className="w-3 h-3" aria-hidden="true" />,
       label: t.projects.access.protected,
       color: "bg-blue-500/20 text-blue-900 border-blue-500/20"
     },
     private: {
-      icon: <FiEyeOff className="w-3 h-3" />,
+      icon: <FiEyeOff className="w-3 h-3" aria-hidden="true" />,
       label: t.projects.access.private,
       color: "bg-red-500/20 text-red-400 border-red-500/20"
     }
@@ -66,8 +66,9 @@ export const ProjectCard = ({
           src={project.imageUrl}
           alt={project.title}
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
-          quality={90}
+          quality={75}
         />
         <div className={`absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/40 to-transparent transition-opacity duration-500 ${isActive ? 'opacity-90' : 'opacity-80 group-hover:opacity-90'}`} />
 
@@ -114,7 +115,7 @@ export const ProjectCard = ({
               whileTap={{ scale: 0.95 }}
               className="flex items-center gap-2 text-white bg-black/50 hover:bg-black/70 px-4 py-2 rounded-lg backdrop-blur-sm transition-colors text-sm font-medium"
             >
-              <FiGithub className="w-4 h-4" />
+              <FiGithub className="w-4 h-4" aria-hidden="true" />
               <span>{t.projects.code}</span>
             </motion.a>
           )}
@@ -124,7 +125,7 @@ export const ProjectCard = ({
             whileTap={{ scale: 0.95 }}
             className="flex items-center gap-2 text-white bg-primary/80 hover:bg-primary px-4 py-2 rounded-lg backdrop-blur-sm transition-colors text-sm font-medium shadow-lg shadow-primary/20"
           >
-            <FiExternalLink className="w-4 h-4" />
+            <FiExternalLink className="w-4 h-4" aria-hidden="true" />
             <span>{t.projects.details}</span>
           </motion.a>
         </div>
@@ -138,8 +139,6 @@ export default function FeaturedProjects() {
   const allProjects = getAllProjects(language);
   const [filter, setFilter] = useState<"all" | "recent" | "mobile" | "nextjs" | "springboot" | "nestjs">("all");
   // const [filter, setFilter] = useState<"all" | "recent" | "mobile" | "ai" | "nextjs" | "springboot" | "nestjs">("all");
-  const [scope, animate] = useAnimate();
-  const isInView = useInView(scope, { once: true, margin: "-100px" });
 
   // Fonction pour vérifier si un projet correspond à une technologie
   const hasTechnology = (project: Project, techName: string): boolean => {
@@ -198,21 +197,8 @@ export default function FeaturedProjects() {
     return filtered;
   }, [allProjects, filter]);
 
-  useEffect(() => {
-    if (isInView && scope.current) {
-      const cards = Array.from(scope.current.querySelectorAll(".project-card"));
-      if (cards.length > 0) {
-        animate(
-          cards,
-          { opacity: 1, y: 0 },
-          { delay: stagger(0.1), duration: 0.6, ease: "easeInOut" }
-        );
-      }
-    }
-  }, [isInView, animate, scope, filteredProjects]);
-
   return (
-    <section id="projects" className="py-20 px-4 bg-gray-50 dark:bg-gray-900" ref={scope}>
+    <section className="py-20 px-4 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

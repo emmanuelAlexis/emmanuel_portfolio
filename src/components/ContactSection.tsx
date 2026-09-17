@@ -1,6 +1,5 @@
 "use client";
 import { motion } from "framer-motion";
-import { useForm } from "react-hook-form";
 import { FiMail, FiMapPin, FiPhone, FiSend } from "react-icons/fi";
 import InputWithIcon from "./Inputs";
 import { InfoIcon, Mail, User } from "lucide-react";
@@ -68,7 +67,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-20 px-6 md:px-12 lg:px-24 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
+    <section className="py-20 px-6 md:px-12 lg:px-24 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
           variants={containerVariants}
@@ -116,8 +115,8 @@ export default function ContactSection() {
                   whileHover={{ x: 5 }}
                   className="flex items-start gap-5 group"
                 >
-                  <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-2xl text-primary group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
-                    <FiMail className="w-6 h-6" />
+                  <div className="p-4 bg-primary/10 dark:bg-primary/20 rounded-2xl text-primary group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                    <FiMail className="w-6 h-6" aria-hidden="true" />
                   </div>
                   <div className="min-w-0 flex-1">
                     <h4 className="text-lg font-semibold text-gray-800 dark:text-white mb-1">
@@ -136,8 +135,8 @@ export default function ContactSection() {
                   whileHover={{ x: 5 }}
                   className="flex items-start gap-5 group"
                 >
-                  <div className="p-4 bg-purple-50 dark:bg-purple-900/20 rounded-2xl text-purple-600 dark:text-purple-400 group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
-                    <FiMapPin className="w-6 h-6" />
+                  <div className="p-4 bg-primary/10 dark:bg-primary/20 rounded-2xl text-primary group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                    <FiMapPin className="w-6 h-6" aria-hidden="true" />
                   </div>
                   <div className="min-w-0 flex-1">
                     <h4 className="text-lg font-semibold text-gray-800 dark:text-white mb-1">
@@ -156,8 +155,8 @@ export default function ContactSection() {
                   whileHover={{ x: 5 }}
                   className="flex items-start gap-5 group"
                 >
-                  <div className="p-4 bg-green-50 dark:bg-green-900/20 rounded-2xl text-green-600 dark:text-green-400 group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
-                    <FiPhone className="w-6 h-6" />
+                  <div className="p-4 bg-primary/10 dark:bg-primary/20 rounded-2xl text-primary group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                    <FiPhone className="w-6 h-6" aria-hidden="true" />
                   </div>
                   <div className="min-w-0 flex-1">
                     <h4 className="text-lg font-semibold text-gray-800 dark:text-white mb-1">
@@ -225,16 +224,16 @@ export default function ContactSection() {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  whileHover={{ scale: 1.02, boxShadow: "0 10px 30px -10px rgba(37, 99, 235, 0.5)" }}
+                  whileHover={{ scale: 1.02, boxShadow: "0 10px 30px -10px rgba(152, 89, 55, 0.3)" }}
                   whileTap={{ scale: 0.98 }}
-                  className={`w-full bg-gradient-to-r from-primary to-blue-600 text-white font-bold py-4 px-8 rounded-xl transition-all flex items-center justify-center gap-3 group ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+                  className={`w-full bg-primary text-white font-bold py-4 px-8 rounded-xl transition-all flex items-center justify-center gap-3 group ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''} hover:bg-primary/90`}
                 >
                   {isSubmitting ? (
                     <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                   ) : (
                     <>
                       <span>{t.contact.form.send}</span>
-                      <FiSend className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      <FiSend className="w-5 h-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                     </>
                   )}
                 </motion.button>

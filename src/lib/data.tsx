@@ -39,7 +39,7 @@ const getSkills = (lang: 'fr' | 'en' = 'fr') => {
                 {
                     name: "C#",
                     icon: <TbBrandCSharp />,
-                    color: "text-purple-600",
+                    color: "text-primary",
                     desc: "Langage polyvalent Microsoft."
                 },
                 {
@@ -101,7 +101,7 @@ const getSkills = (lang: 'fr' | 'en' = 'fr') => {
                 {
                     name: ".NET",
                     icon: <SiDotnet />,
-                    color: "text-purple-600",
+                    color: "text-primary",
                     desc: "Framework de développement."
                 },
             ],
@@ -151,7 +151,7 @@ const getSkills = (lang: 'fr' | 'en' = 'fr') => {
                 {
                     name: "Figma",
                     icon: <SiFigma />,
-                    color: "text-purple-400",
+                    color: "text-primary",
                     desc: t.technologies.items.figma.desc
                 },
                 {
@@ -548,8 +548,8 @@ const getFeaturedProjects = (lang: 'fr' | 'en' = 'fr') => {
     return allProjects.filter(p => p.featured);
 };
 
-// Export par défaut pour compatibilité (utilise 'fr' par défaut)
-export const featuredProjects = getFeaturedProjects('fr');
-
-// Export de la fonction pour utilisation avec traductions
+// Export of the getters for use with translations.
+// NOTE: the previous eager `export const featuredProjects = getFeaturedProjects('fr')`
+// executed at import time in every bundle that touched this module and dragged the
+// full project + icon dataset into client chunks. It was unused, so it is gone.
 export { getFeaturedProjects, getAllProjects, getSkills };

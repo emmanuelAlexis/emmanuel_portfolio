@@ -18,7 +18,7 @@ export default function Me() {
             transition={{ duration: 0.8 }}
             className="lg:w-1/2 space-y-6"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white relative inline-block">
+            <h2 className="text-3xl md:text-4xl font-bold text-primary dark:text-primary relative inline-block">
               {t.about.title}
               <span className="absolute -bottom-2 left-0 w-1/3 h-1 bg-primary rounded-full"></span>
             </h2>
@@ -53,11 +53,13 @@ export default function Me() {
                 className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl"
               >
                 <Image
-                  src="/picture.png" // Assurez-vous d'avoir votre photo ici
+                  src="/picture_1.png" // Assurez-vous d'avoir votre photo ici
                   alt="Emmanuel A.A"
-                  fill
-                  className="object-cover"
-  priority
+                  width={440}
+                  height={440}
+                  sizes="(max-width: 768px) 288px, 384px"
+                  loading="lazy"
+                  className="object-contain"
                 />
               </motion.div>
             </div>

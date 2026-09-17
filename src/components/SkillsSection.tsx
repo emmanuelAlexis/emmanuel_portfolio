@@ -17,7 +17,11 @@ const SkillCard = ({
       whileHover={{ y: -5 }}
       className="group flex flex-col items-center justify-center gap-2 p-4 rounded-xl transition-all duration-300 hover:bg-gray-100/50 dark:hover:bg-gray-800/50 cursor-default"
     >
+      {/* The technology name is rendered underneath, so the icon is decorative:
+          aria-hidden also keeps react-icons' redundant role="img" out of the
+          accessibility tree. */}
       <div
+        aria-hidden="true"
         className={`text-4xl md:text-5xl ${color} transition-transform duration-300 group-hover:scale-110 filter drop-shadow-sm`}
       >
         {icon}
@@ -35,11 +39,11 @@ export default function SkillsSection() {
   const skills = getSkills(language);
 
   return (
-    <section id="skills" className="py-24 bg-gray-50/50 dark:bg-gray-900/50 relative overflow-hidden">
+    <section className="py-24 bg-gray-50/50 dark:bg-gray-900/50 relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 -left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 -right-10 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 -right-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">

@@ -34,8 +34,7 @@ export default function LanguageSwitcher() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.2 }}
                 className="text-xl"
-                role="img"
-                aria-label={currentLanguage.label}
+                aria-hidden="true"
             >
                 {currentLanguage.flag}
             </motion.span>
