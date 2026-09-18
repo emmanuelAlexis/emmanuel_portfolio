@@ -11,7 +11,7 @@ export const translations = {
         hero: {
             greeting: "Bonjour, je suis",
             role: "Développeur Full-Stack spécialisé en",
-            description: "créant des expériences numériques exceptionnelles.",
+            description: "créant des expériences numériques exceptionnelles sur mesure.",
             viewProjects: "Voir mes projets",
             contactMe: "Contactez-moi",
             available: "Disponible",
@@ -91,7 +91,7 @@ export const translations = {
         about: {
             title: "Qui suis-je ?",
             pageTitle: "À propos de",
-            pageSubtitle: "Passionné par la création de solutions digitales innovantes qui allient performance et élégance.",
+            pageSubtitle: "Créateur de solutions digitales sur mesure qui transforment les idées en réalité tangible.",
             p1: "Développeur Full Stack avec <span class='font-semibold text-primary'>une Licence en science des ordinateurs</span> dans la conception d'applications web performantes. Je combine expertise technique et sens du design pour créer des expériences utilisateur exceptionnelles.",
             p2: "Mon approche est centrée sur la qualité du code, les bonnes pratiques et les architectures modernes. Je m'adapte rapidement aux nouvelles technologies tout en maintenant une base solide de fondamentaux.",
             p3: "En dehors du web, je suis passionné par le desktop, et les nouvelles tendances tech.",
@@ -226,7 +226,7 @@ export const translations = {
         hero: {
             greeting: "Hello, I am",
             role: "Full-Stack Developer specialized in",
-            description: "creating exceptional digital experiences.",
+            description: "creating exceptional digital experiences tailored to your needs.",
             viewProjects: "View my projects",
             contactMe: "Contact me",
             available: "Available",
@@ -304,7 +304,7 @@ export const translations = {
             },
         },
         about: {
-            title: "Who am I?",
+            title: "Who I am?",
             pageTitle: "About",
             pageSubtitle: "Passionate about creating innovative digital solutions that combine performance and elegance.",
             p1: "Full Stack Developer with <span class='font-semibold text-primary'>a Computer Science Licence Degree</span> in designing high-performance web applications. I combine technical expertise and design sense to create exceptional user experiences.",

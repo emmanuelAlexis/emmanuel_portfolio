@@ -1,0 +1,28 @@
+
+> frontend@0.1.0 start D:\PROJECT\L3\NEEDED\emmanuel_portfolio
+> next start "--port" "3100"
+
+   ▲ Next.js 16.0.7
+   - Local:         http://localhost:3100
+   - Network:       http://172.25.32.1:3100
+
+ ✓ Starting...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ ✓ Ready in 816ms
+Error [InvariantError]: Invariant: Expected clientReferenceManifest to be defined. This is a bug in Next.js.
+    at f (D:\PROJECT\L3\NEEDED\emmanuel_portfolio\.next\server\chunks\ssr\e4070_next_dist_esm_build_templates_app-page_c4fc830f.js:1:4303)
+    at m (D:\PROJECT\L3\NEEDED\emmanuel_portfolio\.next\server\chunks\ssr\e4070_next_dist_esm_build_templates_app-page_c4fc830f.js:1:7093)
+    at o (D:\PROJECT\L3\NEEDED\emmanuel_portfolio\.next\server\chunks\ssr\e4070_next_dist_esm_build_templates_app-page_c4fc830f.js:2:2612)
+    at responseGenerator (D:\PROJECT\L3\NEEDED\emmanuel_portfolio\.next\server\chunks\ssr\e4070_next_dist_esm_build_templates_app-page_c4fc830f.js:2:2770)
+ ⨯ Error [InvariantError]: Invariant: Expected clientReferenceManifest to be defined. This is a bug in Next.js.
+    at f (D:\PROJECT\L3\NEEDED\emmanuel_portfolio\.next\server\chunks\ssr\e4070_next_dist_esm_build_templates_app-page_c4fc830f.js:1:4303)
+    at m (D:\PROJECT\L3\NEEDED\emmanuel_portfolio\.next\server\chunks\ssr\e4070_next_dist_esm_build_templates_app-page_c4fc830f.js:1:7093)
+    at o (D:\PROJECT\L3\NEEDED\emmanuel_portfolio\.next\server\chunks\ssr\e4070_next_dist_esm_build_templates_app-page_c4fc830f.js:2:2612)
+    at responseGenerator (D:\PROJECT\L3\NEEDED\emmanuel_portfolio\.next\server\chunks\ssr\e4070_next_dist_esm_build_templates_app-page_c4fc830f.js:2:2770)
+ ⨯ Error [InvariantError]: Invariant: Expected clientReferenceManifest to be defined. This is a bug in Next.js.
+    at f (D:\PROJECT\L3\NEEDED\emmanuel_portfolio\.next\server\chunks\ssr\e4070_next_dist_esm_build_templates_app-page_c4fc830f.js:1:4303)
+    at m (D:\PROJECT\L3\NEEDED\emmanuel_portfolio\.next\server\chunks\ssr\e4070_next_dist_esm_build_templates_app-page_c4fc830f.js:1:7093)
+    at o (D:\PROJECT\L3\NEEDED\emmanuel_portfolio\.next\server\chunks\ssr\e4070_next_dist_esm_build_templates_app-page_c4fc830f.js:2:2612)
+    at responseGenerator (D:\PROJECT\L3\NEEDED\emmanuel_portfolio\.next\server\chunks\ssr\e4070_next_dist_esm_build_templates_app-page_c4fc830f.js:2:2770)
+
+D:\PROJECT\L3\NEEDED\emmanuel_portfolio>

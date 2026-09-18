@@ -1,12 +1,63 @@
 "use client";
-import { motion, useAnimation, useInView } from "framer-motion";
-import { useEffect, useRef } from "react";
-import FeaturedProjects from "@/components/FeaturedProjects";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 import HeroSection from "@/components/HeroSection";
-import SkillsSection from "@/components/SkillsSection";
-import ContactSection from "@/components/ContactSection";
 import Me from "@/components/sections/Me";
 import { useLanguage } from "@/context/LanguageContext";
+
+// Lazy load components below the fold for better performance
+const FeaturedProjects = dynamic(() => import("@/components/FeaturedProjects"), {
+  loading: () => (
+    <div className="space-y-6">
+      {[1, 2, 3].map((i) => (
+        <div key={i} className="animate-pulse space-y-4">
+          <div className="h-16 bg-gray-200 rounded-lg w-3/4" />
+          <div className="h-4 bg-gray-200 rounded w-1/2" />
+          <div className="flex space-x-3">
+            <div className="h-10 w-10 bg-gray-200 rounded-full" />
+            <div className="space-y-2">
+              <div className="h-4 bg-gray-200 rounded w-2/3" />
+              <div className="h-2 bg-gray-200 rounded w-1/2" />
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  ),
+});
+
+const SkillsSection = dynamic(() => import("@/components/SkillsSection"), {
+  loading: () => (
+    <div className="space-y-6">
+      {[1, 2, 3].map((i) => (
+        <div key={i} className="animate-pulse">
+          <div className="h-12 bg-gray-200 rounded-lg w-2/3" />
+          <div className="h-8 bg-gray-200 rounded w-1/2 mt-2" />
+        </div>
+      ))}
+    </div>
+  ),
+});
+
+const ContactSection = dynamic(() => import("@/components/ContactSection"), {
+  loading: () => (
+    <div className="space-y-6">
+      <div className="animate-pulse">
+        <div className="h-12 bg-gray-200 rounded-lg w-1/2" />
+        <div className="h-8 bg-gray-200 rounded w-1/3 mt-2" />
+      </div>
+      <div className="space-y-4">
+        {[1, 2, 3].map((i) => (
+          <div key={i} className="animate-pulse">
+            <div className="h-10 bg-gray-200 rounded w-3/4" />
+            <div className="h-4 bg-gray-200 rounded w-1/2 mt-2" />
+          </div>
+        ))}
+      </div>
+    </div>
+  ),
+});
 
 export default function Home() {
   const { t } = useLanguage();
@@ -26,7 +77,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="overflow-hidden">
+    <div className="overflow-hidden">
       {/* Hero Section - toujours visible */}
       <section className="relative">
         <HeroSection />
@@ -38,7 +89,7 @@ export default function Home() {
           {/* Background decorative elements */}
           <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
             <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-3xl" />
-            <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-500/5 rounded-full blur-3xl" />
+            <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-3xl" />
           </div>
 
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl relative z-10">
@@ -50,12 +101,14 @@ export default function Home() {
               transition={{ duration: 0.8 }}
               className="text-center mb-16"
             >
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
+              {/* h2, not h1: the page must expose a single <h1> (the Hero's) so the
+                  heading order stays sequentially descending. */}
+              <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
                 {t.about.pageTitle}{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-600">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary">
                   {t.about.pageTitle === "About" ? "me" : "moi"}
                 </span>
-              </h1>
+              </h2>
               <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
                 {t.about.pageSubtitle}
               </p>
@@ -83,11 +136,14 @@ export default function Home() {
 
       {/* Bouton retour en haut */}
       <ScrollToTopButton />
-    </main>
+    </div>
   );
 }
 
-// Composant réutilisable pour les sections animées
+// Section reveal — one `whileInView` per section. The previous version combined
+// useAnimation + useInView + useEffect, which started hidden and re-rendered the
+// whole subtree on every intersection change (extra main-thread work right after
+// hydration). `once: true` also lets each section stay visible once revealed.
 function ScrollAnimationSection({
   children,
   delay = 0,
@@ -97,82 +153,56 @@ function ScrollAnimationSection({
   delay?: number;
   id?: string;
 }) {
-  const controls = useAnimation();
-  const ref = useRef(null);
-  const isInView = useInView(ref, { margin: "-100px 0px -100px 0px" });
-
-  useEffect(() => {
-    if (isInView) {
-      controls.start("visible");
-    } else {
-      controls.start("hidden");
-    }
-  }, [isInView, controls]);
-
   return (
     <motion.section
       id={id}
-      ref={ref}
-      initial="hidden"
-      animate={controls}
-      variants={{
-        visible: {
-          opacity: 1,
-          y: 0,
-          transition: {
-            duration: 0.6,
-            ease: "easeOut",
-            delay,
-          },
-        },
-        hidden: {
-          opacity: 0,
-          y: 50,
-          transition: {
-            duration: 0.3,
-            ease: "easeIn",
-          },
-        },
-      }}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px 0px -80px 0px" }}
+      transition={{ duration: 0.6, ease: "easeOut", delay }}
     >
       {children}
     </motion.section>
   );
 }
 
-// Bouton retour en haut amélioré
+// Bouton retour en haut.
+// The previous implementation attached `useInView` to this *fixed* element, which
+// always intersects the viewport, so the button was permanently stuck in its
+// "hidden" variant (and it re-rendered on every intersection change). It now
+// reacts to the scroll position through a single passive listener, and hides
+// again near the bottom of the page where the Footer renders its own
+// back-to-top button (so the two never overlap).
 function ScrollToTopButton() {
   const { t } = useLanguage();
-  const controls = useAnimation();
-  const ref = useRef(null);
-  const isInView = useInView(ref);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    if (!isInView) {
-      controls.start("visible");
-    } else {
-      controls.start("hidden");
-    }
-  }, [isInView, controls]);
+    const handleScroll = () => {
+      const scrolled = window.scrollY;
+      const maxScroll =
+        document.documentElement.scrollHeight - window.innerHeight;
+      setIsVisible(scrolled > window.innerHeight && scrolled < maxScroll - 320);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, []);
+
+  if (!isVisible) return null;
 
   return (
     <motion.div
-      ref={ref}
       className="fixed bottom-8 right-8 z-50"
-      initial="hidden"
-      animate={controls}
-      variants={{
-        visible: {
-          opacity: 1,
-          y: 0,
-          transition: { duration: 0.3 },
-        },
-        hidden: {
-          opacity: 0,
-          y: 20,
-          transition: { duration: 0.3 },
-        },
-      }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
     >
@@ -187,6 +217,8 @@ function ScrollToTopButton() {
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
+          aria-hidden="true"
+          focusable="false"
         >
           <path
             strokeLinecap="round"

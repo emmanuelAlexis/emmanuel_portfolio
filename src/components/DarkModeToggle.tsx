@@ -27,7 +27,7 @@ const DarkModeToggle = ({
       <motion.button
         className={`relative rounded-full ${
           variants === "block"
-            ? "bg-secondary w-12 h-6"
+            ? "bg-primary/10 w-12 h-6"
             : "bg-transparent w-10 h-10"
         } flex items-center transition-colors`}
         onClick={toggleTheme}
@@ -39,7 +39,7 @@ const DarkModeToggle = ({
           className={`absolute rounded-full ${
             variants === "block"
               ? "bg-primary w-4 h-4 shadow-md"
-              : "bg-gray-800 dark:bg-yellow-300 w-6 h-6"
+              : "bg-primary/20 w-6 h-6"
           }`}
           animate={{
             x: isDark
@@ -108,7 +108,7 @@ const DarkModeToggle = ({
             <div className="absolute right-1.5">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-3.5 w-3.5 text-gray-500 dark:text-primary-foreground"
+                className="h-3.5 w-3.5 text-primary-foreground"
                 viewBox="0 0 20 20"
                 fill="currentColor"
               >
