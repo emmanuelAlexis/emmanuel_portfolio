@@ -74,7 +74,7 @@ export default function SkillsSection() {
 
         <div className="grid gap-5 lg:grid-cols-[240px_1fr] lg:items-stretch">
           <nav className="rounded-3xl border border-foreground/10 bg-background/40 p-2 shadow-xl shadow-black/5 backdrop-blur-md" aria-label="Skill categories">
-            <div className="flex gap-2 overflow-x-auto lg:flex-col">
+            <div className="skills-category-scroll flex gap-2 overflow-x-auto lg:flex-col">
               {skills.map((category, index) => (
                 <button
                   key={index}
@@ -91,7 +91,7 @@ export default function SkillsSection() {
             </div>
           </nav>
 
-          <div className="min-h-[430px] rounded-3xl border border-foreground/10 bg-background/35 p-5 shadow-xl shadow-black/5 backdrop-blur-md md:p-8">
+          <div className="min-h-[430px] rounded-3xl border border-foreground/10 bg-background/35 p-4 shadow-xl shadow-black/5 backdrop-blur-md sm:p-5 md:p-8">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}
@@ -100,11 +100,11 @@ export default function SkillsSection() {
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.25 }}
               >
-                <div className="mb-8 flex items-start justify-between gap-4 border-b border-foreground/10 pb-6">
-                  <div>
+                <div className="mb-6 flex min-w-0 items-start justify-between gap-3 border-b border-foreground/10 pb-5 sm:mb-8 sm:gap-4 sm:pb-6">
+                  <div className="min-w-0">
                     <p className="mb-2 font-mono text-xs uppercase tracking-[0.25em] text-primary">Selected focus</p>
                     <h3 className="text-2xl font-bold text-foreground md:text-3xl">{activeCategory.category}</h3>
-                    <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted-foreground">{activeCategory.description}</p>
+                    <p className="mt-2 max-w-xl break-words text-sm leading-relaxed text-muted-foreground">{activeCategory.description}</p>
                   </div>
                   <span className="font-mono text-xs tracking-[0.25em] text-muted-foreground">{String(activeIndex + 1).padStart(2, "0")} / {String(skills.length).padStart(2, "0")}</span>
                 </div>

@@ -270,6 +270,15 @@
     linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
 }
 
+.skills-category-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.skills-category-scroll::-webkit-scrollbar {
+  display: none;
+}
+
 .tech-orb {
   position: absolute;
   pointer-events: none;

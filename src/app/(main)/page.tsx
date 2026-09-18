@@ -202,7 +202,7 @@ function ScrollToTopButton() {
 
   return (
     <motion.div
-      className="fixed bottom-8 right-8 z-50"
+      className="fixed bottom-3 right-4 z-50 sm:bottom-8 sm:right-8"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
@@ -216,7 +216,7 @@ function ScrollToTopButton() {
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6 text-white"
+          className="size-6"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
