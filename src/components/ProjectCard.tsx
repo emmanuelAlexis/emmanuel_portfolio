@@ -45,10 +45,10 @@ export default function ProjectCard({
         delay: index * 0.1,
       }}
       whileHover={{ y: -10 }}
-      className="group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-foreground/10 bg-background/55 shadow-xl shadow-black/10 backdrop-blur-md transition-all duration-500 hover:-translate-y-2 hover:border-[#a85f38]/45 hover:shadow-2xl hover:shadow-[#a85f38]/10"
+      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/15 bg-white/[0.06] shadow-xl shadow-black/10 backdrop-blur-md transition-all duration-500 hover:-translate-y-2 hover:border-[#a85f38]/45 hover:shadow-2xl hover:shadow-[#a85f38]/10"
     >
       {/* Image Section */}
-      <div className="relative h-60 overflow-hidden border-b border-white/10">
+      <div className="relative h-52 overflow-hidden border-b border-white/10 sm:h-56">
         <Image
           src={project.imageUrl}
           alt={project.title}
@@ -65,13 +65,13 @@ export default function ProjectCard({
         </div>
 
         {/* Technologies Overlay */}
-        <div className="absolute inset-x-4 bottom-4 rounded-2xl border border-white/20 bg-black/30 p-3 shadow-xl shadow-black/10 backdrop-blur-xl md:inset-x-5 md:bottom-5 md:p-4">
-          <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.22em] text-white/65">Technologies</p>
+        <div className="absolute inset-x-3 bottom-3 rounded-xl border border-white/20 bg-black/25 p-2.5 shadow-lg shadow-black/10 backdrop-blur-xl sm:inset-x-4 sm:bottom-4 sm:p-3">
+          <p className="mb-1.5 font-mono text-[9px] uppercase tracking-[0.18em] text-white/60">Technologies</p>
           <div className="flex flex-wrap gap-2">
             {project.technologies.slice(0, 4).map((tech: any) => (
               <span
                 key={tech.id}
-                className="flex items-center gap-1 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-sm font-medium text-white backdrop-blur-md"
+                className="flex items-center gap-1 rounded-full border border-white/20 bg-white/10 px-2.5 py-1 text-xs font-medium text-white backdrop-blur-md"
               >
                 {tech.icon}
               </span>
@@ -86,8 +86,8 @@ export default function ProjectCard({
       </div>
 
       {/* Content Section */}
-      <div className="flex flex-grow flex-col bg-background/35 p-6 transition-colors duration-300 group-hover:bg-background/75 md:p-7">
-        <h3 className="mb-3 text-xl font-bold tracking-tight text-foreground transition-colors duration-300 group-hover:text-[#d98a5d]">
+      <div className="flex flex-grow flex-col bg-background/25 p-5 transition-colors duration-300 group-hover:bg-background/65 md:p-6">
+        <h3 className="mb-2 text-lg font-bold tracking-tight text-foreground transition-colors duration-300 group-hover:text-[#d98a5d]">
           {project.title}
         </h3>
         <p className="mb-6 line-clamp-3 flex-grow text-muted-foreground transition-colors duration-300 group-hover:text-foreground/85">
@@ -95,13 +95,13 @@ export default function ProjectCard({
         </p>
 
         {/* Action Buttons */}
-        <div className="flex gap-3 mt-auto">
+        <div className="mt-auto flex gap-2.5">
           {project.access === 'public' && project.githubLinks && project.githubLinks.length > 0 && (
             <a
               href={project.githubLinks[0].url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 rounded-xl border border-foreground/15 px-4 py-2.5 text-sm font-medium text-muted-foreground transition-all hover:border-[#a85f38]/60 hover:bg-[#a85f38]/10 hover:text-foreground"
+              className="flex items-center gap-2 rounded-lg border border-foreground/15 px-3.5 py-2 text-sm font-medium text-muted-foreground transition-all hover:border-[#a85f38]/60 hover:bg-[#a85f38]/10 hover:text-foreground"
             >
               <FiGithub className="w-4 h-4" />
               <span>Code</span>
@@ -109,7 +109,7 @@ export default function ProjectCard({
           )}
           <Link
             href={project.projectUrl}
-            className="group/btn flex flex-1 items-center justify-center gap-2 rounded-xl bg-[#a85f38] px-4 py-2.5 text-sm font-medium text-white shadow-lg shadow-[#a85f38]/20 transition-all hover:bg-[#bd7148]"
+            className="group/btn flex flex-1 items-center justify-center gap-2 rounded-lg bg-[#a85f38] px-3.5 py-2 text-sm font-medium text-white shadow-lg shadow-[#a85f38]/20 transition-all hover:bg-[#bd7148]"
           >
             <span>Voir détails</span>
             <FiArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
