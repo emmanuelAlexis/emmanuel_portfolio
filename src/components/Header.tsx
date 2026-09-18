@@ -87,8 +87,8 @@ export default function Header() {
       animate={{ y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
       className={`fixed top-2 left-1/2 -translate-x-1/2 w-[calc(100%-1.5rem)] max-w-6xl z-50 rounded-2xl border transition-all duration-300 ${scrolled
-        ? "py-2.5 border-white/50 bg-white/70 dark:border-white/10 dark:bg-gray-900/65 shadow-lg shadow-black/5 backdrop-blur-xl"
-        : "py-3 border-white/30 bg-white/35 dark:border-white/10 dark:bg-gray-950/25 backdrop-blur-lg"
+        ? "py-2.5 border-[#a85f38]/20 bg-[#fffaf4]/88 dark:border-white/10 dark:bg-gray-900/65 shadow-lg shadow-[#6b3b24]/10 backdrop-blur-xl"
+        : "py-3 border-[#a85f38]/15 bg-[#fffaf4]/72 dark:border-white/10 dark:bg-gray-950/25 backdrop-blur-lg"
         }`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
