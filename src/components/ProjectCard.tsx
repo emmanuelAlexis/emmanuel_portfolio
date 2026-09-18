@@ -19,17 +19,17 @@ export default function ProjectCard({
     public: {
       icon: <FiUnlock className="w-3 h-3" />,
       label: t.projects.access.public,
-      color: "bg-green-500/20 text-green-400 border-green-500/20"
+      color: "bg-emerald-500/15 text-emerald-300 border-emerald-400/25"
     },
     protected: {
       icon: <FiLock className="w-3 h-3" />,
       label: t.projects.access.protected,
-      color: "bg-blue-500/80 text-blue-900 border-blue-500/20"
+      color: "bg-[#a85f38]/20 text-[#e0a178] border-[#a85f38]/30"
     },
     private: {
       icon: <FiEyeOff className="w-3 h-3" />,
       label: t.projects.access.private,
-      color: "bg-red-500/20 text-red-400 border-red-500/20"
+      color: "bg-rose-500/15 text-rose-300 border-rose-400/25"
     }
   };
 
@@ -45,18 +45,18 @@ export default function ProjectCard({
         delay: index * 0.1,
       }}
       whileHover={{ y: -10 }}
-      className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 h-full flex flex-col"
+      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/15 bg-white/[0.06] shadow-xl shadow-black/10 backdrop-blur-md transition-all duration-500 hover:-translate-y-2 hover:border-[#a85f38]/45 hover:shadow-2xl hover:shadow-[#a85f38]/10"
     >
       {/* Image Section */}
-      <div className="relative h-56 overflow-hidden">
+      <div className="relative h-52 overflow-hidden border-b border-white/10 sm:h-56">
         <Image
           src={project.imageUrl}
           alt={project.title}
           fill
-          className="object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
+          className="object-cover transition-all duration-700 ease-in-out group-hover:scale-105 group-hover:brightness-90"
           quality={90}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-75" />
 
         {/* Access Badge */}
         <div className={`absolute top-4 right-4 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-medium border flex items-center gap-1.5 z-10 ${accessInfo.color}`}>
@@ -65,40 +65,43 @@ export default function ProjectCard({
         </div>
 
         {/* Technologies Overlay */}
-        <div className="absolute bottom-4 left-4 right-4 flex flex-wrap gap-2">
-          {project.technologies.slice(0, 4).map((tech: any) => (
-            <span
-              key={tech.id}
-              className="bg-white/20 backdrop-blur-md text-white px-3 py-1.5 rounded-full text-sm font-medium border border-white/10 flex items-center gap-1"
-            >
-              {tech.icon}
-            </span>
-          ))}
-          {project.technologies.length > 4 && (
-            <span className="bg-white/20 backdrop-blur-md text-white px-3 py-1.5 rounded-full text-sm font-medium border border-white/10">
-              +{project.technologies.length - 4}
-            </span>
-          )}
+        <div className="absolute inset-x-3 bottom-3 rounded-xl border border-white/20 bg-black/25 p-2.5 shadow-lg shadow-black/10 backdrop-blur-xl sm:inset-x-4 sm:bottom-4 sm:p-3">
+          <p className="mb-1.5 font-mono text-[9px] uppercase tracking-[0.18em] text-white/60">Technologies</p>
+          <div className="flex flex-wrap gap-2">
+            {project.technologies.slice(0, 4).map((tech: any) => (
+              <span
+                key={tech.id}
+                className="flex items-center gap-1 rounded-full border border-white/20 bg-white/10 px-2.5 py-1 text-xs font-medium text-white backdrop-blur-md"
+              >
+                {tech.icon}
+              </span>
+            ))}
+            {project.technologies.length > 4 && (
+              <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-sm font-medium text-white backdrop-blur-md">
+                +{project.technologies.length - 4}
+              </span>
+            )}
+          </div>
         </div>
       </div>
 
       {/* Content Section */}
-      <div className="p-6 flex flex-col flex-grow">
-        <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-primary dark:group-hover:text-primary transition-colors duration-300">
+      <div className="flex flex-grow flex-col bg-background/25 p-5 transition-colors duration-300 group-hover:bg-background/65 md:p-6">
+        <h3 className="mb-2 text-lg font-bold tracking-tight text-foreground transition-colors duration-300 group-hover:text-[#d98a5d]">
           {project.title}
         </h3>
-        <p className="text-gray-600 dark:text-gray-300 mb-6 line-clamp-3 flex-grow">
+        <p className="mb-6 line-clamp-3 flex-grow text-muted-foreground transition-colors duration-300 group-hover:text-foreground/85">
           {project.description}
         </p>
 
         {/* Action Buttons */}
-        <div className="flex gap-3 mt-auto">
+        <div className="mt-auto flex gap-2.5">
           {project.access === 'public' && project.githubLinks && project.githubLinks.length > 0 && (
             <a
               href={project.githubLinks[0].url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-600 hover:border-primary dark:hover:border-primary transition-all text-sm font-medium"
+              className="flex items-center gap-2 rounded-lg border border-foreground/15 px-3.5 py-2 text-sm font-medium text-muted-foreground transition-all hover:border-[#a85f38]/60 hover:bg-[#a85f38]/10 hover:text-foreground"
             >
               <FiGithub className="w-4 h-4" />
               <span>Code</span>
@@ -106,7 +109,7 @@ export default function ProjectCard({
           )}
           <Link
             href={project.projectUrl}
-            className="flex items-center gap-2 text-white bg-primary hover:bg-primary/90 px-4 py-2 rounded-lg transition-all text-sm font-medium shadow-lg shadow-primary/20 flex-1 justify-center group/btn"
+            className="group/btn flex flex-1 items-center justify-center gap-2 rounded-lg bg-[#a85f38] px-3.5 py-2 text-sm font-medium text-white shadow-lg shadow-[#a85f38]/20 transition-all hover:bg-[#bd7148]"
           >
             <span>Voir détails</span>
             <FiArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />

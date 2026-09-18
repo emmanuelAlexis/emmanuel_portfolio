@@ -86,9 +86,9 @@ export default function Header() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className={`fixed top-3 left-1/2 -translate-x-1/2 w-[calc(100%-1.5rem)] max-w-6xl z-50 rounded-2xl border transition-all duration-300 ${scrolled
-        ? "py-2.5 border-white/50 bg-white/70 dark:border-white/10 dark:bg-gray-900/65 shadow-lg shadow-black/5 backdrop-blur-xl"
-        : "py-3 border-white/30 bg-white/35 dark:border-white/10 dark:bg-gray-950/25 backdrop-blur-lg"
+      className={`fixed top-2 left-1/2 -translate-x-1/2 w-[calc(100%-1.5rem)] max-w-6xl z-50 rounded-2xl border transition-all duration-300 ${scrolled
+        ? "py-2.5 border-[#a85f38]/20 bg-[#fffaf4]/88 dark:border-white/10 dark:bg-gray-900/65 shadow-lg shadow-[#6b3b24]/10 backdrop-blur-xl"
+        : "py-3 border-[#a85f38]/15 bg-[#fffaf4]/72 dark:border-white/10 dark:bg-gray-950/25 backdrop-blur-lg"
         }`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
@@ -152,7 +152,7 @@ export default function Header() {
               className="absolute block w-6 h-0.5 bg-current rounded-full"
               animate={
                 isMenuOpen
-                  ? { rotate: 45, y: 0, backgroundColor: "#3B82F6" }
+                  ? { rotate: 45, y: 0, backgroundColor: "#a85f38" }
                   : { rotate: 0, y: -5, backgroundColor: "currentColor" }
               }
             />
@@ -164,7 +164,7 @@ export default function Header() {
               className="absolute block w-6 h-0.5 bg-current rounded-full"
               animate={
                 isMenuOpen
-                  ? { rotate: -45, y: 0, backgroundColor: "#3B82F6" }
+                  ? { rotate: -45, y: 0, backgroundColor: "#a85f38" }
                   : { rotate: 0, y: 5, backgroundColor: "currentColor" }
               }
             />
@@ -180,15 +180,15 @@ export default function Header() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden overflow-hidden"
+            className="md:hidden max-h-[calc(100svh-5rem)] overflow-y-auto overflow-x-hidden"
           >
             <motion.div
-              className="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800"
+              className="border-t border-[#a85f38]/15 bg-transparent backdrop-blur-none"
               initial={{ y: -20 }}
               animate={{ y: 0 }}
               exit={{ y: -20 }}
             >
-              <ul className="py-4 space-y-4 px-4">
+              <ul className="flex flex-col gap-1.5 px-3 py-3">
                 {navItems.map((item) => (
                   <motion.li
                     key={item.path}
@@ -199,9 +199,9 @@ export default function Header() {
                     <Link
                       href={item.path}
                       onClick={(e) => handleNavClick(e, item)}
-                      className={`block py-2 px-4 rounded-lg transition ${pathname === item.path
-                        ? "bg-blue-50 dark:bg-blue-900/30 text-primary font-medium"
-                        : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+                      className={`block rounded-xl border px-4 py-2.5 text-sm transition ${pathname === item.path
+                        ? "border-[#a85f38]/40 bg-[#a85f38]/15 text-[#a85f38] dark:text-[#d98a5d] font-medium"
+                        : "border-transparent text-gray-700 hover:border-[#a85f38]/20 hover:bg-[#a85f38]/5 hover:text-[#a85f38] dark:text-gray-300 dark:hover:border-white/10 dark:hover:bg-white/5 dark:hover:text-white"
                         }`}
                     >
                       {item.label}
@@ -209,7 +209,7 @@ export default function Header() {
                   </motion.li>
                 ))}
                 <motion.li
-                  className="flex justify-center items-center mt-6 gap-4"
+                  className="mt-2 flex items-center justify-between border-t border-white/10 px-4 pt-3"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3 }}

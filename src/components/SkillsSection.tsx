@@ -1,5 +1,6 @@
 "use client";
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 import { getSkills } from "@/lib/data";
 
@@ -7,15 +8,17 @@ const SkillCard = ({
   name,
   icon,
   color,
+  desc,
 }: {
   name: string;
   icon: React.ReactNode;
   color: string;
+  desc?: string;
 }) => {
   return (
     <motion.div
       whileHover={{ y: -5 }}
-      className="group flex min-h-32 flex-col items-center justify-center gap-3 rounded-2xl border border-foreground/10 bg-background/55 p-4 shadow-sm backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:bg-background/80 hover:shadow-xl hover:shadow-primary/5 cursor-default"
+      className="group flex min-h-36 flex-col items-start justify-between rounded-2xl border border-foreground/10 bg-background/55 p-5 shadow-sm backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:bg-background/80 hover:shadow-xl hover:shadow-primary/5 cursor-default"
     >
       {/* The technology name is rendered underneath, so the icon is decorative:
           aria-hidden also keeps react-icons' redundant role="img" out of the
@@ -27,9 +30,12 @@ const SkillCard = ({
         {icon}
       </div>
 
-      <span className="font-medium text-gray-600 dark:text-gray-400 text-sm md:text-base group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
-        {name}
-      </span>
+      <div>
+        <span className="block font-semibold text-foreground text-sm md:text-base transition-colors">
+          {name}
+        </span>
+        {desc && <span className="mt-1 block text-xs leading-relaxed text-muted-foreground">{desc}</span>}
+      </div>
     </motion.div>
   );
 };
@@ -37,9 +43,11 @@ const SkillCard = ({
 export default function SkillsSection() {
   const { t, language } = useLanguage();
   const skills = getSkills(language);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeCategory = skills[activeIndex];
 
   return (
-    <section className="section-atmosphere section-atmosphere-warm py-24 relative overflow-hidden">
+    <section className="section-atmosphere section-atmosphere-warm relative overflow-hidden py-20 pb-28 sm:py-24 sm:pb-24">
       {/* Background elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 -left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
@@ -64,34 +72,49 @@ export default function SkillsSection() {
           </p>
         </motion.div>
 
-        <div className="relative lg:pl-24">
-          <div className="absolute bottom-8 left-8 top-8 hidden w-px bg-gradient-to-b from-primary/10 via-primary/60 to-primary/10 lg:block" aria-hidden="true" />
-          <div className="space-y-8">
-          {skills.map((category, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <span className="absolute -left-[4.35rem] mt-8 hidden size-3 rounded-full border-2 border-background bg-primary shadow-[0_0_0_5px_color-mix(in_srgb,var(--primary)_15%,transparent),0_0_24px_color-mix(in_srgb,var(--primary)_55%,transparent)] lg:block" aria-hidden="true" />
-              <div className="overflow-hidden rounded-3xl border border-foreground/10 bg-background/45 p-5 shadow-xl shadow-black/5 backdrop-blur-md transition-colors hover:border-primary/30 md:p-7">
-                <div className="mb-6 flex items-center justify-between gap-4 border-b border-foreground/10 pb-5">
-                  <h3 className="flex items-center gap-3 text-xl font-bold text-foreground md:text-2xl">
-                    <span className="size-2 rounded-full bg-primary shadow-[0_0_18px_var(--primary)]" />
-                    {category.category}
-                  </h3>
-                  <span className="font-mono text-xs tracking-[0.25em] text-muted-foreground">{String(index + 1).padStart(2, "0")}</span>
+        <div className="grid gap-5 lg:grid-cols-[240px_1fr] lg:items-stretch">
+          <nav className="rounded-3xl border border-foreground/10 bg-background/40 p-2 shadow-xl shadow-black/5 backdrop-blur-md" aria-label="Skill categories">
+            <div className="grid grid-cols-2 gap-2 lg:flex lg:flex-col">
+              {skills.map((category, index) => (
+                <button
+                  key={index}
+                  type="button"
+                  onClick={() => setActiveIndex(index)}
+                  aria-current={activeIndex === index ? "true" : undefined}
+                  className={`flex min-w-0 items-center gap-2 rounded-2xl px-3 py-3 text-left transition-all lg:w-full ${activeIndex === index ? "bg-primary text-white shadow-lg shadow-primary/20" : "text-muted-foreground hover:bg-foreground/5 hover:text-foreground"}`}
+                >
+                  <span className="flex size-8 items-center justify-center rounded-xl bg-background/15">{category.icon}</span>
+                  <span className="min-w-0 truncate text-sm font-medium">{category.category}</span>
+                  <span className="ml-auto hidden font-mono text-[10px] opacity-60 lg:block">{String(index + 1).padStart(2, "0")}</span>
+                </button>
+              ))}
+            </div>
+          </nav>
+
+          <div className="min-h-[430px] rounded-3xl border border-foreground/10 bg-background/35 p-4 shadow-xl shadow-black/5 backdrop-blur-md sm:p-5 md:p-8">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeIndex}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.25 }}
+              >
+                <div className="mb-6 flex min-w-0 items-start justify-between gap-3 border-b border-foreground/10 pb-5 sm:mb-8 sm:gap-4 sm:pb-6">
+                  <div className="min-w-0">
+                    <p className="mb-2 font-mono text-xs uppercase tracking-[0.25em] text-primary">Selected focus</p>
+                    <h3 className="text-2xl font-bold text-foreground md:text-3xl">{activeCategory.category}</h3>
+                    <p className="mt-2 max-w-xl break-words text-sm leading-relaxed text-muted-foreground">{activeCategory.description}</p>
+                  </div>
+                  <span className="font-mono text-xs tracking-[0.25em] text-muted-foreground">{String(activeIndex + 1).padStart(2, "0")} / {String(skills.length).padStart(2, "0")}</span>
                 </div>
-                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-                  {category.items.map((skill, skillIndex) => (
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  {activeCategory.items.map((skill, skillIndex) => (
                     <SkillCard key={skillIndex} {...skill} />
                   ))}
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </div>

@@ -121,7 +121,7 @@ export default function Home() {
       </ScrollAnimationSection>
 
       {/* Featured Projects avec apparition/disparition */}
-      <ScrollAnimationSection delay={0.2} id="projects">
+      <ScrollAnimationSection delay={0.2} id="projects" className="scroll-mt-28">
         <FeaturedProjects />
       </ScrollAnimationSection>
 
@@ -148,14 +148,17 @@ function ScrollAnimationSection({
   children,
   delay = 0,
   id,
+  className,
 }: {
   children: React.ReactNode;
   delay?: number;
   id?: string;
+  className?: string;
 }) {
   return (
     <motion.section
       id={id}
+      className={className}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px 0px -80px 0px" }}
@@ -199,7 +202,7 @@ function ScrollToTopButton() {
 
   return (
     <motion.div
-      className="fixed bottom-8 right-8 z-50"
+      className="fixed bottom-3 right-4 z-50 sm:bottom-8 sm:right-8"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
@@ -208,12 +211,12 @@ function ScrollToTopButton() {
     >
       <a
         href="#top"
-        className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 transition-colors"
+        className="flex size-11 items-center justify-center rounded-full border border-[#a85f38]/70 bg-background/80 text-[#a85f38] shadow-lg shadow-[#a85f38]/15 backdrop-blur-md transition-all hover:bg-[#a85f38] hover:text-white"
         aria-label={t.common.scrollToTop}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6 text-white"
+          className="size-6"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"

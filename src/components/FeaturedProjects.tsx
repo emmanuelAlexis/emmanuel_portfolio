@@ -59,7 +59,7 @@ export const ProjectCard = ({
       }}
       whileHover={{ y: -12 }}
       onClick={handleCardClick}
-      className={`group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 project-card cursor-pointer ${isActive ? 'is-active' : ''}`}
+      className={`group relative overflow-hidden rounded-3xl shadow-xl shadow-black/10 hover:shadow-2xl transition-all duration-500 bg-background/55 backdrop-blur-md border border-foreground/10 project-card cursor-pointer ${isActive ? 'is-active' : ''}`}
     >
       <div className="relative h-64 overflow-hidden">
         <Image
@@ -205,12 +205,12 @@ export default function FeaturedProjects() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="mb-12 grid gap-6 text-left lg:grid-cols-[0.85fr_1.15fr] lg:items-end"
         >
-          <h2 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">
+          <h2 className="text-4xl font-bold tracking-tight text-foreground md:text-6xl">
             {t.projects.title}
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <p className="max-w-xl text-lg leading-relaxed text-muted-foreground lg:justify-self-end">
             {t.projects.subtitle}
           </p>
         </motion.div>
@@ -223,66 +223,66 @@ export default function FeaturedProjects() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mb-12"
         >
-          <div className="flex gap-2 flex-wrap justify-center">
+          <div className="flex w-fit max-w-full flex-wrap gap-2 rounded-2xl border border-foreground/10 bg-background/35 p-2 backdrop-blur-md">
             <button
               onClick={() => setFilter("all")}
-              className={`px-6 py-2 rounded-lg font-medium transition-all ${filter === "all"
+              className={`shrink-0 whitespace-nowrap px-4 py-2 rounded-lg font-medium transition-all md:px-6 ${filter === "all"
                 ? "bg-primary text-white shadow-lg"
-                : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                : "bg-transparent text-muted-foreground hover:bg-foreground/5 hover:text-foreground"
                 }`}
             >
               {t.projects.filters.all}
             </button>
             <button
               onClick={() => setFilter("recent")}
-              className={`px-6 py-2 rounded-lg font-medium transition-all ${filter === "recent"
+              className={`shrink-0 whitespace-nowrap px-4 py-2 rounded-lg font-medium transition-all md:px-6 ${filter === "recent"
                 ? "bg-primary text-white shadow-lg"
-                : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                : "bg-transparent text-muted-foreground hover:bg-foreground/5 hover:text-foreground"
                 }`}
             >
               {t.projects.filters.recent}
             </button>
             <button
               onClick={() => setFilter("mobile")}
-              className={`px-6 py-2 rounded-lg font-medium transition-all ${filter === "mobile"
+              className={`shrink-0 whitespace-nowrap px-4 py-2 rounded-lg font-medium transition-all md:px-6 ${filter === "mobile"
                 ? "bg-primary text-white shadow-lg"
-                : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                : "bg-transparent text-muted-foreground hover:bg-foreground/5 hover:text-foreground"
                 }`}
             >
               {t.projects.filters.mobile}
             </button>
             {/* <button
               onClick={() => setFilter("ai")}
-              className={`px-6 py-2 rounded-lg font-medium transition-all ${filter === "ai"
+              className={`shrink-0 whitespace-nowrap px-4 py-2 rounded-lg font-medium transition-all md:px-6 ${filter === "ai"
                 ? "bg-primary text-white shadow-lg"
-                : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                : "bg-transparent text-muted-foreground hover:bg-foreground/5 hover:text-foreground"
                 }`}
             >
               {t.projects.filters.ai}
             </button> */}
             <button
               onClick={() => setFilter("nextjs")}
-              className={`px-6 py-2 rounded-lg font-medium transition-all ${filter === "nextjs"
+              className={`shrink-0 whitespace-nowrap px-4 py-2 rounded-lg font-medium transition-all md:px-6 ${filter === "nextjs"
                 ? "bg-primary text-white shadow-lg"
-                : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                : "bg-transparent text-muted-foreground hover:bg-foreground/5 hover:text-foreground"
                 }`}
             >
               {t.projects.filters.nextjs}
             </button>
             <button
               onClick={() => setFilter("springboot")}
-              className={`px-6 py-2 rounded-lg font-medium transition-all ${filter === "springboot"
+              className={`shrink-0 whitespace-nowrap px-4 py-2 rounded-lg font-medium transition-all md:px-6 ${filter === "springboot"
                 ? "bg-primary text-white shadow-lg"
-                : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                : "bg-transparent text-muted-foreground hover:bg-foreground/5 hover:text-foreground"
                 }`}
             >
               {t.projects.filters.springboot}
             </button>
             <button
               onClick={() => setFilter("nestjs")}
-              className={`px-6 py-2 rounded-lg font-medium transition-all ${filter === "nestjs"
+              className={`shrink-0 whitespace-nowrap px-4 py-2 rounded-lg font-medium transition-all md:px-6 ${filter === "nestjs"
                 ? "bg-primary text-white shadow-lg"
-                : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                : "bg-transparent text-muted-foreground hover:bg-foreground/5 hover:text-foreground"
                 }`}
             >
               {t.projects.filters.nestjs}
