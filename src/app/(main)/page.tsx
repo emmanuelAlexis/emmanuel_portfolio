@@ -85,7 +85,7 @@ export default function Home() {
 
       {/* About Section */}
       <ScrollAnimationSection id="about">
-        <section className="section-atmosphere relative overflow-hidden min-h-screen py-20 lg:py-28">
+        <section className="section-atmosphere section-deferred relative min-h-screen overflow-hidden py-20 lg:py-28">
           {/* Background decorative elements */}
           <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
             <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-3xl" />
@@ -121,16 +121,16 @@ export default function Home() {
       </ScrollAnimationSection>
 
       {/* Featured Projects avec apparition/disparition */}
-      <ScrollAnimationSection delay={0.2} id="projects" className="scroll-mt-28">
+      <ScrollAnimationSection delay={0.2} id="projects" className="section-deferred scroll-mt-28">
         <FeaturedProjects />
       </ScrollAnimationSection>
 
       {/* Skills Section avec apparition/disparition */}
-      <ScrollAnimationSection delay={0.2} id="skills">
+      <ScrollAnimationSection delay={0.2} id="skills" className="section-deferred">
         <SkillsSection />
       </ScrollAnimationSection>
 
-      <ScrollAnimationSection delay={0.2} id="contact">
+      <ScrollAnimationSection delay={0.2} id="contact" className="section-deferred">
         <ContactSection />
       </ScrollAnimationSection>
 
@@ -181,20 +181,33 @@ function ScrollToTopButton() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
+    let frame = 0;
+    let lastVisible = false;
+
+    const updateVisibility = () => {
+      frame = 0;
       const scrolled = window.scrollY;
-      const maxScroll =
-        document.documentElement.scrollHeight - window.innerHeight;
-      setIsVisible(scrolled > window.innerHeight && scrolled < maxScroll - 320);
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const nextVisible = scrolled > window.innerHeight && scrolled < maxScroll - 320;
+
+      if (nextVisible !== lastVisible) {
+        lastVisible = nextVisible;
+        setIsVisible(nextVisible);
+      }
     };
 
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleScroll, { passive: true });
+    const handleViewportChange = () => {
+      if (!frame) frame = window.requestAnimationFrame(updateVisibility);
+    };
+
+    updateVisibility();
+    window.addEventListener("scroll", handleViewportChange, { passive: true });
+    window.addEventListener("resize", handleViewportChange, { passive: true });
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", handleViewportChange);
+      window.removeEventListener("resize", handleViewportChange);
     };
   }, []);
 
