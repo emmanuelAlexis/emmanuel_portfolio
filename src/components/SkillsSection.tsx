@@ -47,7 +47,7 @@ export default function SkillsSection() {
   const activeCategory = skills[activeIndex];
 
   return (
-    <section className="section-atmosphere section-atmosphere-warm py-24 relative overflow-hidden">
+    <section className="section-atmosphere section-atmosphere-warm relative overflow-hidden py-20 pb-28 sm:py-24 sm:pb-24">
       {/* Background elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 -left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
@@ -74,17 +74,17 @@ export default function SkillsSection() {
 
         <div className="grid gap-5 lg:grid-cols-[240px_1fr] lg:items-stretch">
           <nav className="rounded-3xl border border-foreground/10 bg-background/40 p-2 shadow-xl shadow-black/5 backdrop-blur-md" aria-label="Skill categories">
-            <div className="skills-category-scroll flex gap-2 overflow-x-auto lg:flex-col">
+            <div className="grid grid-cols-2 gap-2 lg:flex lg:flex-col">
               {skills.map((category, index) => (
                 <button
                   key={index}
                   type="button"
                   onClick={() => setActiveIndex(index)}
                   aria-current={activeIndex === index ? "true" : undefined}
-                  className={`flex min-w-max items-center gap-3 rounded-2xl px-4 py-3 text-left transition-all lg:w-full ${activeIndex === index ? "bg-primary text-white shadow-lg shadow-primary/20" : "text-muted-foreground hover:bg-foreground/5 hover:text-foreground"}`}
+                  className={`flex min-w-0 items-center gap-2 rounded-2xl px-3 py-3 text-left transition-all lg:w-full ${activeIndex === index ? "bg-primary text-white shadow-lg shadow-primary/20" : "text-muted-foreground hover:bg-foreground/5 hover:text-foreground"}`}
                 >
                   <span className="flex size-8 items-center justify-center rounded-xl bg-background/15">{category.icon}</span>
-                  <span className="text-sm font-medium">{category.category}</span>
+                  <span className="min-w-0 truncate text-sm font-medium">{category.category}</span>
                   <span className="ml-auto hidden font-mono text-[10px] opacity-60 lg:block">{String(index + 1).padStart(2, "0")}</span>
                 </button>
               ))}
