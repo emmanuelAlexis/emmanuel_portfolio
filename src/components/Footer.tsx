@@ -38,7 +38,7 @@ export default function Footer() {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 pt-16 pb-8 relative overflow-hidden"
+      className="section-atmosphere relative overflow-hidden border-t border-foreground/10 pt-20 pb-8"
     >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5 dark:opacity-[0.02] pointer-events-none">
@@ -65,7 +65,7 @@ export default function Footer() {
               <span className="text-primary">emmanuel</span>
               <span className="text-gray-500 dark:text-gray-400">.A.A</span>
             </Link>
-            <p className="text-gray-600 dark:text-gray-400 max-w-xs">
+            <p className="text-muted-foreground max-w-xs leading-relaxed">
               {t.hero.role} React & Next.js. {t.hero.description}
             </p>
           </motion.div>
@@ -112,7 +112,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   whileHover={{ y: -3, scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-all shadow-sm hover:shadow-lg hover:shadow-primary/30"
+                  className="size-10 rounded-full border border-foreground/10 bg-background/45 flex items-center justify-center text-muted-foreground hover:border-primary/50 hover:bg-primary hover:text-white transition-all shadow-sm hover:shadow-lg hover:shadow-primary/20 backdrop-blur-md"
                   aria-label={social.label}
                 >
                   {social.icon}
@@ -145,7 +145,7 @@ export default function Footer() {
         initial={{ opacity: 0, scale: 0 }}
         whileInView={{ opacity: 1, scale: 1 }}
         whileHover={{ y: -3 }}
-        className="absolute bottom-8 right-8 w-10 h-10 bg-primary text-white rounded-full shadow-lg flex items-center justify-center hover:bg-primary/90 transition-colors z-20"
+        className="absolute bottom-8 right-8 size-11 rounded-full border border-[#a85f38]/70 bg-background/70 text-[#a85f38] shadow-lg shadow-[#a85f38]/15 backdrop-blur-md flex items-center justify-center hover:bg-primary hover:text-white transition-all z-20"
         aria-label="Scroll to top"
       >
         <FiArrowUp aria-hidden="true" />

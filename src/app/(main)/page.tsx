@@ -121,7 +121,7 @@ export default function Home() {
       </ScrollAnimationSection>
 
       {/* Featured Projects avec apparition/disparition */}
-      <ScrollAnimationSection delay={0.2} id="projects">
+      <ScrollAnimationSection delay={0.2} id="projects" className="scroll-mt-28">
         <FeaturedProjects />
       </ScrollAnimationSection>
 
@@ -148,14 +148,17 @@ function ScrollAnimationSection({
   children,
   delay = 0,
   id,
+  className,
 }: {
   children: React.ReactNode;
   delay?: number;
   id?: string;
+  className?: string;
 }) {
   return (
     <motion.section
       id={id}
+      className={className}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px 0px -80px 0px" }}
