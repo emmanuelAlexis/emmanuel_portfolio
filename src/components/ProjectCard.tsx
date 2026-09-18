@@ -19,17 +19,17 @@ export default function ProjectCard({
     public: {
       icon: <FiUnlock className="w-3 h-3" />,
       label: t.projects.access.public,
-      color: "bg-green-500/20 text-green-400 border-green-500/20"
+      color: "bg-emerald-500/15 text-emerald-300 border-emerald-400/25"
     },
     protected: {
       icon: <FiLock className="w-3 h-3" />,
       label: t.projects.access.protected,
-      color: "bg-blue-500/80 text-blue-900 border-blue-500/20"
+      color: "bg-[#a85f38]/20 text-[#e0a178] border-[#a85f38]/30"
     },
     private: {
       icon: <FiEyeOff className="w-3 h-3" />,
       label: t.projects.access.private,
-      color: "bg-red-500/20 text-red-400 border-red-500/20"
+      color: "bg-rose-500/15 text-rose-300 border-rose-400/25"
     }
   };
 
@@ -45,10 +45,10 @@ export default function ProjectCard({
         delay: index * 0.1,
       }}
       whileHover={{ y: -10 }}
-      className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 h-full flex flex-col"
+      className="group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-foreground/10 bg-background/55 shadow-xl shadow-black/10 backdrop-blur-md transition-all duration-500 hover:-translate-y-2 hover:border-[#a85f38]/45 hover:shadow-2xl hover:shadow-[#a85f38]/10"
     >
       {/* Image Section */}
-      <div className="relative h-56 overflow-hidden">
+      <div className="relative h-60 overflow-hidden border-b border-white/10">
         <Image
           src={project.imageUrl}
           alt={project.title}
@@ -56,7 +56,7 @@ export default function ProjectCard({
           className="object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
           quality={90}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent opacity-85 transition-opacity duration-500 group-hover:opacity-100" />
 
         {/* Access Badge */}
         <div className={`absolute top-4 right-4 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-medium border flex items-center gap-1.5 z-10 ${accessInfo.color}`}>
@@ -69,7 +69,7 @@ export default function ProjectCard({
           {project.technologies.slice(0, 4).map((tech: any) => (
             <span
               key={tech.id}
-              className="bg-white/20 backdrop-blur-md text-white px-3 py-1.5 rounded-full text-sm font-medium border border-white/10 flex items-center gap-1"
+              className="flex items-center gap-1 rounded-full border border-white/15 bg-black/30 px-3 py-1.5 text-sm font-medium text-white backdrop-blur-md"
             >
               {tech.icon}
             </span>
@@ -83,8 +83,8 @@ export default function ProjectCard({
       </div>
 
       {/* Content Section */}
-      <div className="p-6 flex flex-col flex-grow">
-        <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-primary dark:group-hover:text-primary transition-colors duration-300">
+      <div className="flex flex-grow flex-col p-6 md:p-7">
+        <h3 className="mb-3 text-xl font-bold tracking-tight text-foreground transition-colors duration-300 group-hover:text-[#c9794b]">
           {project.title}
         </h3>
         <p className="text-gray-600 dark:text-gray-300 mb-6 line-clamp-3 flex-grow">
@@ -106,7 +106,7 @@ export default function ProjectCard({
           )}
           <Link
             href={project.projectUrl}
-            className="flex items-center gap-2 text-white bg-primary hover:bg-primary/90 px-4 py-2 rounded-lg transition-all text-sm font-medium shadow-lg shadow-primary/20 flex-1 justify-center group/btn"
+            className="group/btn flex flex-1 items-center justify-center gap-2 rounded-xl bg-[#a85f38] px-4 py-2.5 text-sm font-medium text-white shadow-lg shadow-[#a85f38]/20 transition-all hover:bg-[#bd7148]"
           >
             <span>Voir détails</span>
             <FiArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
