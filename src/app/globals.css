@@ -157,6 +157,144 @@
   }
 }
 
+@keyframes ambient-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.42;
+  }
+  50% {
+    transform: translate3d(7vw, -3vh, 0) scale(1.14);
+    opacity: 0.62;
+  }
+}
+
+@keyframes ambient-float-reverse {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.08);
+  }
+  50% {
+    transform: translate3d(-6vw, 4vh, 0) scale(0.92);
+  }
+}
+
+.tech-background {
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 12% 12%, rgba(152, 89, 55, 0.12), transparent 30%),
+    radial-gradient(circle at 88% 82%, rgba(34, 92, 99, 0.08), transparent 28%),
+    #faf9f7;
+}
+
+.dark .tech-background {
+  background:
+    radial-gradient(circle at 12% 12%, rgba(152, 89, 55, 0.2), transparent 30%),
+    radial-gradient(circle at 88% 82%, rgba(34, 92, 99, 0.12), transparent 28%),
+    #08090a;
+}
+
+.tech-background::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.52;
+  background-image:
+    linear-gradient(rgba(38, 34, 30, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(38, 34, 30, 0.055) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(to bottom, black, transparent 92%);
+}
+
+.dark .tech-background::before {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+}
+
+.section-atmosphere {
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 8% 18%, rgba(152, 89, 55, 0.07), transparent 28%),
+    radial-gradient(circle at 92% 86%, rgba(34, 92, 99, 0.06), transparent 30%),
+    #f7f6f3;
+}
+
+.section-atmosphere + .section-atmosphere {
+  border-top: 1px solid rgba(38, 34, 30, 0.06);
+}
+
+.section-atmosphere::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(38, 34, 30, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(38, 34, 30, 0.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: linear-gradient(to bottom, black, transparent 90%);
+}
+
+.section-atmosphere-warm,
+.section-atmosphere-projects,
+.section-atmosphere-cool {
+  background: transparent;
+}
+
+.dark .section-atmosphere,
+.dark .section-atmosphere-warm,
+.dark .section-atmosphere-projects,
+.dark .section-atmosphere-cool {
+  background-color: #0d0f10;
+  background-image:
+    radial-gradient(circle at 8% 18%, rgba(152, 89, 55, 0.13), transparent 28%),
+    radial-gradient(circle at 92% 86%, rgba(34, 92, 99, 0.1), transparent 30%);
+}
+
+.dark .section-atmosphere-projects,
+.dark .section-atmosphere-warm,
+.dark .section-atmosphere-cool {
+  background: transparent;
+}
+
+.dark .section-atmosphere + .section-atmosphere {
+  border-top-color: rgba(255, 255, 255, 0.07);
+}
+
+.dark .section-atmosphere::before {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+}
+
+.tech-orb {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 9999px;
+  filter: blur(72px);
+  will-change: transform;
+}
+
+.tech-orb-copper {
+  animation: ambient-float 14s ease-in-out infinite;
+  background: rgba(152, 89, 55, 0.38);
+}
+
+.tech-orb-teal {
+  animation: ambient-float-reverse 18s ease-in-out infinite;
+  background: rgba(31, 102, 108, 0.22);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-orb-copper,
+  .tech-orb-teal {
+    animation: none;
+  }
+}
+
 @keyframes chevron-nudge {
   0%,
   100% {

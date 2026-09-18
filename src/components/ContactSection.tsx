@@ -67,7 +67,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section className="py-20 px-6 md:px-12 lg:px-24 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
+    <section className="section-atmosphere section-atmosphere-cool py-20 px-6 md:px-12 lg:px-24 relative overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
           variants={containerVariants}

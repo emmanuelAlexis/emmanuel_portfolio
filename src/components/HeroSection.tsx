@@ -13,12 +13,15 @@ export default function HeroSection() {
   // `initial="hidden"`. They therefore start at the first paint and never wait
   // for hydration, which is what used to push LCP past 4s.
   return (
-    <section className="pt-20 min-h-screen relative overflow-hidden">
-      {/* Background décoratif — CSS only, transform-driven so it stays on the
-          compositor thread instead of repainting a 300px blur-3xl every frame. */}
-      <div className="absolute inset-0 z-0" aria-hidden="true">
-        <div className="animate-drift absolute bottom-0 left-0 w-[300px] h-[300px] bg-primary/10 rounded-full blur-3xl" />
+    <section className="tech-background pt-28 pb-24 min-h-[100svh] relative overflow-hidden text-foreground">
+      {/* Ambient background layers stay decorative and never intercept interaction. */}
+      <div className="absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+        <div className="tech-orb tech-orb-copper -left-24 top-16 size-80" />
+        <div className="tech-orb tech-orb-teal -right-24 bottom-12 size-96" />
+        <div className="animate-drift absolute bottom-0 left-0 size-72 rounded-full bg-primary/10 blur-3xl" />
       </div>
+
+      <div className="absolute inset-x-0 top-10 z-0 mx-auto h-px max-w-6xl bg-gradient-to-r from-transparent via-foreground/10 to-transparent dark:via-white/10" aria-hidden="true" />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-12">

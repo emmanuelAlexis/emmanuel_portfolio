@@ -85,7 +85,7 @@ export default function Home() {
 
       {/* About Section */}
       <ScrollAnimationSection id="about">
-        <section className="relative overflow-hidden min-h-screen bg-gray-50/50 dark:bg-gray-950/50 py-20 lg:py-28">
+        <section className="section-atmosphere relative overflow-hidden min-h-screen py-20 lg:py-28">
           {/* Background decorative elements */}
           <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
             <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-3xl" />
