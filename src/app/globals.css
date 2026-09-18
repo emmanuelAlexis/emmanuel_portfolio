@@ -208,6 +208,33 @@ body::before {
   background-size: 100% 100%, 100% 100%, 28px 28px, 28px 28px;
 }
 
+body::after {
+  content: "";
+  position: fixed;
+  inset: -18%;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.55;
+  background:
+    radial-gradient(circle at 18% 22%, rgba(196, 111, 66, 0.12), transparent 20%),
+    radial-gradient(circle at 82% 78%, rgba(44, 126, 132, 0.1), transparent 22%);
+  filter: blur(28px);
+  animation: ambient-drift 24s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes ambient-drift {
+  0% { transform: translate3d(-2%, -1%, 0) scale(1); }
+  50% { transform: translate3d(2%, 1.5%, 0) scale(1.04); }
+  100% { transform: translate3d(-1%, 2%, 0) scale(1.02); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::after {
+    animation: none;
+  }
+}
+
 .tech-background {
   isolation: isolate;
   background: transparent;
@@ -219,6 +246,13 @@ body::before {
     radial-gradient(circle at 100% 100%, rgba(34, 92, 99, 0.16), transparent 32%),
     #08090a;
   background-attachment: fixed;
+}
+
+.dark body::after {
+  opacity: 0.8;
+  background:
+    radial-gradient(circle at 18% 22%, rgba(196, 111, 66, 0.18), transparent 20%),
+    radial-gradient(circle at 82% 78%, rgba(44, 126, 132, 0.16), transparent 22%);
 }
 
 .dark body::before {
