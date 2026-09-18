@@ -270,6 +270,17 @@
     linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
 }
 
+.section-deferred {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-deferred {
+    content-visibility: visible;
+  }
+}
+
 .tech-orb {
   position: absolute;
   pointer-events: none;
