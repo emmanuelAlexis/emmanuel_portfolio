@@ -77,7 +77,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="overflow-hidden">
+    <div className="site-scroll-background relative overflow-hidden">
       {/* Hero Section - toujours visible */}
       <section className="relative">
         <HeroSection />
