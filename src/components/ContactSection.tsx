@@ -74,7 +74,7 @@ export default function ContactSection() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="mb-14 grid gap-6 text-left lg:grid-cols-[0.85fr_1.15fr] lg:items-end"
         >
           <motion.span
             variants={itemVariants}
@@ -84,7 +84,7 @@ export default function ContactSection() {
           </motion.span>
           <motion.h2
             variants={itemVariants}
-            className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-400"
+            className="text-4xl md:text-6xl font-bold tracking-tight text-foreground"
           >
             {t.contact.title}
           </motion.h2>
@@ -103,9 +103,9 @@ export default function ContactSection() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
-            className="lg:w-6/12 space-y-8"
+            className="lg:w-5/12 space-y-8"
           >
-            <div className="bg-white dark:bg-gray-800/50 p-8 rounded-3xl shadow-xl shadow-gray-100/50 dark:shadow-none border border-gray-100 dark:border-gray-700/50 backdrop-blur-sm">
+            <div className="relative overflow-hidden rounded-[2rem] border border-foreground/10 bg-foreground/[0.04] p-8 shadow-2xl shadow-black/5 backdrop-blur-xl">
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">
                 {t.common.coordinates}
               </h3>
@@ -180,9 +180,9 @@ export default function ContactSection() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             viewport={{ once: true }}
-            className="lg:w-6/12"
+            className="lg:w-7/12"
           >
-            <div className="bg-white dark:bg-gray-800 p-8 md:p-10 rounded-3xl shadow-2xl shadow-gray-200/50 dark:shadow-black/20 border border-gray-100 dark:border-gray-700">
+            <div className="rounded-[2rem] border border-foreground/10 bg-background/55 p-6 shadow-2xl shadow-black/5 backdrop-blur-xl md:p-10">
               <form onSubmit={onSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
                   <InputWithIcon
