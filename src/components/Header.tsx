@@ -86,7 +86,7 @@ export default function Header() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className={`fixed top-3 left-1/2 -translate-x-1/2 w-[calc(100%-1.5rem)] max-w-6xl z-50 rounded-2xl border transition-all duration-300 ${scrolled
+      className={`fixed top-2 left-1/2 -translate-x-1/2 w-[calc(100%-1.5rem)] max-w-6xl z-50 rounded-2xl border transition-all duration-300 ${scrolled
         ? "py-2.5 border-white/50 bg-white/70 dark:border-white/10 dark:bg-gray-900/65 shadow-lg shadow-black/5 backdrop-blur-xl"
         : "py-3 border-white/30 bg-white/35 dark:border-white/10 dark:bg-gray-950/25 backdrop-blur-lg"
         }`}
