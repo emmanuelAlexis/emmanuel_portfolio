@@ -65,20 +65,23 @@ export default function ProjectCard({
         </div>
 
         {/* Technologies Overlay */}
-        <div className="absolute bottom-4 left-4 right-4 flex flex-wrap gap-2">
-          {project.technologies.slice(0, 4).map((tech: any) => (
-            <span
-              key={tech.id}
-              className="flex items-center gap-1 rounded-full border border-white/15 bg-black/30 px-3 py-1.5 text-sm font-medium text-white backdrop-blur-md"
-            >
-              {tech.icon}
-            </span>
-          ))}
-          {project.technologies.length > 4 && (
-            <span className="bg-white/20 backdrop-blur-md text-white px-3 py-1.5 rounded-full text-sm font-medium border border-white/10">
-              +{project.technologies.length - 4}
-            </span>
-          )}
+        <div className="absolute inset-x-4 bottom-4 rounded-2xl border border-white/20 bg-black/30 p-3 shadow-xl shadow-black/10 backdrop-blur-xl md:inset-x-5 md:bottom-5 md:p-4">
+          <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.22em] text-white/65">Technologies</p>
+          <div className="flex flex-wrap gap-2">
+            {project.technologies.slice(0, 4).map((tech: any) => (
+              <span
+                key={tech.id}
+                className="flex items-center gap-1 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-sm font-medium text-white backdrop-blur-md"
+              >
+                {tech.icon}
+              </span>
+            ))}
+            {project.technologies.length > 4 && (
+              <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-sm font-medium text-white backdrop-blur-md">
+                +{project.technologies.length - 4}
+              </span>
+            )}
+          </div>
         </div>
       </div>
 
