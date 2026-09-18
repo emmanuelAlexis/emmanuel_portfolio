@@ -211,7 +211,7 @@ function ScrollToTopButton() {
     >
       <a
         href="#top"
-        className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 transition-colors"
+        className="flex size-12 items-center justify-center rounded-full border border-[#a85f38]/70 bg-background/80 text-[#a85f38] shadow-lg shadow-[#a85f38]/15 backdrop-blur-md transition-all hover:bg-[#a85f38] hover:text-white"
         aria-label={t.common.scrollToTop}
       >
         <svg
