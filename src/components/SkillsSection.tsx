@@ -81,7 +81,7 @@ export default function SkillsSection() {
                   type="button"
                   onClick={() => setActiveIndex(index)}
                   aria-current={activeIndex === index ? "true" : undefined}
-                  className={`flex min-w-max items-center gap-3 rounded-2xl px-4 py-3 text-left transition-all lg:w-full ${activeIndex === index ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20" : "text-muted-foreground hover:bg-foreground/5 hover:text-foreground"}`}
+                  className={`flex min-w-max items-center gap-3 rounded-2xl px-4 py-3 text-left transition-all lg:w-full ${activeIndex === index ? "bg-primary text-white shadow-lg shadow-primary/20" : "text-muted-foreground hover:bg-foreground/5 hover:text-foreground"}`}
                 >
                   <span className="flex size-8 items-center justify-center rounded-xl bg-background/15">{category.icon}</span>
                   <span className="text-sm font-medium">{category.category}</span>

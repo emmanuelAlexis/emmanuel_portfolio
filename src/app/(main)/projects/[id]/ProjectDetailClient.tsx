@@ -163,7 +163,7 @@ export default function ProjectDetailsPage({ params }: { params: Promise<{ id: s
     const accessInfo = accessConfig[project.access as keyof typeof accessConfig] || accessConfig.private;
 
     return (
-        <div className="min-h-screen py-10 px-4 sm:px-6 lg:px-8 bg-gray-50/50 dark:bg-gray-950/50 relative overflow-hidden">
+        <div className="min-h-screen pt-28 pb-10 px-4 sm:px-6 lg:px-8 bg-gray-50/50 dark:bg-gray-950/50 relative overflow-hidden">
             {/* Background Elements */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
                 <div className="absolute top-[-10%] right-[-5%] w-[30%] h-[30%] bg-primary/5 rounded-full blur-3xl" />
