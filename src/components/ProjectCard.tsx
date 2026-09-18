@@ -83,11 +83,11 @@ export default function ProjectCard({
       </div>
 
       {/* Content Section */}
-      <div className="flex flex-grow flex-col p-6 md:p-7">
-        <h3 className="mb-3 text-xl font-bold tracking-tight text-foreground transition-colors duration-300 group-hover:text-[#c9794b]">
+      <div className="flex flex-grow flex-col bg-background/35 p-6 transition-colors duration-300 group-hover:bg-background/75 md:p-7">
+        <h3 className="mb-3 text-xl font-bold tracking-tight text-foreground transition-colors duration-300 group-hover:text-[#d98a5d]">
           {project.title}
         </h3>
-        <p className="text-gray-600 dark:text-gray-300 mb-6 line-clamp-3 flex-grow">
+        <p className="mb-6 line-clamp-3 flex-grow text-muted-foreground transition-colors duration-300 group-hover:text-foreground/85">
           {project.description}
         </p>
 
@@ -98,7 +98,7 @@ export default function ProjectCard({
               href={project.githubLinks[0].url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-600 hover:border-primary dark:hover:border-primary transition-all text-sm font-medium"
+              className="flex items-center gap-2 rounded-xl border border-foreground/15 px-4 py-2.5 text-sm font-medium text-muted-foreground transition-all hover:border-[#a85f38]/60 hover:bg-[#a85f38]/10 hover:text-foreground"
             >
               <FiGithub className="w-4 h-4" />
               <span>Code</span>
