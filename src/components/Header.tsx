@@ -183,7 +183,7 @@ export default function Header() {
             className="md:hidden max-h-[calc(100svh-5rem)] overflow-y-auto overflow-x-hidden"
           >
             <motion.div
-              className="border-t border-white/10 bg-gray-950/80 backdrop-blur-2xl"
+              className="border-t border-[#a85f38]/15 bg-transparent backdrop-blur-none"
               initial={{ y: -20 }}
               animate={{ y: 0 }}
               exit={{ y: -20 }}
@@ -200,8 +200,8 @@ export default function Header() {
                       href={item.path}
                       onClick={(e) => handleNavClick(e, item)}
                       className={`block rounded-xl border px-4 py-2.5 text-sm transition ${pathname === item.path
-                        ? "border-[#a85f38]/40 bg-[#a85f38]/15 text-[#d98a5d] font-medium"
-                        : "border-transparent text-gray-300 hover:border-white/10 hover:bg-white/5 hover:text-white"
+                        ? "border-[#a85f38]/40 bg-[#a85f38]/15 text-[#a85f38] dark:text-[#d98a5d] font-medium"
+                        : "border-transparent text-gray-700 hover:border-[#a85f38]/20 hover:bg-[#a85f38]/5 hover:text-[#a85f38] dark:text-gray-300 dark:hover:border-white/10 dark:hover:bg-white/5 dark:hover:text-white"
                         }`}
                     >
                       {item.label}
