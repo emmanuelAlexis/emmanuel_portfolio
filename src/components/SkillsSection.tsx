@@ -15,7 +15,7 @@ const SkillCard = ({
   return (
     <motion.div
       whileHover={{ y: -5 }}
-      className="group flex flex-col items-center justify-center gap-2 p-4 rounded-xl transition-all duration-300 hover:bg-gray-100/50 dark:hover:bg-gray-800/50 cursor-default"
+      className="group flex min-h-32 flex-col items-center justify-center gap-3 rounded-2xl border border-foreground/10 bg-background/55 p-4 shadow-sm backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:bg-background/80 hover:shadow-xl hover:shadow-primary/5 cursor-default"
     >
       {/* The technology name is rendered underneath, so the icon is decorative:
           aria-hidden also keeps react-icons' redundant role="img" out of the
@@ -51,12 +51,15 @@ export default function SkillsSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mb-14 grid gap-8 text-left lg:grid-cols-[0.8fr_1.2fr] lg:items-end"
         >
-          <h2 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">
-            {t.skills.title}
-          </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <div>
+            <p className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-primary">04 / expertise</p>
+            <h2 className="max-w-xl text-4xl font-bold tracking-tight text-foreground md:text-6xl">
+              {t.skills.title}
+            </h2>
+          </div>
+          <p className="max-w-xl text-lg leading-relaxed text-muted-foreground lg:justify-self-end">
             {t.skills.subtitle}
           </p>
         </motion.div>
@@ -70,15 +73,19 @@ export default function SkillsSection() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: index * 0.1 }}
             >
-              <h3 className="text-2xl font-bold mb-8 text-center text-gray-800 dark:text-gray-200 flex items-center justify-center gap-3">
-                <span className="w-8 h-1 bg-primary rounded-full" />
-                {category.category}
-                <span className="w-8 h-1 bg-primary rounded-full" />
-              </h3>
-              <div className="flex flex-wrap justify-center gap-6 md:gap-8">
-                {category.items.map((skill, skillIndex) => (
-                  <SkillCard key={skillIndex} {...skill} />
-                ))}
+              <div className="overflow-hidden rounded-3xl border border-foreground/10 bg-background/35 p-5 shadow-2xl shadow-black/5 backdrop-blur-sm md:p-7">
+                <div className="mb-6 flex items-center justify-between gap-4 border-b border-foreground/10 pb-5">
+                  <h3 className="flex items-center gap-3 text-xl font-bold text-foreground md:text-2xl">
+                    <span className="size-2 rounded-full bg-primary shadow-[0_0_18px_var(--primary)]" />
+                    {category.category}
+                  </h3>
+                  <span className="font-mono text-xs tracking-[0.25em] text-muted-foreground">{String(index + 1).padStart(2, "0")}</span>
+                </div>
+                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+                  {category.items.map((skill, skillIndex) => (
+                    <SkillCard key={skillIndex} {...skill} />
+                  ))}
+                </div>
               </div>
             </motion.div>
           ))}

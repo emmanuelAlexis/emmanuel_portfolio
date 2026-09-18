@@ -237,7 +237,15 @@
 .section-atmosphere-warm {
   background:
     radial-gradient(circle at 16% 8%, rgba(152, 89, 55, 0.13), transparent 26%),
+    radial-gradient(circle at 82% 90%, rgba(205, 157, 111, 0.11), transparent 24%),
     #f4f1ed;
+}
+
+.section-atmosphere-projects {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(100, 117, 143, 0.12), transparent 32%),
+    radial-gradient(circle at 8% 90%, rgba(152, 89, 55, 0.08), transparent 25%),
+    #f7f8fa;
 }
 
 .section-atmosphere-cool {
@@ -248,11 +256,18 @@
 
 .dark .section-atmosphere,
 .dark .section-atmosphere-warm,
+.dark .section-atmosphere-projects,
 .dark .section-atmosphere-cool {
   background-color: #0d0f10;
   background-image:
     radial-gradient(circle at 8% 18%, rgba(152, 89, 55, 0.13), transparent 28%),
     radial-gradient(circle at 92% 86%, rgba(34, 92, 99, 0.1), transparent 30%);
+}
+
+.dark .section-atmosphere-projects {
+  background-image:
+    radial-gradient(circle at 50% 0%, rgba(100, 117, 143, 0.16), transparent 32%),
+    radial-gradient(circle at 8% 90%, rgba(152, 89, 55, 0.11), transparent 25%);
 }
 
 .dark .section-atmosphere::before {

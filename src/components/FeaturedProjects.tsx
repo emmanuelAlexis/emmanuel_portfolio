@@ -198,7 +198,7 @@ export default function FeaturedProjects() {
   }, [allProjects, filter]);
 
   return (
-    <section className="py-20 px-4 bg-gray-50 dark:bg-gray-900">
+    <section className="section-atmosphere section-atmosphere-projects py-20 px-4">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
