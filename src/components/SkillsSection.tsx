@@ -64,7 +64,9 @@ export default function SkillsSection() {
           </p>
         </motion.div>
 
-        <div className="space-y-16">
+        <div className="relative lg:pl-24">
+          <div className="absolute bottom-8 left-8 top-8 hidden w-px bg-gradient-to-b from-primary/10 via-primary/60 to-primary/10 lg:block" aria-hidden="true" />
+          <div className="space-y-8">
           {skills.map((category, index) => (
             <motion.div
               key={index}
@@ -73,7 +75,8 @@ export default function SkillsSection() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: index * 0.1 }}
             >
-              <div className="overflow-hidden rounded-3xl border border-foreground/10 bg-background/35 p-5 shadow-2xl shadow-black/5 backdrop-blur-sm md:p-7">
+              <span className="absolute -left-[4.35rem] mt-8 hidden size-3 rounded-full border-2 border-background bg-primary shadow-[0_0_0_5px_color-mix(in_srgb,var(--primary)_15%,transparent),0_0_24px_color-mix(in_srgb,var(--primary)_55%,transparent)] lg:block" aria-hidden="true" />
+              <div className="overflow-hidden rounded-3xl border border-foreground/10 bg-background/45 p-5 shadow-xl shadow-black/5 backdrop-blur-md transition-colors hover:border-primary/30 md:p-7">
                 <div className="mb-6 flex items-center justify-between gap-4 border-b border-foreground/10 pb-5">
                   <h3 className="flex items-center gap-3 text-xl font-bold text-foreground md:text-2xl">
                     <span className="size-2 rounded-full bg-primary shadow-[0_0_18px_var(--primary)]" />
@@ -89,6 +92,7 @@ export default function SkillsSection() {
               </div>
             </motion.div>
           ))}
+          </div>
         </div>
       </div>
     </section>
