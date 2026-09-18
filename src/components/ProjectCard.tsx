@@ -53,10 +53,10 @@ export default function ProjectCard({
           src={project.imageUrl}
           alt={project.title}
           fill
-          className="object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
+          className="object-cover transition-all duration-700 ease-in-out group-hover:scale-105 group-hover:brightness-90"
           quality={90}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent opacity-85 transition-opacity duration-500 group-hover:opacity-100" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-75" />
 
         {/* Access Badge */}
         <div className={`absolute top-4 right-4 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-medium border flex items-center gap-1.5 z-10 ${accessInfo.color}`}>
