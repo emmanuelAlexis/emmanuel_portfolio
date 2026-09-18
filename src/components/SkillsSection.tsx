@@ -39,7 +39,7 @@ export default function SkillsSection() {
   const skills = getSkills(language);
 
   return (
-    <section className="py-24 bg-gray-50/50 dark:bg-gray-900/50 relative overflow-hidden">
+    <section className="section-atmosphere section-atmosphere-warm py-24 relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 -left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
