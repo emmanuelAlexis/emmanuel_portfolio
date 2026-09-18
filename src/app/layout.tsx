@@ -31,11 +31,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "ADOLPHE Alexis Emmanuel - Développeur Full-Stack",
     description: "Développeur Full-Stack spécialisé en React, Next.js et technologies modernes. Création d'expériences numériques exceptionnelles alliant performance et élégance.",
-    url: "https://emmanuelsite.com", // TODO: Replace with actual domain
+    url: "https://emmanuel-portfolio-puce.vercel.app/", // TODO: Replace with actual domain
     siteName: "ADOLPHE Alexis Emmanuel Portfolio",
     images: [
       {
-        url: "https://emmanuelsite.com/og-image.jpg", // TODO: Add actual OG image
+        url: "https://emmanuel-portfolio-puce.vercel.app//og-image.jpg", // TODO: Add actual OG image
         width: 1200,
         height: 630,
         alt: "ADOLPHE Alexis Emmanuel - Développeur Full-Stack",
@@ -48,12 +48,12 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "ADOLPHE Alexis Emmanuel - Développeur Full-Stack",
     description: "Développeur Full-Stack spécialisé en React, Next.js et technologies modernes. Création d'expériences numériques exceptionnelles alliant performance et élégance.",
-    images: ["https://emmanuelsite.com/twitter-card.jpg"], // TODO: Add actual Twitter image
+    images: ["https://emmanuel-portfolio-puce.vercel.app//twitter-card.jpg"], // TODO: Add actual Twitter image
     creator: "@emmanuelAlexis", // TODO: Update with actual Twitter handle
   },
   // Additional SEO attributes
   referrer: "strict-origin-when-cross-origin",
-  metadataBase: new URL("https://emmanuelsite.com"), // TODO: Replace with actual domain
+  metadataBase: new URL("https://emmanuel-portfolio-puce.vercel.app/"), // TODO: Replace with actual domain
   alternates: {
     canonical: "/",
   },
@@ -86,7 +86,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               name: "ADOLPHE Alexis Emmanuel",
-              url: "https://emmanuelsite.com", // TODO: Replace with actual domain
+              url: "https://emmanuel-portfolio-puce.vercel.app/", // TODO: Replace with actual domain
               sameAs: [
                 "https://github.com/emmanuelAlexis",
                 "https://linkedin.com/in/emmanuelalexis", // TODO: Update with actual LinkedIn

@@ -53,7 +53,7 @@ export default function Me() {
                 className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl"
               >
                 <Image
-                  src="/picture_1.png" // Assurez-vous d'avoir votre photo ici
+                  src="/picture_1.webp" // Assurez-vous d'avoir votre photo ici
                   alt="Emmanuel A.A"
                   width={440}
                   height={440}

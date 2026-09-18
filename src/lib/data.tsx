@@ -198,31 +198,31 @@ const getAllProjects = (lang: 'fr' | 'en' = 'fr') => {
                     name: "TypeScript"
                 },
             ],
-            imageUrl: "/region/illustration_region.png",
+            imageUrl: "/region/illustration_region.webp",
             images: [
                 {
                     id: 0,
-                    src: "/region/auth_1.png",
+                    src: "/region/auth_1.webp",
                 },
                 {
                     id: 1,
-                    src: "/region/auth_2.png",
+                    src: "/region/auth_2.webp",
                 },
                 {
                     id: 2,
-                    src: "/region/dashboard.png",
+                    src: "/region/dashboard.webp",
                 },
                 {
                     id: 3,
-                    src: "/region/light.png",
+                    src: "/region/light.webp",
                 },
                 {
                     id: 4,
-                    src: "/region/responsive.png",
+                    src: "/region/responsive.webp",
                 },
                 {
                     id: 5,
-                    src: "/region/form.png",
+                    src: "/region/form.webp",
                 }
             ],
             projectUrl: "/projects/1",
@@ -270,19 +270,19 @@ const getAllProjects = (lang: 'fr' | 'en' = 'fr') => {
                     name: "TypeScript"
                 },
             ],
-            imageUrl: "/room/home.png",
+            imageUrl: "/room/home.webp",
             images: [
                 {
                     id: 0,
-                    src: "/room/home.png",
+                    src: "/room/home.webp",
                 },
                 {
                     id: 1,
-                    src: "/room/dashboard.png",
+                    src: "/room/dashboard.webp",
                 },
                 {
                     id: 2,
-                    src: "/room/discussion.png",
+                    src: "/room/discussion.webp",
                 }
             ],
             projectUrl: "/projects/2",
@@ -328,15 +328,15 @@ const getAllProjects = (lang: 'fr' | 'en' = 'fr') => {
                     name: "Framer Motion"
                 },
             ],
-            imageUrl: "/starter/illustration_starter.png",
+            imageUrl: "/starter/illustration_starter.webp",
             images: [
                 {
                     id: 0,
-                    src: "/starter/illustration_starter.png",
+                    src: "/starter/illustration_starter.webp",
                 },
                 {
                     id: 1,
-                    src: "/starter/home.png",
+                    src: "/starter/home.webp",
                 },
             ],
             projectUrl: "/projects/3",
@@ -371,11 +371,11 @@ const getAllProjects = (lang: 'fr' | 'en' = 'fr') => {
                     name: "Firebase"
                 },
             ],
-            imageUrl: "/globydep/illustration_1.png",
+            imageUrl: "/globydep/illustration_1.webp",
             images: [
                 {
                     id: 0,
-                    src: "/globydep/illustration_1.png",
+                    src: "/globydep/illustration_1.webp",
                 },
                 {
                     id: 1,
@@ -430,35 +430,35 @@ const getAllProjects = (lang: 'fr' | 'en' = 'fr') => {
                     name: "Java"
                 },
             ],
-            imageUrl: "/biblio/illustration_2.png",
+            imageUrl: "/biblio/illustration_2.webp",
             images: [
                 {
                     id: 0,
-                    src: "/biblio/home.png",
+                    src: "/biblio/home.webp",
                 },
                 {
                     id: 1,
-                    src: "/biblio/catalogue.png",
+                    src: "/biblio/catalogue.webp",
                 },
                 {
                     id: 2,
-                    src: "/biblio/infos.png",
+                    src: "/biblio/infos.webp",
                 },
                 {
                     id: 3,
-                    src: "/biblio/discuss.png",
+                    src: "/biblio/discuss.webp",
                 },
                 {
                     id: 4,
-                    src: "/biblio/lecture.png",
+                    src: "/biblio/lecture.webp",
                 },
                 {
                     id: 5,
-                    src: "/biblio/space.png",
+                    src: "/biblio/space.webp",
                 },
                 {
                     id: 6,
-                    src: "/biblio/add.png",
+                    src: "/biblio/add.webp",
                 },
             ],
             projectUrl: "/projects/5",
@@ -471,73 +471,73 @@ const getAllProjects = (lang: 'fr' | 'en' = 'fr') => {
             featured: true,
             date: "2024-11"
         },
-        // // Chess
-        // {
-        //     id: 6,
-        //     title: t.projectsData.chessAssist.title,
-        //     description: t.projectsData.chessAssist.description,
-        //     detailedDescription: t.projectsData.chessAssist.detailedDescription,
-        //     technologies: [
-        //         {
-        //             id: 0,
-        //             icon: <SiNextdotjs size="1.5rem" title="Next.js" />,
-        //             name: "Next.js"
-        //         },
-        //         {
-        //             id: 1,
-        //             icon: <SiReact size="1.5rem" title="React" />,
-        //             name: "React"
-        //         },
-        //         {
-        //             id: 2,
-        //             icon: <SiTypescript size="1.5rem" title="TypeScript" />,
-        //             name: "TypeScript"
-        //         },
-        //         {
-        //             id: 3,
-        //             icon: <TbChess size="1.5rem" title="chess.js" />,
-        //             name: "chess.js"
-        //         },
-        //         {
-        //             id: 4,
-        //             icon: <SiFramer size="1.5rem" title="Framer Motion" />,
-        //             name: "Framer Motion"
-        //         },
-        //         {
-        //             id: 5,
-        //             icon: <SiTailwindcss size="1.5rem" title="TailwindCSS" />,
-        //             name: "TailwindCSS"
-        //         },
-        //         {
-        //             id: 6,
-        //             icon: <SiGodotengine size="1.5rem" title="AI" />,
-        //             name: "AI"
-        //         },
-        //     ],
-        //     imageUrl: "/chess/illustration_1.png",
-        //     images: [
-        //         {
-        //             id: 0,
-        //             src: "/chess/home.png",
-        //         },
-        //         {
-        //             id: 1,
-        //             src: "/chess/game.png",
-        //         },
-        //         {
-        //             id: 2,
-        //             src: "/chess/dark.png",
-        //         }
-        //     ],
-        //     projectUrl: "/projects/6",
-        //     liveUrl: "https://chess-assistantio.vercel.app/",
-        //     githubLinks: [
-        //         { label: "Frontend", url: "https://github.com/emmanuelAlexis/chessAssistant.git" }
-        //     ],
-        //     access: "public",
-        //     featured: true,
-        //     date: "2025-11"
-        // },
+        // Chess
+        {
+            id: 6,
+            title: t.projectsData.chessAssist.title,
+            description: t.projectsData.chessAssist.description,
+            detailedDescription: t.projectsData.chessAssist.detailedDescription,
+            technologies: [
+                {
+                    id: 0,
+                    icon: <SiNextdotjs size="1.5rem" title="Next.js" />,
+                    name: "Next.js"
+                },
+                {
+                    id: 1,
+                    icon: <SiReact size="1.5rem" title="React" />,
+                    name: "React"
+                },
+                {
+                    id: 2,
+                    icon: <SiTypescript size="1.5rem" title="TypeScript" />,
+                    name: "TypeScript"
+                },
+                {
+                    id: 3,
+                    icon: <TbChess size="1.5rem" title="chess.js" />,
+                    name: "chess.js"
+                },
+                {
+                    id: 4,
+                    icon: <SiFramer size="1.5rem" title="Framer Motion" />,
+                    name: "Framer Motion"
+                },
+                {
+                    id: 5,
+                    icon: <SiTailwindcss size="1.5rem" title="TailwindCSS" />,
+                    name: "TailwindCSS"
+                },
+                {
+                    id: 6,
+                    icon: <SiGodotengine size="1.5rem" title="AI" />,
+                    name: "AI"
+                },
+            ],
+            imageUrl: "/chess/illustration_1.webp",
+            images: [
+                {
+                    id: 0,
+                    src: "/chess/home.webp",
+                },
+                {
+                    id: 1,
+                    src: "/chess/game.webp",
+                },
+                {
+                    id: 2,
+                    src: "/chess/dark.webp",
+                }
+            ],
+            projectUrl: "/projects/6",
+            liveUrl: "https://chess-assistantio.vercel.app/",
+            githubLinks: [
+                { label: "Frontend", url: "https://github.com/emmanuelAlexis/chessAssistant.git" }
+            ],
+            access: "public",
+            featured: true,
+            date: "2025-11"
+        },
 
     ];
 };
@@ -552,4 +552,9 @@ const getFeaturedProjects = (lang: 'fr' | 'en' = 'fr') => {
 // NOTE: the previous eager `export const featuredProjects = getFeaturedProjects('fr')`
 // executed at import time in every bundle that touched this module and dragged the
 // full project + icon dataset into client chunks. It was unused, so it is gone.
-export { getFeaturedProjects, getAllProjects, getSkills };
+export { getFeaturedProjects, getAllProjects, getSkills, getProjectById };
+
+// Function to get a single project by ID
+const getProjectById = (id: number, lang: 'fr' | 'en' = 'fr') => {
+    return getAllProjects(lang).find((project) => project.id === id);
+};

@@ -1,6 +1,6 @@
 "use client";
 
-import { getAllProjects } from "@/lib/data";
+import { getAllProjects, getProjectById } from "@/lib/data";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -111,10 +111,9 @@ function organizeTechnologiesByCategory(
 
 export default function ProjectDetailsPage({ params }: { params: Promise<{ id: string }> }) {
     const { t, language } = useLanguage();
-    const allProjects = getAllProjects(language);
     const { id } = use(params);
     const projectId = parseInt(id);
-    const project = allProjects.find((p) => p.id === projectId);
+    const project = getProjectById(projectId, language);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
 

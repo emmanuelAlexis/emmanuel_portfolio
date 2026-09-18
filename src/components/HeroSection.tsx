@@ -95,7 +95,7 @@ export default function HeroSection() {
               <div className="absolute inset-0 opacity-30 transition-opacity duration-300 hover:opacity-50" />
               <div className="relative w-full rounded-full max-w-md aspect-square overflow-hidden transition-transform duration-300 hover:scale-[1.02] hover:shadow-[0_25px_50px_-12px_rgba(152,89,55,0.25)]">
                 <Image
-                  src="/picture.png"
+                  src="/picture.webp"
                   alt={t.common.profilePhoto}
                   width={440}
                   height={440}

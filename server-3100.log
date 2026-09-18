@@ -24,3 +24,5 @@ Error [InvariantError]: Invariant: Expected clientReferenceManifest to be define
     at m (D:\PROJECT\L3\NEEDED\emmanuel_portfolio\.next\server\chunks\ssr\e4070_next_dist_esm_build_templates_app-page_c4fc830f.js:1:7093)
     at o (D:\PROJECT\L3\NEEDED\emmanuel_portfolio\.next\server\chunks\ssr\e4070_next_dist_esm_build_templates_app-page_c4fc830f.js:2:2612)
     at responseGenerator (D:\PROJECT\L3\NEEDED\emmanuel_portfolio\.next\server\chunks\ssr\e4070_next_dist_esm_build_templates_app-page_c4fc830f.js:2:2770)
+
+D:\PROJECT\L3\NEEDED\emmanuel_portfolio>

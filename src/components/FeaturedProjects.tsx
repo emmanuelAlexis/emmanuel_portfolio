@@ -1,12 +1,12 @@
 "use client";
-import { getAllProjects } from "@/lib/data";
+import { getAllProjects, getFeaturedProjects } from "@/lib/data";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState, useMemo } from "react";
 import { FiGithub, FiExternalLink, FiLock, FiUnlock, FiEyeOff } from "react-icons/fi";
 import { useLanguage } from "@/context/LanguageContext";
 
-type Project = ReturnType<typeof getAllProjects>[0];
+type Project = ReturnType<typeof getFeaturedProjects>[0];
 
 export const ProjectCard = ({
   project,
@@ -136,7 +136,7 @@ export const ProjectCard = ({
 
 export default function FeaturedProjects() {
   const { t, language } = useLanguage();
-  const allProjects = getAllProjects(language);
+  const allProjects = getFeaturedProjects(language);
   const [filter, setFilter] = useState<"all" | "recent" | "mobile" | "nextjs" | "springboot" | "nestjs">("all");
   // const [filter, setFilter] = useState<"all" | "recent" | "mobile" | "ai" | "nextjs" | "springboot" | "nestjs">("all");
 
